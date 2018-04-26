@@ -2,11 +2,13 @@ package view;
 
 import java.sql.*;
 import conection.ConnectionFactory;
-import javax.swing.JOptionPane;
+import controller.*;
 public class TelaLogin extends javax.swing.JFrame {
+    
     Connection conexao = null;
     PreparedStatement stmt = null; //conjunto de bibliotecas para manipular as instruções sql
-    ResultSet rs = null; //exibe o resultado das instruções sql feitos no java
+    //ResultSet rs = null; //exibe o resultado das instruções sql feitos no java
+    IControleLogin controle = new ControleLogin();
     
     public TelaLogin() {
         initComponents();
@@ -19,30 +21,31 @@ public class TelaLogin extends javax.swing.JFrame {
             this.status.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/bancoDesconectado.png")));
         }
     }
-
-    public void logar(){
-        //fazer uma busca no banco de dados por estas informações
-        String sql = "select * from `infotech`.`Vendedor` where cpf=? and senha=?";
-        try{
-            stmt = conexao.prepareStatement(sql);//preparam a string para a ser executada no bd
-            stmt.setString(1, this.txtCPF.getText());
-            stmt.setString(2, this.txtSenha.getText());
-            //executar no Bd
-            rs = stmt.executeQuery();
-            
-            //se houve resultado da pesquisa
-            if (rs.next()){
-                TelaPrincipal tela = new TelaPrincipal();
-                tela.setVisible(true);
-                ConnectionFactory.closeConnection(conexao, stmt, rs);
-            }else{
-                 JOptionPane.showMessageDialog(null, "Não foi encontrado essa entidade no BD");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-        
+//foi para o controller 
+//    public void logar(){
+//        //fazer uma busca no banco de dados por estas informações
+//        String sql = "select * from `infotech`.`Vendedor` where cpf=? and senha=?";
+//        try{
+//            stmt = conexao.prepareStatement(sql);//preparam a string para a ser executada no bd
+//            stmt.setString(1, this.txtCPF.getText());
+//            stmt.setString(2, this.txtSenha.getText());
+//            //executar no Bd
+//            rs = stmt.executeQuery();
+//            
+//            //se houve resultado da pesquisa
+//            if (rs.next()){
+//                TelaPrincipal tela = new TelaPrincipal();
+//                tela.setVisible(true);
+//                ConnectionFactory.closeConnection(conexao, stmt, rs);
+//                this.dispose();
+//            }else{
+//                 JOptionPane.showMessageDialog(null, "Não foi encontrado essa entidade no BD");
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//  }
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -127,8 +130,11 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void botao_logarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_logarActionPerformed
-        this.logar();
-        
+
+        if(controle.login(this.txtCPF.getText(), this.txtSenha.getText())){
+           ConnectionFactory.closeConnection(conexao, stmt);
+           this.dispose();
+        }
     }//GEN-LAST:event_botao_logarActionPerformed
 
     /**
