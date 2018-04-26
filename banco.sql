@@ -11,11 +11,13 @@ CREATE TABLE `infotech`.`Produto` (
   `quantidade` INT NULL,
   `tempo_garantia` INT NULL,
   `descricao` VARCHAR(255) NULL,
-  `preco` VARCHAR(45) NULL,
+  `preco` double NULL,
   PRIMARY KEY (`codigo`))
 ENGINE = InnoDB;
 
-
+insert into `infotech`.`Produto`(codigo, nome, quantidade, tempo_garantia, descricao, preco)
+values ('xxxxxx', 'moto z', 3, 3, 'celular', 123.12);
+select * from infotech.Produto;
 -- -----------------------------------------------------
 -- Table `infotech`.`Vendedor`
 -- -----------------------------------------------------
@@ -58,6 +60,7 @@ CREATE TABLE `infotech`.`Compra` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
+
 
 
 
