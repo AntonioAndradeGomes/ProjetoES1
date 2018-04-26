@@ -5,10 +5,10 @@ import conection.ConnectionFactory;
 import controller.*;
 public class TelaLogin extends javax.swing.JFrame {
     
-    Connection conexao = null;
-    PreparedStatement stmt = null; //conjunto de bibliotecas para manipular as instruções sql
+    private Connection conexao = null;
+    private PreparedStatement stmt = null; //conjunto de bibliotecas para manipular as instruções sql
     //ResultSet rs = null; //exibe o resultado das instruções sql feitos no java
-    IControleLogin controle = new ControleLogin();
+    private IControleLogin controle = new ControleLogin();
     
     public TelaLogin() {
         initComponents();
