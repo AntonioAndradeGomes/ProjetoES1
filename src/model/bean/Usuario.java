@@ -1,7 +1,7 @@
 package model.bean;
 
 public abstract class Usuario {
-    private String nome, cpf, rg, telefone1, telefone2, email, ciade,rua, bairro,complemento;
+    private String nome, cpf, rg, telefone1, telefone2, email, cidade,rua, bairro,complemento;
     private long numero;
 
     public Usuario(String nome, String cpf, String rg, String telefone1, 
@@ -14,7 +14,7 @@ public abstract class Usuario {
         this.telefone1 = telefone1;
         this.telefone2 = telefone2;
         this.email = email;
-        this.ciade = ciade;
+        this.cidade = ciade;
         this.rua = rua;
         this.bairro = bairro;
         this.complemento = complemento;
@@ -69,12 +69,12 @@ public abstract class Usuario {
         this.email = email;
     }
 
-    public String getCiade() {
-        return ciade;
+    public String getCidade() {
+        return cidade;
     }
 
     public void setCiade(String ciade) {
-        this.ciade = ciade;
+        this.cidade = cidade;
     }
 
     public String getRua() {

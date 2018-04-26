@@ -36,6 +36,11 @@ CREATE TABLE `infotech`.`Vendedor` (
   PRIMARY KEY (`cpf`))
 ENGINE = InnoDB;
 
+insert into `infotech`.`Vendedor` (cpf, rg, nome, email, cidade, bairro, rua, numero,
+complemento, telefone1, telefone2, tipo, senha) values('00000000000', 'default', 'Admin', 'default',
+'default','default', 'default', 69, 'default', 'default', 'default', 'admin', 'admin');
+
+select * from `infotech`.`Vendedor`;
 
 -- -----------------------------------------------------
 -- Table `infotech`.`Compra`
@@ -97,7 +102,7 @@ CREATE TABLE `infotech`.`Cliente` (
 ENGINE = InnoDB;
 
 insert into `infotech`.`cliente` (cpf, rg, nome, email, cidade, bairro, rua, numero,
-complemento, telefone1, telefone2) values('00000000000', 'default', 'Cliente avulso', 'default',
+complemento, telefone1, telefone2) Values('00000000000', 'default', 'Cliente avulso', 'default',
 'default','default', 'default', 69, 'default', 'default', 'default');
 
 select * from infotech.cliente;
