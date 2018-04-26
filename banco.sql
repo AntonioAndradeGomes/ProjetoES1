@@ -105,8 +105,8 @@ insert into `infotech`.`cliente` (cpf, rg, nome, email, cidade, bairro, rua, num
 complemento, telefone1, telefone2) Values('00000000000', 'default', 'Cliente avulso', 'default',
 'default','default', 'default', 69, 'default', 'default', 'default');
 
-select * from infotech.cliente;
 
+select * from infotech.cliente;
 
 
 -- -----------------------------------------------------

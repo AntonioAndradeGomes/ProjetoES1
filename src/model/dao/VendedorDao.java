@@ -15,19 +15,19 @@ public class VendedorDao {
                     + "email, cidade, bairro, rua, numero, complemento, "
                     + "telefone1, telefone2, tipo, senha) values)"
                     + "Values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            stmt.setString(0, vendedor.getCpf());
-            stmt.setString(1, vendedor.getRg());
-            stmt.setString(2, vendedor.getNome());
-            stmt.setString(3, vendedor.getEmail());
-            stmt.setString(4, vendedor.getCidade());
-            stmt.setString(5,vendedor.getBairro());
-            stmt.setString(6, vendedor.getRua());
-            stmt.setLong(7, vendedor.getNumero());
-            stmt.setString(8, vendedor.getComplemento());
-            stmt.setString(9, vendedor.getTelefone1());
-            stmt.setString(10, vendedor.getTelefone2());
-            stmt.setString(11, vendedor.getTipo());
-            stmt.setString(12, vendedor.getSenha());
+            stmt.setString(1, vendedor.getCpf());
+            stmt.setString(2, vendedor.getRg());
+            stmt.setString(3, vendedor.getNome());
+            stmt.setString(4, vendedor.getEmail());
+            stmt.setString(5, vendedor.getCidade());
+            stmt.setString(6,vendedor.getBairro());
+            stmt.setString(7, vendedor.getRua());
+            stmt.setLong(8, vendedor.getNumero());
+            stmt.setString(9, vendedor.getComplemento());
+            stmt.setString(10, vendedor.getTelefone1());
+            stmt.setString(11, vendedor.getTelefone2());
+            stmt.setString(12, vendedor.getTipo());
+            stmt.setString(13, vendedor.getSenha());
             
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null,

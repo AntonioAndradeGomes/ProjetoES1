@@ -2,6 +2,7 @@ package view;
 
 import java.sql.*;
 import conection.ConnectionFactory;
+import javax.swing.JOptionPane;
 public class TelaLogin extends javax.swing.JFrame {
     Connection conexao = null;
     PreparedStatement stmt = null; //conjunto de bibliotecas para manipular as instruções sql
@@ -10,6 +11,7 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
         //abaixo codigo de como mostrar o status da conexao com BD na tela de loguin do sistema
+        //tentar fechar essa conexao quando fazer o dispose
         conexao = ConnectionFactory.getConnection();
         if (conexao != null){
             this.status.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/bancoConectado.png")));
@@ -18,6 +20,28 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }
 
+    public void logar(){
+        //fazer uma busca no banco de dados por estas informações
+        String sql = "select * from `infotech`.`Vendedor` where cpf=? and senha=?";
+        try{
+            stmt = conexao.prepareStatement(sql);//preparam a string para a ser executada no bd
+            stmt.setString(1, this.txtCPF.getText());
+            stmt.setString(2, this.txtSenha.getText());
+            //executar no Bd
+            rs = stmt.executeQuery();
+            
+            //se houve resultado da pesquisa
+            if (rs.next()){
+                TelaPrincipal tela = new TelaPrincipal();
+                tela.setVisible(true);
+                ConnectionFactory.closeConnection(conexao, stmt, rs);
+            }else{
+                 JOptionPane.showMessageDialog(null, "Não foi encontrado essa entidade no BD");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
         
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,8 +52,8 @@ public class TelaLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextFieldCPF = new javax.swing.JTextField();
-        jPasswordFieldSenha = new javax.swing.JPasswordField();
+        txtCPF = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         botao_logar = new javax.swing.JButton();
@@ -39,9 +63,9 @@ public class TelaLogin extends javax.swing.JFrame {
         setTitle("Tela Login");
         setResizable(false);
 
-        jPasswordFieldSenha.addActionListener(new java.awt.event.ActionListener() {
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordFieldSenhaActionPerformed(evt);
+                txtSenhaActionPerformed(evt);
             }
         });
 
@@ -50,6 +74,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2.setText("Senha");
 
         botao_logar.setText("Login");
+        botao_logar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_logarActionPerformed(evt);
+            }
+        });
 
         status.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/bancoConectado.png"))); // NOI18N
 
@@ -66,8 +95,8 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(botao_logar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(61, 61, 61))
         );
@@ -77,10 +106,10 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -93,9 +122,14 @@ public class TelaLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaActionPerformed
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordFieldSenhaActionPerformed
+    }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void botao_logarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_logarActionPerformed
+        this.logar();
+        
+    }//GEN-LAST:event_botao_logarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,8 +170,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JButton botao_logar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordFieldSenha;
-    private javax.swing.JTextField jTextFieldCPF;
     private javax.swing.JLabel status;
+    private javax.swing.JTextField txtCPF;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

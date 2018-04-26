@@ -15,12 +15,12 @@ public class ProdutoDao {
             stmt = con.prepareStatement("INSERT INTO `infotech`.`Produto` (codigo, nome, quantidade, "
                     + "tempo_garantia, descricao, preco)"
                     + "Values(?,?,?,?,?,?)");
-            stmt.setString(0, produto.getCodigo());
-            stmt.setString(1, produto.getNome());
-            stmt.setLong(2, produto.getQt_disponiveis());
-            stmt.setInt(3, produto.getTempo_garantia());
-            stmt.setString(4, produto.getDescicao());
-            stmt.setDouble(5, produto.getPrecoUnitario());
+            stmt.setString(1, produto.getCodigo());
+            stmt.setString(2, produto.getNome());
+            stmt.setLong(3, produto.getQt_disponiveis());
+            stmt.setInt(4, produto.getTempo_garantia());
+            stmt.setString(5, produto.getDescicao());
+            stmt.setDouble(6, produto.getPrecoUnitario());
             
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null,

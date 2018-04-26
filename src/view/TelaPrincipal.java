@@ -71,7 +71,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Menu de Compra");
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("jMenu3");
+        jMenu3.setText("Sobre");
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -92,6 +92,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jDesktopPane1)
                 .addContainerGap())
         );
+
+        setSize(new java.awt.Dimension(649, 378));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
