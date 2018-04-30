@@ -5,9 +5,11 @@
  */
 package view;
 
+import javax.swing.ImageIcon;
+
 /**
  *
- * @author antonio
+ * @author julio
  */
 public class Cliente extends javax.swing.JInternalFrame {
 
@@ -17,6 +19,14 @@ public class Cliente extends javax.swing.JInternalFrame {
     public Cliente() {
         initComponents();
     }
+    
+    public void ImageIcon () {
+        
+    ImageIcon imagem;
+    imagem = new ImageIcon(getClass().getResource("/Icones/cliente.png"));
+    
+    label_imagem.setIcon(imagem);
+}
     
 
     /**
@@ -57,7 +67,7 @@ public class Cliente extends javax.swing.JInternalFrame {
         campo_cpf22 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         bnt_novo = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        label_imagem = new javax.swing.JLabel();
         bnt_cadastrar1 = new javax.swing.JButton();
 
         label_titulo.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
@@ -117,7 +127,7 @@ public class Cliente extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Imagem");
+        label_imagem.setText("Imagem");
 
         bnt_cadastrar1.setText("Cadastrar");
         bnt_cadastrar1.addActionListener(new java.awt.event.ActionListener() {
@@ -201,8 +211,8 @@ public class Cliente extends javax.swing.JInternalFrame {
                                     .addGap(72, 72, 72)
                                     .addComponent(campo_cpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))))
+                        .addComponent(label_imagem, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(151, 151, 151)
                 .addComponent(bnt_novo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,10 +225,10 @@ public class Cliente extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(label_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(label_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(campo_cpf12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label_cpf11))
@@ -227,9 +237,9 @@ public class Cliente extends javax.swing.JInternalFrame {
                             .addComponent(campo_cpf11, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label_cpf10))
                         .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(label_imagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campo_cpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_cpf))
@@ -279,7 +289,7 @@ public class Cliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void bnt_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_novoActionPerformed
-        // TODO add your handling code here:
+        ImageIcon();
     }//GEN-LAST:event_bnt_novoActionPerformed
 
     private void bnt_cadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_cadastrar1ActionPerformed
@@ -304,7 +314,6 @@ public class Cliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField campo_cpf21;
     private javax.swing.JTextField campo_cpf22;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel label_cpf;
     private javax.swing.JLabel label_cpf10;
     private javax.swing.JLabel label_cpf11;
@@ -318,6 +327,7 @@ public class Cliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel label_cpf19;
     private javax.swing.JLabel label_cpf20;
     private javax.swing.JLabel label_cpf21;
+    private javax.swing.JLabel label_imagem;
     private javax.swing.JLabel label_titulo;
     // End of variables declaration//GEN-END:variables
 }
