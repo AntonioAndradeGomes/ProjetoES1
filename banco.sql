@@ -11,7 +11,7 @@ CREATE TABLE `infotech`.`Produto` (
   `quantidade` INT NULL,
   `tempo_garantia` INT NULL,
   `descricao` VARCHAR(255) NULL,
-  `preco` VARCHAR(45) NULL,
+  `preco` DOUBLE NULL,
   PRIMARY KEY (`codigo`))
 ENGINE = InnoDB;
 
