@@ -104,12 +104,15 @@ CREATE TABLE `infotech`.`Cliente` (
   PRIMARY KEY (`cpf`))
 ENGINE = InnoDB;
 
-insert into `infotech`.`cliente` (cpf, rg, nome, email, cidade, bairro, rua, numero,
+insert into `infotech`.`Cliente` (cpf, rg, nome, email, cidade, bairro, rua, numero,
 complemento, telefone1, telefone2) Values('00000000000', 'default', 'Cliente avulso', 'default',
 'default','default', 'default', 69, 'default', 'default', 'default');
+insert into `infotech`.`Cliente` (cpf, rg, nome, email, cidade, bairro, rua, numero,
+complemento, telefone1, telefone2) Values('', 'default', 'Cliente avulso', 'default',
+'default','default', 'default', 69, 'default', 'default', 'default');
 
-
-select * from infotech.cliente;
+select * from infotech.Cliente;
+delete from infotech.Cliente where numero = 0;
 
 
 -- -----------------------------------------------------

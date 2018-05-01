@@ -161,7 +161,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menu_clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_clientesActionPerformed
-        // TODO add your handling code here:
+        //As linhas abaixo abrem a tela de cadastro de usuario dentro do desktoppane 
+        TelaCliente telacliente = new TelaCliente(); //criei uma instancia da tela cliente
+        telacliente.setVisible(true); //isso já sabe o qfaz
+        this.Desktop.add(telacliente); //coloco dentro da desktop pane
+        
+        
     }//GEN-LAST:event_menu_clientesActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed

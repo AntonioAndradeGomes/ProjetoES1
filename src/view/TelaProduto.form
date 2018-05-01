@@ -91,12 +91,8 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btn_novo" min="-2" pref="155" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                       <Component id="btn_cadastrar" min="-2" pref="155" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                      <Component id="btn_cancelar" min="-2" pref="155" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="410" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -125,13 +121,9 @@
                   <Component id="campo_valor" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane2" pref="592" max="32767" attributes="0"/>
+              <Component id="jScrollPane2" pref="595" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btn_cancelar" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-                  <Component id="btn_cadastrar" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-                  <Component id="btn_novo" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-              </Group>
+              <Component id="btn_cadastrar" min="-2" pref="55" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -197,14 +189,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="GARANTIA"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btn_cancelar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="CANCELAR"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cancelarActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_cadastrar">
       <Properties>
@@ -274,13 +258,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btn_novo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Novo"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_novoActionPerformed"/>
-      </Events>
-    </Component>
   </SubComponents>
 </Form>

@@ -9,12 +9,12 @@ package view;
  *
  * @author antonio
  */
-public class Vendedores extends javax.swing.JInternalFrame {
+public class TelaVendedores extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Vendedores
      */
-    public Vendedores() {
+    public TelaVendedores() {
         initComponents();
     }
 

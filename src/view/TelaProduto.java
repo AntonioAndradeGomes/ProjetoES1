@@ -9,16 +9,13 @@ package view;
  *
  * @author julio
  */
-public class Produto extends javax.swing.JInternalFrame {
+public class TelaProduto extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Produto
      */
-    public Produto() {
+    public TelaProduto() {
         initComponents();
-        btn_cadastrar.setEnabled(false);
-        btn_cancelar.setEnabled(false);
-
     }
 
     /**
@@ -46,11 +43,9 @@ public class Produto extends javax.swing.JInternalFrame {
         label_quantidade = new javax.swing.JLabel();
         campo_valor = new javax.swing.JTextField();
         label_garantia = new javax.swing.JLabel();
-        btn_cancelar = new javax.swing.JButton();
         btn_cadastrar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        btn_novo = new javax.swing.JButton();
 
         label_codigo.setText("CODIGO");
 
@@ -100,13 +95,6 @@ public class Produto extends javax.swing.JInternalFrame {
 
         label_garantia.setText("GARANTIA");
 
-        btn_cancelar.setText("CANCELAR");
-        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cancelarActionPerformed(evt);
-            }
-        });
-
         btn_cadastrar.setText("Cadastrar");
         btn_cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,13 +138,6 @@ public class Produto extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane2.setViewportView(jTable2);
-
-        btn_novo.setText("Novo");
-        btn_novo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_novoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,12 +185,8 @@ public class Produto extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane2))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_novo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109)
                         .addComponent(btn_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(104, 104, 104)
-                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(151, 151, 151)))
+                        .addGap(410, 410, 410)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -232,12 +209,9 @@ public class Produto extends javax.swing.JInternalFrame {
                     .addComponent(campo_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campo_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_novo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btn_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -268,34 +242,15 @@ public class Produto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campo_valorActionPerformed
 
-    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_cancelarActionPerformed
-
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
 
 
     }//GEN-LAST:event_btn_cadastrarActionPerformed
-
-    private void btn_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoActionPerformed
-        campo_codigo.setText("");
-        campo_nome.setText("");
-        campo_quantidade.setText("");
-        campo_garantia.setText("");
-        campo_descricao.setText("");
-        campo_valor.setText("");
-
-        btn_cadastrar.setEnabled(true);
-        btn_cancelar.setEnabled(true);
-
-    }//GEN-LAST:event_btn_novoActionPerformed
     
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cadastrar;
-    private javax.swing.JButton btn_cancelar;
-    private javax.swing.JButton btn_novo;
     private javax.swing.JTextField campo_codigo;
     private javax.swing.JTextField campo_descricao;
     private javax.swing.JTextField campo_garantia;

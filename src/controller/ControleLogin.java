@@ -29,7 +29,7 @@ public class ControleLogin implements IControleLogin{
             if (rs.next()){
                 TelaPrincipal tela = new TelaPrincipal();
                 tela.setVisible(true);
-                tela.usuario.setText(rs.getString(3));
+                tela.usuario.setText(rs.getString(3));//seta o campo usuario com o nome do usuario logado
                 ConnectionFactory.closeConnection(conexao, stmt, rs);
                 return true;
                // 

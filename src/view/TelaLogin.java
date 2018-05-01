@@ -133,7 +133,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         if(controle.login(this.txtCPF.getText(), this.txtSenha.getText())){
            ConnectionFactory.closeConnection(conexao, stmt);
-           this.dispose();
+           this.dispose();//fecha a tela de login
         }
     }//GEN-LAST:event_botao_logarActionPerformed
 
