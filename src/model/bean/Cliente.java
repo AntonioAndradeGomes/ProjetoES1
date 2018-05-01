@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 public class Cliente extends Usuario {
     
-    private ArrayList<Compra> compra;
+    private ArrayList<Compra> compra; //Todas as compras feitas
+    private Compra atual; //Compra atual, que vai ser inserido no banco de dados
     
     public Cliente(String nome, String cpf, String rg, String telefone1, String telefone2, 
             String email, String ciade, String rua, String bairro, String complemento, long numero) 
@@ -17,6 +18,14 @@ public class Cliente extends Usuario {
 
     public ArrayList<Compra> getCompra() {
         return compra;
+    }
+    
+    public void comprar(Compra comprarealizada){ //Adicionando nova compra do cliente
+        this.atual = comprarealizada;
+        compra.add(atual); //Adicionando no historico de compras
+    }
+    public Compra getCompraAtual(){
+        return this.atual;
     }
     
 }
