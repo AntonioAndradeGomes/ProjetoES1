@@ -2,8 +2,9 @@ package model.dao;
 
 import conection.ConnectionFactory;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import model.bean.Vendedor;
+import model.bean.*;
 
 public class VendedorDao {
     public void create(Vendedor vendedor){
@@ -11,9 +12,10 @@ public class VendedorDao {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
+            
             stmt = con.prepareStatement("INSERT INTO `infotech`.`Vendedor` (cpf, rg, nome, "
                     + "email, cidade, bairro, rua, numero, complemento, "
-                    + "telefone1, telefone2, tipo, senha) values)"
+                    + "telefone1, telefone2, tipo, senha) "
                     + "Values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             stmt.setString(1, vendedor.getCpf());
             stmt.setString(2, vendedor.getRg());
@@ -39,5 +41,60 @@ public class VendedorDao {
         }finally{//independente de salvar ou cair na exceção acima cai nesse bloco
             ConnectionFactory.closeConnection(con, stmt);
         }
+    }
+    
+    public ArrayList<Vendedor> read(){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Vendedor> vendedores = new ArrayList<>();
+        try {
+            stmt = con.prepareStatement("SELECT * FROM `infotech`.`Vendedor`");
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                Vendedor vendedor = new Vendedor(
+                        rs.getString("nome"),
+                        rs.getString("cpf"),
+                        rs.getString("rg"),
+                        rs.getString("telefone1"),
+                        rs.getString("telefone2"),
+                        rs.getString("email"),
+                        rs.getString("cidade"),
+                        rs.getString("bairro"),
+                        rs.getString("rua"),
+                        rs.getString("complemento"),
+                         rs.getInt("numero"),
+                        rs.getString("tipo"),
+                        rs.getString("senha"));
+                vendedor.setCompras(this.readCompras(vendedor));
+                vendedores.add(vendedor);
+            }
+        } catch (Exception e) {
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return vendedores;
+    }
+    
+    public ArrayList<Compra> readCompras(Vendedor vendedor){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Compra> vendas = new ArrayList<>();
+        try {
+            stmt = con.prepareStatement("SELECT * FROM `infotech`.`Compra` where Vendedor_cpf = " + vendedor.getCpf());
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                Compra compra = new Compra(rs.getLong("codigo"),
+                                            rs.getDate("data"),
+                                            rs.getDouble("valor"),
+                                            vendedor);
+                vendas.add(compra);
+            }
+        } catch (Exception e) {
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return vendas;
     }
 }

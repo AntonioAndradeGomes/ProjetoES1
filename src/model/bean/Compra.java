@@ -6,16 +6,15 @@ import java.util.Date;
 public class Compra {
     private Cliente comprador;
     private ArrayList<Produto> produtos;
-    private String codigo;
+    private long codigo;
     private Date data;
     private double valor;
     private Vendedor vendedor;
 
-    public Compra(Cliente comprador, ArrayList<Produto> produtos, 
-            String codigo, Date data, double valor, Vendedor vendedor) 
+    public Compra(long codigo, Date data, double valor, Vendedor vendedor) 
     {    
-        this.comprador = comprador;
-        this.produtos = produtos;
+//        this.comprador = comprador;
+        this.produtos = new ArrayList<Produto>();
         this.codigo = codigo;
         this.data = data;
         this.valor = valor;
@@ -39,11 +38,11 @@ public class Compra {
         this.comprador = comprador;
     }
 
-    public String getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 

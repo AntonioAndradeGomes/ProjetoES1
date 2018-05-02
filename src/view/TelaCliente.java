@@ -226,16 +226,21 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-        IControleCadastro c = new ControleCadastro();
-        String d = this.numero.getText();
+       //RESOLVER O PROBLEMA DO mysql permitir campos '' e não os considerar como null
+        IControleCadastro c = new ControleCadastro(); //instanciar o controlador de cadastro
+        String d = this.numero.getText(); //receber o numero para transformar em int
         long num;
-        if (d.equals("")){
+        if (d.equals("")){ //se não for fonecido um numero para casa setar como 0
             num = 0;
         }else{
-            num = Long.parseLong(this.numero.getText());
+            num = Long.parseLong(this.numero.getText()); //coloacr na variavel num o valor da casa
         }
-        System.out.println(d);
+        //chamar a função de cadastrar cliente
         c.CadastrarCliente(this.nome.getText(), this.cpf.getText(), this.rg.getText(), this.telefone1.getText(), this.telefone2.getText(), this.email.getText(), this.cidade.getText(), this.rua.getText(), this.bairro.getText(), this.complemento.getText(), num);
+        //limpar os campos apos a edição
+        this.nome.setText(""); this.cpf.setText(""); this.rg.setText(""); this.telefone1.setText("");
+        this.telefone2.setText(""); this.email.setText(""); this.cidade.setText("");this.email.setText(""); this.cidade.setText(""); this.rua.setText(""); this.bairro.setText(""); this.complemento.setText("");
+        this.numero.setText("");
         
     }//GEN-LAST:event_CadastrarActionPerformed
 

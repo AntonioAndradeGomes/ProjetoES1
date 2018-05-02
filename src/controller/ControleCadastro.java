@@ -18,6 +18,16 @@ public class ControleCadastro implements IControleCadastro {
         }
     }
 
+    public void CadastrarVendedor(String nome, String cpf, String rg, String telefone1, String telefone2, 
+            String email, String cidade, String rua, String bairro, String complemento, long numero, String tipo, String senha){
+        int confirma = JOptionPane.showConfirmDialog(null, "Quer cadastrar esse Vendedor?", "Confiarmar", JOptionPane.YES_NO_OPTION);
+        if (confirma == JOptionPane.YES_OPTION){
+            Vendedor v = new Vendedor(nome, cpf, rg, telefone1, telefone2, email, cidade, rua, bairro, complemento, numero,
+                                    tipo, senha);
+            VendedorDao vv = new VendedorDao();
+            vv.create(v);
+        }
+    }
     public void CadastrarProduto() {
         
     }

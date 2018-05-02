@@ -7,11 +7,11 @@ CREATE SCHEMA `infotech` DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 CREATE TABLE `infotech`.`Produto` (
   `codigo` VARCHAR(45) NOT NULL,
-  `nome` VARCHAR(45) NULL,
-  `quantidade` INT NULL,
+  `nome` VARCHAR(45) NOT NULL,
+  `quantidade` INT NOT NULL,
   `tempo_garantia` INT NULL,
   `descricao` VARCHAR(255) NULL,
-  `preco` DOUBLE NULL,
+  `preco` DOUBLE NOT NULL,
   PRIMARY KEY (`codigo`))
 ENGINE = InnoDB;
 
@@ -21,30 +21,35 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE `infotech`.`Vendedor` (
   `cpf` VARCHAR(11) NOT NULL,
-  `rg` VARCHAR(15) NULL,
-  `nome` VARCHAR(45) NULL,
+  `rg` VARCHAR(15) NOT NULL,
+  `nome` VARCHAR(45) NOT NULL,
   `email` VARCHAR(100) NULL,
-  `cidade` VARCHAR(100) NULL,
-  `bairro` VARCHAR(100) NULL,
-  `rua` VARCHAR(255) NULL,
+  `cidade` VARCHAR(100) NOT NULL,
+  `bairro` VARCHAR(100) NOT NULL,
+  `rua` VARCHAR(255) NOT NULL,
   `numero` INT NULL,
   `complemento` VARCHAR(255) NULL,
   `telefone1` VARCHAR(13) NULL,
   `telefone2` VARCHAR(45) NULL,
-  `tipo` VARCHAR(20) NULL,
-  `senha` VARCHAR(45) NULL,
+  `tipo` VARCHAR(20) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`cpf`),
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC))
 ENGINE = InnoDB;
 
+insert into infotech.vendedor(cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
+telefone1, telefone2, tipo, senha) values ('12345678900', '123456789', 'Antonio', '', 'Quebrangulo', 
+'Centro', 'Paulo Jacinto', 231, '', '', '', 'gerente', 'admin');
+
+select * from infotech.vendedor;
 
 -- -----------------------------------------------------
 -- Table `infotech`.`Compra`
 -- -----------------------------------------------------
-CREATE TABLE `infotech`.`Compra` (
+create TABLE `infotech`.`Compra` (
   `Codigo_compra` BIGINT NOT NULL AUTO_INCREMENT,
-  `data` DATE NULL,
-  `valor` DOUBLE NULL,
+  `data` DATE NOT NULL,
+  `valor` DOUBLE NOT NULL,
   `Vendedor_cpf` VARCHAR(11) NOT NULL,
   PRIMARY KEY (`Codigo_compra`),
   INDEX `fk_Compra_Vendedor1_idx` (`Vendedor_cpf` ASC),
@@ -83,12 +88,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE `infotech`.`Cliente` (
   `cpf` VARCHAR(11) NOT NULL,
-  `rg` VARCHAR(15) NULL,
-  `nome` VARCHAR(45) NULL,
+  `rg` VARCHAR(15) NOT NULL,
+  `nome` VARCHAR(45) NOT NULL,
   `email` VARCHAR(100) NULL,
-  `cidade` VARCHAR(100) NULL,
-  `bairro` VARCHAR(100) NULL,
-  `rua` VARCHAR(255) NULL,
+  `cidade` VARCHAR(100) NOT NULL,
+  `bairro` VARCHAR(100) NOT NULL,
+  `rua` VARCHAR(255) NOT NULL,
   `numero` INT NULL,
   `complemento` VARCHAR(255) NULL,
   `telefone1` VARCHAR(13) NULL,
@@ -96,6 +101,8 @@ CREATE TABLE `infotech`.`Cliente` (
   PRIMARY KEY (`cpf`),
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC))
 ENGINE = InnoDB;
+
+select * from infotech.Cliente;
 
 
 -- -----------------------------------------------------

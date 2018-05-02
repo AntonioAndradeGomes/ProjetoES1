@@ -9,14 +9,15 @@ public class Vendedor extends Usuario{
     private ArrayList<Compra> compras;
     
     public Vendedor(String nome, String cpf, String rg, String telefone1, String telefone2,
-            String email, String cidade, String rua, String bairro, String complemento, long numero, String senha, 
-            String tipo) 
+            String email, String cidade, String rua, String bairro, String complemento, long numero, String tipo, 
+            String senha) 
     {    
         super(nome, cpf, rg, telefone1, telefone2, email, cidade, rua, bairro, complemento, numero);
         this.senha = senha;
         this.tipo = tipo;
         this.compras = new ArrayList<Compra>();
     }
+
 
     public ArrayList<Compra> getCompras() {
         return compras;
