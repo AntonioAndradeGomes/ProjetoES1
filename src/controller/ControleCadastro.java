@@ -28,7 +28,7 @@ public class ControleCadastro implements IControleCadastro {
             vv.create(v);
         }
     }
-    public void CadastrarProduto() {
+    public void CadastrarProduto(String nome, String codigo, String descricao, long quantidade, int garantia, double precoUnitario) {
         
     }
 }

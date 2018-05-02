@@ -6,11 +6,11 @@ public class Produto {
     private String nome, codigo, descicao;
     private long qt_disponiveis;
     private int tempo_garantia;
-    private float precoUnitario;
+    private double precoUnitario;
     private ArrayList<Compra> compra;
 
     public Produto(String nome, String codigo, String descicao, long qt_disponiveis, 
-            int tempo_garantia, float precoUnitario) 
+            int tempo_garantia, double precoUnitario) 
     {
         this.nome = nome;
         this.codigo = codigo;
@@ -72,11 +72,11 @@ public class Produto {
         this.tempo_garantia = tempo_garantia;
     }
 
-    public float getPrecoUnitario() {
+    public double getPrecoUnitario() {
         return precoUnitario;
     }
 
-    public void setPrecoUnitario(float precoUnitario) {
+    public void setPrecoUnitario(double precoUnitario) {
         this.precoUnitario = precoUnitario;
     }
 }

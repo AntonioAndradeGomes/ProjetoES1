@@ -250,7 +250,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campo_valorActionPerformed
 
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
-
+        
 
     }//GEN-LAST:event_btn_cadastrarActionPerformed
     
