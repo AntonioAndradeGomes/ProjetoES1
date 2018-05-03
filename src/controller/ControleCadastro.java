@@ -28,7 +28,14 @@ public class ControleCadastro implements IControleCadastro {
             vv.create(v);
         }
     }
-    public void CadastrarProduto(String nome, String codigo, String descricao, long quantidade, int garantia, double precoUnitario) {
-        
+    public void CadastrarProduto(String nome, String codigo, String descricao, long quantidade, 
+            int garantia, double precoUnitario) {
+        int confirma = JOptionPane.showConfirmDialog(null, "Quer cadastrar esse Produto?", "Confiarmar", JOptionPane.YES_NO_OPTION);
+        if (confirma == JOptionPane.YES_OPTION){
+            
+            Produto p = new Produto(nome, codigo, descricao,quantidade, garantia, precoUnitario);
+            ProdutoDao dao = new ProdutoDao();
+            dao.create(p);
+        }
     }
 }

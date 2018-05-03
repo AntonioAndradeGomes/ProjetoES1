@@ -41,7 +41,9 @@ insert into infotech.vendedor(cpf, rg, nome, email, cidade, bairro, rua, numero,
 telefone1, telefone2, tipo, senha) values ('12345678900', '123456789', 'Antonio', '', 'Quebrangulo', 
 'Centro', 'Paulo Jacinto', 231, '', '', '', 'gerente', 'admin');
 
+update infotech.vendedor set complemento = 'em frente ao puteiro' where numero = 231;
 select * from infotech.vendedor;
+delete from infotech.vendedor where numero = 24;
 
 -- -----------------------------------------------------
 -- Table `infotech`.`Compra`
@@ -125,3 +127,35 @@ CREATE TABLE `infotech`.`Cliente_Realiza_Compra` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
+
+insert into infotech.cliente (cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
+telefone1, telefone2)  values('23456789101', '1324546776', 'Marisvaldo', 'marisvaldo@gmail.com', 'Rolandia', 'Centro', 'rua das boquinhas', 120,
+'virando a rua 16', '996669120', null);
+
+insert into infotech.cliente (cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
+telefone1, telefone2)  values('23456789111', '1324578776', 'Godolfredo', null, 'Rolandia', 'Centro', 'rua das boquinhas', 121,
+'virando a rua 16', '996669121', null);
+
+select * from infotech.cliente;
+
+select * from infotech.produto;
+
+insert into infotech.produto (codigo, nome, quantidade, tempo_garantia, descricao, preco) values ('xxxtmto', 'moto z play', 
+9, 24, 'celular', 1899.99);
+
+select * from infotech.compra;
+
+insert into infotech.compra (data, valor, Vendedor_cpf)
+
+values ('2016-11-27', 1899.99, '12345678900');
+
+SELECT * FROM `infotech`.`Compra` where Vendedor_cpf = '12345678900';
+
+delete from `infotech`.`Compra` where data = '0000-00-00';
+
+insert into infotech.produto_tem_compra (produto_codigo, Compra_Codigo_compra)
+values ('xxxtmto', 2);
+
+insert into infotech.cliente_realiza_compra (Compra_Codigo_compra, cliente_cpf) values (2,'23456789101' );
+
+-- exibir o nome do cliente e seu cpf e produtos comprados e seus vendedores cpf e nome
