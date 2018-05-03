@@ -6,6 +6,7 @@
 package view;
 
 import controller.*;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -57,6 +58,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         label_cpf21 = new javax.swing.JLabel();
         complemento = new javax.swing.JTextField();
         Cadastrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -68,13 +70,13 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         label_titulo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         label_cpf.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        label_cpf.setText("CPF");
+        label_cpf.setText("*CPF");
 
         label_cpf10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        label_cpf10.setText("RG");
+        label_cpf10.setText("*RG");
 
         label_cpf11.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        label_cpf11.setText("NOME");
+        label_cpf11.setText("*NOME");
 
         label_cpf13.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         label_cpf13.setText("EMAIL");
@@ -86,13 +88,13 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         label_cpf15.setText("TEL 2");
 
         label_cpf16.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        label_cpf16.setText("RUA");
+        label_cpf16.setText("*RUA");
 
         label_cpf17.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        label_cpf17.setText("CIDADE");
+        label_cpf17.setText("*CIDADE");
 
         label_cpf18.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        label_cpf18.setText("BAIRRO");
+        label_cpf18.setText("*BAIRRO");
 
         rua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +115,8 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("o que esta com * no começo é obrigatorio");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,132 +126,164 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_cpf11)
+                            .addComponent(label_cpf10))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label_cpf13)
-                                    .addComponent(label_cpf14)
-                                    .addComponent(label_cpf17))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(label_cpf16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rua))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(label_cpf15)
-                                        .addGap(2, 2, 2)
-                                        .addComponent(telefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(label_cpf10)
-                                .addGap(39, 39, 39)
-                                .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(label_cpf)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cpf))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(label_cpf11)
-                                .addGap(18, 18, 18)
-                                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(label_titulo)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label_titulo)
+                            .addComponent(jLabel1))
                         .addGap(242, 242, 242))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(label_cpf21)
-                        .addGap(18, 18, 18)
-                        .addComponent(complemento, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label_cpf18)
-                        .addGap(18, 18, 18)
-                        .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(label_cpf19)
-                        .addGap(18, 18, 18)
-                        .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(249, 249, 249))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addComponent(telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(label_cpf15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(telefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(label_cpf14)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(label_cpf17)
+                                    .addComponent(label_cpf16))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rua, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(label_cpf18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(label_cpf19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(label_cpf21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(complemento, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(243, 243, 243)
+                                .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(label_cpf13))
+                        .addGap(0, 13, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(label_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_cpf11))
-                .addGap(23, 23, 23)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_cpf10)
                     .addComponent(label_cpf)
-                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_cpf13)
                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_cpf14)
                     .addComponent(telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_cpf15)
                     .addComponent(telefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_cpf17)
-                    .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_cpf16)
-                    .addComponent(rua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_cpf16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_cpf18)
+                    .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_cpf19)
                     .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_cpf21)
                     .addComponent(complemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
-        setBounds(0, 0, 640, 459);
+        setBounds(0, 0, 640, 535);
     }// </editor-fold>//GEN-END:initComponents
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
        //RESOLVER O PROBLEMA DO mysql permitir campos '' e não os considerar como null
-        IControleCadastro c = new ControleCadastro(); //instanciar o controlador de cadastro
-        try {
-            String d = this.numero.getText(); //receber o numero para transformar em int
-            long num;
-            if (d.equals("")){ //se não for fonecido um numero para casa setar como 0
-                num = 0;
-            }else{
-                num = Long.parseLong(this.numero.getText()); //coloacr na variavel num o valor da casa
+        int confirma = JOptionPane.showConfirmDialog(null, "Quer cadastrar esse cliente?", "Confiarmar", JOptionPane.YES_NO_OPTION);
+        if (confirma == JOptionPane.YES_OPTION){
+            ArrayList<String> lista = new ArrayList<String>();
+            lista.add(this.nome.getText());
+            lista.add(this.cpf.getText());
+            lista.add(this.rg.getText());
+            lista.add(this.cidade.getText());
+            lista.add(this.rua.getText());
+            lista.add(this.bairro.getText());
+            if(testeNulos(lista)){
+                try{
+                    long num;
+                    if (this.numero.getText().equals("")){//receber o numero para transformar em int
+                        num = 0;
+                    }else{
+                        num = Long.parseLong(this.numero.getText()); //coloacr na variavel num o valor da casa
+                    }
+                  
+                    IControleCadastro c = new ControleCadastro(); //instanciar o controlador de cadastro
+                    c.CadastrarCliente(this.nome.getText(), this.cpf.getText(), this.rg.getText(), this.telefone1.getText(), this.telefone2.getText(), this.email.getText(), this.cidade.getText(), 
+                       this.rua.getText(), this.bairro.getText(), this.complemento.getText(), num);
+                    this.setarCampos();
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Campos não foram preenchidos CORRETAMENTE!");
+                } 
+             }else{
+                    JOptionPane.showMessageDialog(null, "Campos obrigatorios não foram preenchidos!");
             }
-            //chamar a função de cadastrar cliente
-            c.CadastrarCliente(this.nome.getText(), this.cpf.getText(), this.rg.getText(), this.telefone1.getText(), this.telefone2.getText(), this.email.getText(), this.cidade.getText(), this.rua.getText(), this.bairro.getText(), this.complemento.getText(), num);
-            //limpar os campos apos a edição
-            this.nome.setText(""); this.cpf.setText(""); this.rg.setText(""); this.telefone1.setText("");
-            this.telefone2.setText(""); this.email.setText(""); this.cidade.setText("");this.email.setText(""); this.cidade.setText(""); this.rua.setText(""); this.bairro.setText(""); this.complemento.setText("");
-            this.numero.setText("");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Campos obrigatorios não foram preenchidos CORRETAMENTE!");
         }
     }//GEN-LAST:event_CadastrarActionPerformed
-
+   
+    private boolean testeNulos(ArrayList<String> lista){
+        for (int i = 0; i < lista.size(); i++){
+            if (lista.get(i).equals("")){
+                return false;
+            }
+        }
+        return true;
+    }
+   
+    private void setarCampos(){
+        this.nome.setText(""); this.cpf.setText(""); this.rg.setText(""); this.telefone1.setText("");
+        this.telefone2.setText(""); this.email.setText(""); this.cidade.setText("");this.email.setText(""); this.cidade.setText(""); this.rua.setText(""); this.bairro.setText(""); this.complemento.setText("");
+        this.numero.setText("");
+    }
     private void ruaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ruaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ruaActionPerformed
@@ -260,6 +296,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField complemento;
     private javax.swing.JTextField cpf;
     private javax.swing.JTextField email;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel label_cpf;
     private javax.swing.JLabel label_cpf10;
     private javax.swing.JLabel label_cpf11;

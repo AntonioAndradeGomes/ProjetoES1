@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.*;
-import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -264,7 +258,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campo_valorActionPerformed
 
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
-        
+        //colocar no padrão das outras classes de cadastro
         IControleCadastro i = new ControleCadastro();
         ArrayList<String> lista = new ArrayList<String>();
         lista.add(this.campo_codigo.getText());

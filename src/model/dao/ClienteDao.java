@@ -2,8 +2,10 @@ package model.dao;
 
 import conection.ConnectionFactory;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.bean.Cliente;
+import model.bean.Compra;
 
 public class ClienteDao {
     public void create(Cliente cliente){
@@ -39,6 +41,42 @@ public class ClienteDao {
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
+    
+    public ArrayList<Cliente> readCliente(){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        try {
+            stmt = con.prepareStatement("SELECT * FROM `infotech`.`Cliente`");
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                Cliente c = new Cliente(
+                        rs.getString("nome"),
+                        rs.getString("cpf"),
+                        rs.getString("rg"),
+                        rs.getString("telefone1"),
+                        rs.getString("telefone2"),
+                        rs.getString("email"),
+                        rs.getString("cidade"),
+                        rs.getString("bairro"),
+                        rs.getString("rua"),
+                        rs.getString("complemento"),
+                        rs.getInt("numero"));
+                clientes.add(c);
+            }
+        } catch (Exception e) {
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return clientes;
+    }
+    
+//falta descobrir o comando sql que exiba todas as compras feitas por um cliente
+//JOnathas 
+
+    
+    
 //    public void Cliente_compra(Cliente cliente){ //Tabela de Cliente e compra, ou seja, compras realizadas pelo cliente
 //        Connection con = ConnectionFactory.getConnection();
 //        PreparedStatement stmt = null;
