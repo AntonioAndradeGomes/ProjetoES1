@@ -194,7 +194,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_vendedoresActionPerformed
 
     private void menu_vendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_vendasActionPerformed
-        // TODO add your handling code here:
+        ListarEstoque telaEstoque = new ListarEstoque();
+        telaEstoque.setVisible(true);
+        this.Desktop.add(telaEstoque);
     }//GEN-LAST:event_menu_vendasActionPerformed
 
     /**
