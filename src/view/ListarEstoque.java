@@ -16,6 +16,8 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
      */
     public ListarEstoque() {
         initComponents();
+        setClosable(true);
+        setIconifiable(true);
     }
 
     /**
