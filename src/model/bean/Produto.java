@@ -9,9 +9,7 @@ public class Produto {
     private double precoUnitario;
     private ArrayList<Compra> compra;
 
-    public Produto(String nome, String codigo, String descicao, long qt_disponiveis, 
-            int tempo_garantia, double precoUnitario) 
-    {
+    public Produto(String nome, String codigo, String descicao, long qt_disponiveis, int tempo_garantia, double precoUnitario) {
         this.nome = nome;
         this.codigo = codigo;
         this.descicao = descicao;

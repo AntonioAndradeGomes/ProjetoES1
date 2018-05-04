@@ -37,13 +37,13 @@ CREATE TABLE `infotech`.`Vendedor` (
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC))
 ENGINE = InnoDB;
 
--- insert into infotech.vendedor(cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
--- telefone1, telefone2, tipo, senha) values ('12345678900', '123456789', 'Antonio', '', 'Quebrangulo', 
--- 'Centro', 'Paulo Jacinto', 231, '', '', '', 'gerente', 'admin');
+ insert into infotech.vendedor(cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
+telefone1, telefone2, tipo, senha) values ('12345678900', '123456789', 'Antonio', '', 'Quebrangulo', 
+'Centro', 'Paulo Jacinto', 231, '', '', '', 'gerente', 'admin');
 
--- update infotech.vendedor set complemento = 'em frente ao puteiro' where numero = 231;
--- select * from infotech.vendedor;
--- delete from infotech.vendedor where numero = 24;
+ update infotech.vendedor set complemento = 'em frente ao puteiro' where numero = 231;
+select * from infotech.vendedor;
+ delete from infotech.vendedor where numero = 24;
 
 -- -----------------------------------------------------
 -- Table `infotech`.`Compra`
@@ -136,24 +136,22 @@ insert into infotech.Cliente (cpf, rg, nome, email, cidade, bairro, rua, numero,
 telefone1, telefone2)  values('23456789111', '1324578776', 'Godolfredo', null, 'Rolandia', 'Centro', 'rua das boquinhas', 121,
 'virando a rua 16', '996669121', null);
 
--- select * from infotech.cliente;
+select * from infotech.cliente;
 
--- select * from infotech.produto;
+select * from infotech.produto;
 
 insert into infotech.Produto (codigo, nome, quantidade, tempo_garantia, descricao, preco) values ('xxxtmto', 'moto z play', 
 9, 24, 'celular', 1899.99);
 
--- select * from infotech.compra;
-insert into infotech.Vendedor(cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
-telefone1, telefone2, tipo, senha) values ('12345678900', '123456789', 'Antonio', '', 'Quebrangulo', 
-'Centro', 'Paulo Jacinto', 231, '', '', '', 'gerente', 'admin');
+ select * from infotech.compra;
+
 
 insert into infotech.Compra (data, valor, Vendedor_cpf)
 values ('2016-11-27', 1899.99, '12345678900');
 
--- SELECT * FROM `infotech`.`Compra` where Vendedor_cpf = '12345678900';
+SELECT * FROM `infotech`.`Compra` where Vendedor_cpf = '12345678900';
 
--- delete from `infotech`.`Compra` where data = '0000-00-00';
+delete from `infotech`.`Compra` where data = '0000-00-00';
 
 insert into infotech.Produto_tem_Compra (produto_codigo, Compra_Codigo_compra)
 values ('xxxtmto', 1);
@@ -169,3 +167,5 @@ infotech.Vendedor.cpf as CPFdovendedor, infotech.Vendedor.nome as NomedoVendedor
 	where (Cliente.cpf = Cliente_Realiza_Compra.Cliente_cpf and Cliente_Realiza_Compra.Compra_Codigo_compra = Compra.Codigo_compra) and
     (Compra.Codigo_compra = Produto_tem_Compra.Compra_Codigo_compra and Produto.codigo = Produto_tem_Compra.Produto_codigo) and
     (Vendedor.cpf = Compra.Vendedor_cpf);
+SELECT * FROM `infotech`.`Produto` where quantidade > 1;
+describe `infotech`.`Produto`;

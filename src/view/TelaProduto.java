@@ -3,6 +3,9 @@ package view;
 import controller.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import model.bean.Produto;
 
 /**
  *
@@ -15,6 +18,9 @@ public class TelaProduto extends javax.swing.JInternalFrame {
      */
     public TelaProduto() {
         initComponents();
+////        DefaultTableModel modelo = (DefaultTableModel) this.tabelaEstoque.getModel();
+////        this.tabelaEstoque.setRowSorter(new TableRowSorter(modelo));
+//        this.read();
     }
 
     /**
@@ -259,38 +265,43 @@ public class TelaProduto extends javax.swing.JInternalFrame {
 
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
         //colocar no padrão das outras classes de cadastro
-        IControleCadastro i = new ControleCadastro();
-        ArrayList<String> lista = new ArrayList<String>();
-        lista.add(this.campo_codigo.getText());
-        lista.add(this.campo_nome.getText());
-        lista.add(this.campo_quantidade.getText());
-        lista.add(this.campo_valor.getText());
-        String qt_string = this.campo_quantidade.getText();
-        String garan_string = this.campo_garantia.getText();
-        String valor_string = this.campo_valor.getText();
-        long g1;
-        int g2;
-        double g3;
-  
-        
-        if (testeNulos(lista)){
-            if (this.campo_garantia.getText().equals("")){ //se não for preenchido o tempo de garantia coloca-se o tempo default
-                g2 = 1;//um mes de garantia
-            }
-            try {
-                g1 = Long.parseLong(qt_string);
-                g2 = Integer.parseInt(garan_string);
-                g3 = Double.parseDouble(valor_string);
-                i.CadastrarProduto(this.campo_nome.getText(), this.campo_codigo.getText(), this.campo_descricao.getText(),
-                        g1, g2, g3);
-                this.setarCampos();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Campos não foram preenchidos CORRETAMENTE!");
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Campos obrigatorios não foram preenchidos");
-        }
+        int confirma = JOptionPane.showConfirmDialog(null, "Quer cadastrar esse Produto?", "Confiarmar", JOptionPane.YES_NO_OPTION);
+        if (confirma == JOptionPane.YES_OPTION){
+            ArrayList<String> lista = new ArrayList<String>();
+            lista.add(this.campo_codigo.getText());
+            lista.add(this.campo_nome.getText());
+            lista.add(this.campo_quantidade.getText());
+            lista.add(this.campo_valor.getText());
+            String qt_string = this.campo_quantidade.getText();
+            String garan_string = this.campo_garantia.getText();
+            String valor_string = this.campo_valor.getText();
+            long g1;
+            int g2;
+            double g3;
 
+
+            if (testeNulos(lista)){
+                try {
+                    if (this.campo_garantia.getText().equals("")){ //se não for preenchido o tempo de garantia coloca-se o tempo default
+                       g2 = 1;//um mes de garantia
+                    }else{
+                        g2 = 1;//um mes de garantia
+                    }
+                    IControleCadastro i = new ControleCadastro();
+                    g1 = Long.parseLong(qt_string);
+                    g2 = Integer.parseInt(garan_string);
+                    g3 = Double.parseDouble(valor_string);
+                    i.CadastrarProduto(this.campo_nome.getText(), this.campo_codigo.getText(), 
+                            this.campo_descricao.getText(),g1, g2, g3);
+                    this.setarCampos();
+                    this.read();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Campos não foram preenchidos CORRETAMENTE!");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Campos obrigatorios não foram preenchidos");
+            }
+        }
     }//GEN-LAST:event_btn_cadastrarActionPerformed
 
     private void campo_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_codigoActionPerformed
@@ -318,6 +329,22 @@ public class TelaProduto extends javax.swing.JInternalFrame {
         this.campo_valor.setText("");
     }
    
+    public void read(){
+        DefaultTableModel modelo = (DefaultTableModel) this.tabelaEstoque.getModel();
+        IControleListagem i = new ControleDeListagem();
+//        i.Produtos();
+        for (Produto p: i.Produtos()){ //atribuir um obbjeto já que vamos percorer o objeto
+            modelo.addRow(new Object[]{
+                p.getCodigo(),
+                p.getNome(),
+                p.getQt_disponiveis(),
+                p.getTempo_garantia(),
+                p.getDescicao(),
+                p.getPrecoUnitario()
+            });
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cadastrar;
@@ -339,6 +366,6 @@ public class TelaProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel label_nome;
     private javax.swing.JLabel label_quantidade;
     private javax.swing.JLabel label_valor;
-    private javax.swing.JTable tabelaEstoque;
+    public javax.swing.JTable tabelaEstoque;
     // End of variables declaration//GEN-END:variables
 }
