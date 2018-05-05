@@ -97,4 +97,34 @@ public class VendedorDao {
         }
         return vendas;
     }
+    
+    public Vendedor searchCpf(String cpf){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Vendedor v = null;
+        try {
+            stmt = con.prepareStatement("SELECT * FROM `infotech`.`Vendedor` where Vendedor_cpf = " + cpf);
+            rs = stmt.executeQuery();
+            while (rs.next()){
+                Vendedor achado = new Vendedor(
+                        rs.getString("nome"),
+                        rs.getString("cpf"),
+                        rs.getString("rg"),
+                        rs.getString("telefone1"),
+                        rs.getString("telefone2"),
+                        rs.getString("email"),
+                        rs.getString("cidade"),
+                        rs.getString("bairro"),
+                        rs.getString("rua"),
+                        rs.getString("complemento"),
+                         rs.getInt("numero"),
+                        rs.getString("tipo"),
+                        rs.getString("senha")); 
+                v = achado;
+            }
+        } catch (Exception e) {
+        }
+        return v;
+    }
 }

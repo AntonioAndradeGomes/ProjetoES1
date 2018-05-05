@@ -20,7 +20,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
         initComponents();
 ////        DefaultTableModel modelo = (DefaultTableModel) this.tabelaEstoque.getModel();
 ////        this.tabelaEstoque.setRowSorter(new TableRowSorter(modelo));
-//        this.read();
+        this.read();
     }
 
     /**
@@ -117,19 +117,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
 
         tabelaEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome", "Quantidade", "Garantia", "Descrição", "Valor"
@@ -331,17 +319,19 @@ public class TelaProduto extends javax.swing.JInternalFrame {
    
     public void read(){
         DefaultTableModel modelo = (DefaultTableModel) this.tabelaEstoque.getModel();
+        modelo.setNumRows(0); //eliminar duplicadas do java 
         IControleListagem i = new ControleDeListagem();
-//        i.Produtos();
         for (Produto p: i.Produtos()){ //atribuir um obbjeto já que vamos percorer o objeto
-            modelo.addRow(new Object[]{
-                p.getCodigo(),
-                p.getNome(),
-                p.getQt_disponiveis(),
-                p.getTempo_garantia(),
-                p.getDescicao(),
-                p.getPrecoUnitario()
-            });
+            if (p.getQt_disponiveis() >0){//garantindo que somente o estoque será mostrado e não produtos com 0 de qtd
+                modelo.addRow(new Object[]{
+                    p.getCodigo(),
+                    p.getNome(),
+                    p.getQt_disponiveis(),
+                    p.getTempo_garantia(),
+                    p.getDescicao(),
+                    p.getPrecoUnitario()
+                });
+            }
         }
         
     }
@@ -366,6 +356,6 @@ public class TelaProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel label_nome;
     private javax.swing.JLabel label_quantidade;
     private javax.swing.JLabel label_valor;
-    public javax.swing.JTable tabelaEstoque;
+    private javax.swing.JTable tabelaEstoque;
     // End of variables declaration//GEN-END:variables
 }

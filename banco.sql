@@ -169,3 +169,13 @@ infotech.Vendedor.cpf as CPFdovendedor, infotech.Vendedor.nome as NomedoVendedor
     (Vendedor.cpf = Compra.Vendedor_cpf);
 SELECT * FROM `infotech`.`Produto` where quantidade > 1;
 describe `infotech`.`Produto`;
+
+select * from produto_tem_compra;
+select infotech.compra.Codigo_compra, infotech.compra.data, infotech.compra.valor, infotech.compra.Vendedor_cpf
+from infotech.compra,
+infotech.produto_tem_compra, infotech.produto 
+where infotech.compra.Codigo_compra = infotech.produto_tem_compra.Compra_Codigo_compra and 
+infotech.produto.codigo = infotech.produto_tem_compra.Produto_codigo and
+ infotech.produto.codigo = 'xxxtmto';
+ 
+ select * from Vendedor where cpf = '12345678900';

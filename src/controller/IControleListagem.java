@@ -5,6 +5,6 @@ import model.bean.Produto;
 
 public interface IControleListagem {
     
-    public ArrayList<Produto>Produtos();
+    public ArrayList<Produto> Produtos();
     
 }

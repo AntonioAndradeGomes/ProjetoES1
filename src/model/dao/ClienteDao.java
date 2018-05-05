@@ -72,7 +72,7 @@ public class ClienteDao {
         return clientes;
     }
     
-//falta descobrir o comando sql que exiba todas as compras feitas por um cliente
+//falta descobrir o comando sql que exiba todas as compras feitas por um cliente dado seu cpf
 //JOnathas 
 
     
