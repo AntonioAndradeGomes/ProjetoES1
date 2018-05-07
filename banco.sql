@@ -37,7 +37,7 @@ CREATE TABLE `infotech`.`Vendedor` (
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC))
 ENGINE = InnoDB;
 
- insert into infotech.vendedor(cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
+ insert into infotech.Vendedor(cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
 telefone1, telefone2, tipo, senha) values ('12345678900', '123456789', 'Antonio', '', 'Quebrangulo', 
 'Centro', 'Paulo Jacinto', 231, '', '', '', 'gerente', 'admin');
 
@@ -178,4 +178,6 @@ where infotech.compra.Codigo_compra = infotech.produto_tem_compra.Compra_Codigo_
 infotech.produto.codigo = infotech.produto_tem_compra.Produto_codigo and
  infotech.produto.codigo = 'xxxtmto';
  
- select * from Vendedor where cpf = '12345678900';
+select * from Vendedor where cpf = '12345678900';
+ 
+Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` =  'moto z play';
