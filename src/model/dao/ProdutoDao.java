@@ -74,12 +74,13 @@ public class ProdutoDao {
         ResultSet rs = null;
         ArrayList<Compra> ComprasDesseProduto = new ArrayList<Compra>();
         try {
-            stmt = con.prepareStatement("select `infotech`.`compra`.`Codigo_compra`, `infotech`.`compra`.`data`, `infotech`.`compra`.`valor`, `infotech`.`compra`.`Vendedor_cpf`\n" +
-                                        "from `infotech`.`compra`,\n" +
-                                        "`infotech`.`produto_tem_compra`, `infotech`.`produto` \n" +
-                                        "where `infotech`.`compra`.`Codigo_compra` = `infotech`.`produto_tem_compra`.`Compra_Codigo_compra` and \n" +
-                                        "`infotech`.`produto`.`codigo` = `infotech`.`produto_tem_compra`.`Produto_codigo` and\n" +
-                                        " `infotech`.`produto`.`codigo` = " + p.getCodigo());
+            stmt = con.prepareStatement("select `infotech`.`Compra`.`Codigo_compra`, `infotech`.`Compra`.`data`, "
+                                          + "`infotech`.`Compra`.`valor`, `infotech`.`compra`.`Vendedor_cpf`\n" +
+                                        "from `infotech`.`Compra`,\n" +
+                                        "`infotech`.`Produto_tem_Compra`, `infotech`.`Produto` \n" +
+                                        "where `infotech`.`Compra`.`Codigo_compra` = `infotech`.`Produto_tem_Compra`.`Compra_Codigo_compra` and \n" +
+                                        "`infotech`.`Produto`.`codigo` = `infotech`.`Produto_tem_Compra`.`Produto_codigo` and\n" +
+                                        " `infotech`.`Produto`.`codigo` = " + p.getCodigo());
             //acima tem o comando para pegar todas as compras associadas ao produto passando o codigo como chave
             rs = stmt.executeQuery();
             while (rs.next()){
@@ -98,5 +99,58 @@ public class ProdutoDao {
              ConnectionFactory.closeConnection(con, stmt, rs); 
         }
         return ComprasDesseProduto;
+    }
+    
+    public ArrayList<Produto> buscaNome(String nome){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Produto> produtosBuscados = new ArrayList<Produto>();
+        try {
+            stmt = con.prepareStatement("Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` = " + nome);
+            rs = stmt.executeQuery();
+            
+            while (rs.next()){
+                Produto p = new Produto(
+                        rs.getString(2),
+                        rs.getString(1),
+                        rs.getString(5),
+                        rs.getLong(3),
+                        rs.getInt(4),
+                        rs.getDouble(6));
+                p.setCompra(this.compras(p));
+                produtosBuscados.add(p);
+            }
+        } catch (Exception e) {
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs); 
+        }
+        return produtosBuscados;
+    }
+    public Produto buscaCode(String code){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Produto buscado = null;
+        try {
+            stmt = con.prepareStatement("Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` = " + code);
+            rs = stmt.executeQuery();
+            
+            while (rs.next()){
+                Produto p = new Produto(
+                        rs.getString(2),
+                        rs.getString(1),
+                        rs.getString(5),
+                        rs.getLong(3),
+                        rs.getInt(4),
+                        rs.getDouble(6));
+                p.setCompra(this.compras(p));
+                buscado = p;
+            }
+        } catch (Exception e) {
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs); 
+        }
+        return buscado;
     }
 }

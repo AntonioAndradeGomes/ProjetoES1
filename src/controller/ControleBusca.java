@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.util.ArrayList;
 import model.bean.*;
 import model.dao.*;
 import javax.swing.JOptionPane;
@@ -12,14 +13,19 @@ import javax.swing.JOptionPane;
 
 public class ControleBusca implements IControleBusca{
 
+    private ProdutoDao pd = new ProdutoDao();
     private VendedorDao vd = new VendedorDao();
+    
     public Vendedor buscaVendedorCpf(String cpf) {
-        if (vd.searchCpf(cpf) != null){
-            return vd.searchCpf(cpf);
-        }else{
-            JOptionPane.showMessageDialog(null, "Vendedor não encontrado");
-            return vd.searchCpf(cpf);
-        }
+       return vd.searchCpf(cpf);
+    }
+
+    public Produto bucaProdutocodigo(String code) {
+        return pd.buscaCode(code);
+    }
+
+    public ArrayList<Produto> buscaProdutoNome(String nome) {
+        return pd.buscaNome(nome);
     }
     
 }
