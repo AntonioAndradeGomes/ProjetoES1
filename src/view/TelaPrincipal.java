@@ -35,6 +35,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menu_listarVendedores = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         menu_comprasPorCliente = new javax.swing.JMenuItem();
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,6 +46,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 formWindowActivated(evt);
             }
         });
+
+        Desktop.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
         Desktop.setLayout(DesktopLayout);
@@ -58,6 +61,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
 
         jButton1.setText("Compar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         usuario.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         usuario.setText("Usuário");
@@ -116,6 +124,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menu_comprasPorCliente.setText("Compras por Cliente");
         jMenu2.add(menu_comprasPorCliente);
+
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("Listar Clientes");
+        jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jRadioButtonMenuItem1);
 
         jMenuBar1.add(jMenu2);
 
@@ -200,6 +217,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.Desktop.add(telaEstoque);
     }//GEN-LAST:event_menu_vendasActionPerformed
 
+    private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TelaCompra telaCompra = new TelaCompra();
+        telaCompra.setVisible(true);
+        this.Desktop.add(telaCompra);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -244,6 +271,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JMenuItem menu_clientes;
     private javax.swing.JMenuItem menu_comprasPorCliente;
     private javax.swing.JMenuItem menu_listarVendedores;
