@@ -41,9 +41,9 @@ ENGINE = InnoDB;
 telefone1, telefone2, tipo, senha) values ('12345678900', '123456789', 'Antonio', '', 'Quebrangulo', 
 'Centro', 'Paulo Jacinto', 231, '', '', '', 'gerente', 'admin');
 
- update infotech.vendedor set complemento = 'em frente ao puteiro' where numero = 231;
+update infotech.vendedor set complemento = 'em frente ao puteiro' where numero = 231;
 select * from infotech.vendedor;
- delete from infotech.vendedor where numero = 24;
+delete from infotech.vendedor where numero = 24;
 
 -- -----------------------------------------------------
 -- Table `infotech`.`Compra`
@@ -184,6 +184,9 @@ Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` =  'moto z 
 
 update `infotech`.`Produto` set `infotech`.`Produto`.`quantidade` = `infotech`.`Produto`.`quantidade` + 1 where `infotech`.`Produto`.`codigo` = 'xxxtmto';
 select * from produto;
+
+
+
 
 
 Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` = 'teste';

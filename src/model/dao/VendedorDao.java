@@ -105,7 +105,8 @@ public class VendedorDao {
         ResultSet rs = null;
         Vendedor v = null;
         try {
-            stmt = con.prepareStatement("SELECT * FROM `infotech`.`Vendedor` where Vendedor_cpf = " + cpf);
+            stmt = con.prepareStatement("SELECT * FROM `infotech`.`Vendedor` where Vendedor_cpf = ?");
+            stmt.setString(1, cpf);
             rs = stmt.executeQuery();
             while (rs.next()){
                 Vendedor achado = new Vendedor(

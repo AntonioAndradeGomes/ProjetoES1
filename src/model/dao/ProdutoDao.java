@@ -2,10 +2,12 @@
 package model.dao;
 
 import conection.ConnectionFactory;
-import java.awt.HeadlessException;
+import controller.ControleBusca;
+import controller.IControleBusca;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import model.bean.Compra;
 import model.bean.Produto;
 
 
@@ -63,7 +65,9 @@ public class ProdutoDao {
                         rs.getLong(3),
                         rs.getInt(4),
                         rs.getDouble(6));
+                produto.setCompra(this.compras(produto));
                 produtos.add(produto);
+                
                 
             }
         } catch (Exception e) {
@@ -96,6 +100,7 @@ public class ProdutoDao {
                         rs.getLong(3),
                         rs.getInt(4),
                         rs.getDouble(6));
+                p.setCompra(this.compras(p));
                 produtosBuscados.add(p);
             }
         } catch (Exception e) {
@@ -125,6 +130,7 @@ public class ProdutoDao {
                         rs.getLong(3),
                         rs.getInt(4),
                         rs.getDouble(6));
+                p.setCompra(compras(p));
                 buscado = p;
             }
         } catch (Exception e) {
@@ -158,7 +164,40 @@ public class ProdutoDao {
        
    }
 
-
+    public ArrayList<Compra> compras(Produto p){
+        IControleBusca i = new ControleBusca();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Compra> ComprasDesseProduto = new ArrayList<Compra>();
+        try {
+            stmt = con.prepareStatement("select `infotech`.`Compra`.`Codigo_compra`, `infotech`.`Compra`.`data`, "
+                                          + "`infotech`.`Compra`.`valor`, `infotech`.`compra`.`Vendedor_cpf`\n" +
+                                        "from `infotech`.`Compra`,\n" +
+                                        "`infotech`.`Produto_tem_Compra`, `infotech`.`Produto` \n" +
+                                        "where `infotech`.`Compra`.`Codigo_compra` = `infotech`.`Produto_tem_Compra`.`Compra_Codigo_compra` and \n" +
+                                        "`infotech`.`Produto`.`codigo` = `infotech`.`Produto_tem_Compra`.`Produto_codigo` and\n" +
+                                        " `infotech`.`Produto`.`codigo` = ?");
+            //acima tem o comando para pegar todas as compras associadas ao produto passando o codigo como chave
+            stmt.setString(1, p.getCodigo());
+            rs = stmt.executeQuery();
+            while (rs.next()){
+                Compra c = new Compra(
+                           rs.getLong(1),
+                           rs.getDate(2),
+                           rs.getDouble(3),
+                           i.buscaVendedorCpf(rs.getString(4))
+                           //preciso criar uma pesquisa em vendedor.Dao passando o cpf, e outra passando o nome
+                );
+                
+                ComprasDesseProduto.add(c);
+            }
+        } catch (Exception e) {
+        }finally{
+             ConnectionFactory.closeConnection(con, stmt, rs); 
+        }
+        return ComprasDesseProduto;
+    }
              
 
 

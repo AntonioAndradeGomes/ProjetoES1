@@ -5,9 +5,25 @@ import java.util.Date;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaPrincipal
-     */
+    private String cpf;
+    private String tipo;
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     public TelaPrincipal() {
         initComponents();
     }
@@ -37,6 +53,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menu_comprasPorCliente = new javax.swing.JMenuItem();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -138,6 +155,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Sobre");
         jMenuBar1.add(jMenu3);
 
+        jMenu1.setText("Sair");
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,7 +220,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         TelaProduto telaproduto = new TelaProduto();
         telaproduto.setVisible(true);
-//        telaproduto.read();
         this.Desktop.add(telaproduto);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
@@ -265,6 +284,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane Desktop;
     private javax.swing.JLabel data;
     private javax.swing.JButton jButton1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;

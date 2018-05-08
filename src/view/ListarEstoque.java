@@ -27,6 +27,7 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
         initComponents();
         setClosable(true);
         setIconifiable(true);
+        this.padrao.setEnabled(false);
         this.read();
         
     }
@@ -47,6 +48,7 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         nome = new javax.swing.JRadioButton();
         codigo = new javax.swing.JRadioButton();
+        padrao = new javax.swing.JButton();
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -71,17 +73,26 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
         buttonGroup1.add(codigo);
         codigo.setText("pesquisar por codigo");
 
+        padrao.setText("Tabela Padrão");
+        padrao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                padraoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(campoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(19, 19, 19)
+                .addComponent(campoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addGap(66, 66, 66)
+                .addGap(18, 18, 18)
+                .addComponent(padrao)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(codigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -91,10 +102,12 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(campoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)
+                        .addComponent(padrao)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(codigo)
                 .addGap(51, 51, 51)
@@ -114,7 +127,7 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
             modelo.setNumRows(0); //eliminar duplicadas do java 
             IControleBusca i = new ControleBusca();
             ArrayList<Produto> prod = i.buscaProdutoNome(this.campoBusca.getText());
-            if (prod.size() >= 1){
+            if (prod.size() >= 1){ //se o array retornado tiver elementos 
                 for (Produto p:prod){ //atribuir um obbjeto já que vamos percorer o objeto
                     modelo.addRow(new Object[]{
                         p.getCodigo(),
@@ -125,12 +138,13 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
                         p.getPrecoUnitario()
                     });
                  }
+                this.padrao.setEnabled(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
                 this.read();
             }
             
-        }else if (this.codigo.isSelected()){
+        }else if (this.codigo.isSelected()){ 
             DefaultTableModel modelo = (DefaultTableModel) this.tabela.getModel();
             modelo.setNumRows(0); //eliminar duplicadas do java 
             IControleBusca i2 = new ControleBusca();
@@ -144,12 +158,17 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
                       prod.getDescicao(),
                       prod.getPrecoUnitario()
                 });
+                this.padrao.setEnabled(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
                 this.read();
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void padraoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_padraoActionPerformed
+        this.read();
+    }//GEN-LAST:event_padraoActionPerformed
 
     private void read(){
         DefaultTableModel modelo = (DefaultTableModel) this.tabela.getModel();
@@ -175,6 +194,7 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton nome;
+    private javax.swing.JButton padrao;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }
