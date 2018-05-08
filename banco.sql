@@ -176,8 +176,15 @@ from infotech.compra,
 infotech.produto_tem_compra, infotech.produto 
 where infotech.compra.Codigo_compra = infotech.produto_tem_compra.Compra_Codigo_compra and 
 infotech.produto.codigo = infotech.produto_tem_compra.Produto_codigo and
- infotech.produto.codigo = 'xxxtmto';
+infotech.produto.codigo = 'xxxtmto';
  
 select * from Vendedor where cpf = '12345678900';
  
 Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` =  'moto z play';
+
+update `infotech`.`Produto` set `infotech`.`Produto`.`quantidade` = `infotech`.`Produto`.`quantidade` + 1 where `infotech`.`Produto`.`codigo` = 'xxxtmto';
+select * from produto;
+
+
+Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` = 'teste';
+Select * from `infotech`.`Produto` where `infotech`.`Produto`.`codigo` = 'teste';

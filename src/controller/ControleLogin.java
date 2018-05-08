@@ -40,6 +40,8 @@ public class ControleLogin implements IControleLogin{
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
             return false;
+        }finally{
+            ConnectionFactory.closeConnection(conexao, stmt, rs);
         }
     }
 }

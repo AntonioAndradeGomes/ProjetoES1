@@ -4,7 +4,6 @@ import controller.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import model.bean.Produto;
 
 /**
@@ -255,6 +254,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
         //colocar no padrão das outras classes de cadastro
         int confirma = JOptionPane.showConfirmDialog(null, "Quer cadastrar esse Produto?", "Confiarmar", JOptionPane.YES_NO_OPTION);
         if (confirma == JOptionPane.YES_OPTION){
+
             ArrayList<String> lista = new ArrayList<String>();
             lista.add(this.campo_codigo.getText());
             lista.add(this.campo_nome.getText());
@@ -279,10 +279,12 @@ public class TelaProduto extends javax.swing.JInternalFrame {
                     g1 = Long.parseLong(qt_string);
                     g2 = Integer.parseInt(garan_string);
                     g3 = Double.parseDouble(valor_string);
+                    
                     i.CadastrarProduto(this.campo_nome.getText(), this.campo_codigo.getText(), 
                             this.campo_descricao.getText(),g1, g2, g3);
                     this.setarCampos();
                     this.read();
+                
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Campos não foram preenchidos CORRETAMENTE!");
                 }

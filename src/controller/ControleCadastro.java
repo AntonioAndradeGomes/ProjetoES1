@@ -29,7 +29,14 @@ public class ControleCadastro implements IControleCadastro {
             
             Produto p = new Produto(nome, codigo, descricao,quantidade, garantia, precoUnitario);
             ProdutoDao dao = new ProdutoDao();
-            dao.create(p);
-        
+            boolean flag = dao.create(p);
+            
+            if (flag != true){
+                int confirma = JOptionPane.showConfirmDialog(null, "Produto ja existe no Banco de dados \n"
+                        + "Deseja Atualizar existente com os dados novos", "Confiarmar", JOptionPane.YES_NO_OPTION);
+                if (confirma == JOptionPane.YES_OPTION){
+                    dao.update(new Produto(nome, codigo, descricao,quantidade, garantia, precoUnitario));
+                }
+            }
     }
 }

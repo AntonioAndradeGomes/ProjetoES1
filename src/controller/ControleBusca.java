@@ -21,7 +21,7 @@ public class ControleBusca implements IControleBusca{
     }
 
     public Produto bucaProdutocodigo(String code) {
-        return pd.buscaCode(code);
+        return pd.buscaCodigo(code);
     }
 
     public ArrayList<Produto> buscaProdutoNome(String nome) {

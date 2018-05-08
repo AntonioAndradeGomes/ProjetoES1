@@ -2,7 +2,7 @@
 package controller;
 import java.util.ArrayList;
 import model.bean.Produto;
-import model.dao.ProdutoDao;
+import model.dao.*;
 public class ControleDeListagem implements IControleListagem {
     
     private ProdutoDao prod = new ProdutoDao();

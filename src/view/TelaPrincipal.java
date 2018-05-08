@@ -125,7 +125,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menu_comprasPorCliente.setText("Compras por Cliente");
         jMenu2.add(menu_comprasPorCliente);
 
-        jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("Listar Clientes");
         jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

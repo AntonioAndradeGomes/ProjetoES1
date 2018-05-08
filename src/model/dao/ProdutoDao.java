@@ -1,18 +1,16 @@
+
 package model.dao;
 
 import conection.ConnectionFactory;
+import java.awt.HeadlessException;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import model.bean.Compra;
 import model.bean.Produto;
-import controller.ControleBusca;
-import controller.IControleBusca;
+
 
 public class ProdutoDao {
-    
-    private IControleBusca i = new ControleBusca();
-    public void create(Produto produto){
+    public boolean create(Produto produto){
         //abrir conexao
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -30,10 +28,19 @@ public class ProdutoDao {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null,
                     "Salvo com sucesso o novo produto no BD!");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,
-                    "Erro ao salvar o produto! \n"
-                            + ex);
+            return true;
+        //abaixo uma seção de gambiarras do Antonio
+        } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException ex) {
+            //verificar se cai no erro de já ter uma instancia no banco de dados com aqueles atributos
+            return false;
+            
+        }catch(SQLException e){
+            //se outro erro acontecer vai ser mostrado
+            //vai ser retornado true, pois iria dar pau com a verificação no controller
+          JOptionPane.showMessageDialog(null,
+                    "erro " + e);
+          return true;
+        
         }finally{//independente de salvar ou cair na exceção acima cai nesse bloco
             ConnectionFactory.closeConnection(con, stmt);
         }
@@ -56,7 +63,6 @@ public class ProdutoDao {
                         rs.getLong(3),
                         rs.getInt(4),
                         rs.getDouble(6));
-                produto.setCompra(this.compras(produto));
                 produtos.add(produto);
                 
             }
@@ -68,46 +74,18 @@ public class ProdutoDao {
         return produtos;
     }
     
-    public ArrayList<Compra> compras(Produto p){
-        Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        ArrayList<Compra> ComprasDesseProduto = new ArrayList<Compra>();
-        try {
-            stmt = con.prepareStatement("select `infotech`.`Compra`.`Codigo_compra`, `infotech`.`Compra`.`data`, "
-                                          + "`infotech`.`Compra`.`valor`, `infotech`.`compra`.`Vendedor_cpf`\n" +
-                                        "from `infotech`.`Compra`,\n" +
-                                        "`infotech`.`Produto_tem_Compra`, `infotech`.`Produto` \n" +
-                                        "where `infotech`.`Compra`.`Codigo_compra` = `infotech`.`Produto_tem_Compra`.`Compra_Codigo_compra` and \n" +
-                                        "`infotech`.`Produto`.`codigo` = `infotech`.`Produto_tem_Compra`.`Produto_codigo` and\n" +
-                                        " `infotech`.`Produto`.`codigo` = " + p.getCodigo());
-            //acima tem o comando para pegar todas as compras associadas ao produto passando o codigo como chave
-            rs = stmt.executeQuery();
-            while (rs.next()){
-                Compra c = new Compra(
-                           rs.getLong(1),
-                           rs.getDate(2),
-                           rs.getDouble(3),
-                           i.buscaVendedorCpf(rs.getString(4))
-                           //preciso criar uma pesquisa em vendedor.Dao passando o cpf, e outra passando o nome
-                );
-                
-                ComprasDesseProduto.add(c);
-            }
-        } catch (Exception e) {
-        }finally{
-             ConnectionFactory.closeConnection(con, stmt, rs); 
-        }
-        return ComprasDesseProduto;
-    }
     
+    
+    //bucar Produtos passando o nome como parametro, gera um array de produtos
     public ArrayList<Produto> buscaNome(String nome){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList<Produto> produtosBuscados = new ArrayList<Produto>();
+
         try {
-            stmt = con.prepareStatement("Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` = " + nome);
+            stmt = con.prepareStatement("Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` = ?");
+            stmt.setString(1, nome);
             rs = stmt.executeQuery();
             
             while (rs.next()){
@@ -118,7 +96,6 @@ public class ProdutoDao {
                         rs.getLong(3),
                         rs.getInt(4),
                         rs.getDouble(6));
-                p.setCompra(this.compras(p));
                 produtosBuscados.add(p);
             }
         } catch (Exception e) {
@@ -127,13 +104,17 @@ public class ProdutoDao {
         }
         return produtosBuscados;
     }
-    public Produto buscaCode(String code){
+    
+    
+    //buscar produtos passano o codigo, retorno de uma instrancia
+    public Produto buscaCodigo(String codigo){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Produto buscado = null;
         try {
-            stmt = con.prepareStatement("Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` = " + code);
+            stmt = con.prepareStatement("Select * from `infotech`.`Produto` where `infotech`.`Produto`.`codigo` = ?");
+            stmt.setString(1, codigo);
             rs = stmt.executeQuery();
             
             while (rs.next()){
@@ -144,7 +125,6 @@ public class ProdutoDao {
                         rs.getLong(3),
                         rs.getInt(4),
                         rs.getDouble(6));
-                p.setCompra(this.compras(p));
                 buscado = p;
             }
         } catch (Exception e) {
@@ -153,4 +133,34 @@ public class ProdutoDao {
         }
         return buscado;
     }
+    
+   public void update(Produto p){
+       Connection con = ConnectionFactory.getConnection();
+       PreparedStatement stmt = null;
+       try {
+           stmt = con.prepareStatement("UPDATE `infotech`.`Produto` SET nome = ?, quantidade = ?,"
+                     + "tempo_garantia = ?, descricao = ?, preco = ? where codigo = ?");
+           stmt.setString(1, p.getNome());
+           stmt.setLong(2, p.getQt_disponiveis());
+           stmt.setInt(3, p.getTempo_garantia());
+           stmt.setString(4, p.getDescicao());
+           stmt.setDouble(5, p.getPrecoUnitario());
+           stmt.setString(6, p.getCodigo());
+           
+           stmt.executeUpdate();
+           JOptionPane.showMessageDialog(null,
+                    "Produto com dados atualizados com sucesso!");
+       } catch (Exception e) {
+           JOptionPane.showMessageDialog(null,
+                    "erro! " +  e);
+       }
+           
+       
+   }
+
+
+             
+
+
+    
 }
