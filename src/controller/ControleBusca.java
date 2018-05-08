@@ -20,7 +20,7 @@ public class ControleBusca implements IControleBusca{
        return vd.searchCpf(cpf);
     }
 
-    public Produto bucaProdutocodigo(String code) {
+    public Produto buscaProdutocodigo(String code) {
         return pd.buscaCodigo(code);
     }
 

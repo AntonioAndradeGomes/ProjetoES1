@@ -9,8 +9,10 @@ import controller.ControleBusca;
 import controller.ControleDeListagem;
 import controller.IControleBusca;
 import controller.IControleListagem;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.bean.Produto;
+import java.util.ArrayList;
 
 /**
  *
@@ -41,9 +43,9 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        campoBusca = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        nome = new javax.swing.JRadioButton();
         codigo = new javax.swing.JRadioButton();
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -63,8 +65,8 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
             }
         });
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Pesquisar por nome");
+        buttonGroup1.add(nome);
+        nome.setText("Pesquisar por nome");
 
         buttonGroup1.add(codigo);
         codigo.setText("pesquisar por codigo");
@@ -76,14 +78,13 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(codigo)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton1)
-                        .addGap(72, 72, 72)
-                        .addComponent(jRadioButton3)))
+                .addComponent(campoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(jButton1)
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(codigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -91,12 +92,12 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(jRadioButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(codigo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -104,16 +105,52 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.busca();
+        if(!(this.nome.isSelected()) && !(this.codigo.isSelected())){
+            JOptionPane.showMessageDialog(null, "Selecione uma maneira de pesquisar!");
+            this.read();
+            
+        }else if(this.nome.isSelected()){
+            DefaultTableModel modelo = (DefaultTableModel) this.tabela.getModel();
+            modelo.setNumRows(0); //eliminar duplicadas do java 
+            IControleBusca i = new ControleBusca();
+            ArrayList<Produto> prod = i.buscaProdutoNome(this.campoBusca.getText());
+            if (prod.size() >= 1){
+                for (Produto p:prod){ //atribuir um obbjeto já que vamos percorer o objeto
+                    modelo.addRow(new Object[]{
+                        p.getCodigo(),
+                        p.getNome(),
+                        p.getQt_disponiveis(),
+                        p.getTempo_garantia(),
+                        p.getDescicao(),
+                        p.getPrecoUnitario()
+                    });
+                 }
+            }else{
+                JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+                this.read();
+            }
+            
+        }else if (this.codigo.isSelected()){
+            DefaultTableModel modelo = (DefaultTableModel) this.tabela.getModel();
+            modelo.setNumRows(0); //eliminar duplicadas do java 
+            IControleBusca i2 = new ControleBusca();
+            Produto prod = i2.buscaProdutocodigo(this.campoBusca.getText());
+            if (prod != null){
+                modelo.addRow(new Object[]{
+                      prod.getCodigo(),
+                      prod.getNome(),
+                      prod.getQt_disponiveis(),
+                      prod.getTempo_garantia(),
+                      prod.getDescicao(),
+                      prod.getPrecoUnitario()
+                });
+            }else{
+                JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+                this.read();
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-
-    private void busca(){
-        IControleBusca i = new ControleBusca();
-        
-    }
-    
-    
     private void read(){
         DefaultTableModel modelo = (DefaultTableModel) this.tabela.getModel();
         modelo.setNumRows(0); //eliminar duplicadas do java 
@@ -133,11 +170,11 @@ public class ListarEstoque extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField campoBusca;
     private javax.swing.JRadioButton codigo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JRadioButton nome;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,7 +8,7 @@ public interface IControleBusca {
     
     public Vendedor buscaVendedorCpf(String cpf);
     
-    public Produto bucaProdutocodigo(String code);
+    public Produto buscaProdutocodigo(String code);
     
     public ArrayList<Produto> buscaProdutoNome (String nome);
 }

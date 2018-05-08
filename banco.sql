@@ -188,3 +188,4 @@ select * from produto;
 
 Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` = 'teste';
 Select * from `infotech`.`Produto` where `infotech`.`Produto`.`codigo` = 'teste';
+
