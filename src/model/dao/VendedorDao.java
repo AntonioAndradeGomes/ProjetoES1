@@ -82,7 +82,8 @@ public class VendedorDao {
         ResultSet rs = null;
         ArrayList<Compra> vendas = new ArrayList<>();
         try {
-            stmt = con.prepareStatement("SELECT * FROM `infotech`.`Compra` where Vendedor_cpf = " + vendedor.getCpf());
+            stmt = con.prepareStatement("SELECT * FROM `infotech`.`Compra` where Vendedor_cpf = ?");
+            stmt.setString(1, vendedor.getCpf());
             rs = stmt.executeQuery();
             while(rs.next()){
                 Compra compra = new Compra(rs.getLong("codigo"),
