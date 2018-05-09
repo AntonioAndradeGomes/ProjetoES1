@@ -51,7 +51,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menu_listarVendedores = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         menu_comprasPorCliente = new javax.swing.JMenuItem();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        buscaCliente = new javax.swing.JRadioButtonMenuItem();
         jMenu3 = new javax.swing.JMenu();
         sair = new javax.swing.JMenu();
 
@@ -134,13 +134,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menu_comprasPorCliente.setText("Compras por Cliente");
         jMenu2.add(menu_comprasPorCliente);
 
-        jRadioButtonMenuItem1.setText("Listar Clientes");
-        jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        buscaCliente.setText("Busca de Cliente");
+        buscaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem1ActionPerformed(evt);
+                buscaClienteActionPerformed(evt);
             }
         });
-        jMenu2.add(jRadioButtonMenuItem1);
+        jMenu2.add(buscaCliente);
 
         jMenuBar1.add(jMenu2);
 
@@ -224,9 +224,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.Desktop.add(tela);
     }//GEN-LAST:event_menu_vendedoresActionPerformed
 
-    private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
+    private void buscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
+    }//GEN-LAST:event_buscaClienteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         TelaCompra telaCompra = new TelaCompra();
@@ -278,6 +278,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Desktop;
+    private javax.swing.JRadioButtonMenuItem buscaCliente;
     private javax.swing.JLabel data;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu2;
@@ -285,7 +286,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JMenuItem menu_clientes;
     private javax.swing.JMenuItem menu_comprasPorCliente;
     private javax.swing.JMenuItem menu_listarVendedores;

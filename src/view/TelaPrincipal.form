@@ -58,12 +58,12 @@
                 <Property name="text" type="java.lang.String" value="Compras por Cliente"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JRadioButtonMenuItem" name="jRadioButtonMenuItem1">
+            <MenuItem class="javax.swing.JRadioButtonMenuItem" name="buscaCliente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar Clientes"/>
+                <Property name="text" type="java.lang.String" value="Busca de Cliente"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscaClienteActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
