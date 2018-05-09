@@ -397,7 +397,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
     private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
         
         if(this.tabelaEstoque.getSelectedRow() != -1){
-            int confirma = JOptionPane.showConfirmDialog(null, "Quer atualizar esse Produto?", "Confiarmar", JOptionPane.YES_NO_OPTION);
+            int confirma = JOptionPane.showConfirmDialog(null, "Quer atualizar esse Produto?", "Confirmar", JOptionPane.YES_NO_OPTION);
             if (confirma == JOptionPane.YES_OPTION){
                 IControleCadastro i = new ControleCadastro();
                 long g = Long.parseLong(this.campo_quantidade.getText());

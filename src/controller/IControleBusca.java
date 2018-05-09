@@ -12,5 +12,8 @@ public interface IControleBusca {
     
     public ArrayList<Produto> buscaProdutoNome (String nome);
     
-    public Cliente BuscaCpf(String cpf);
+    public Cliente ClienteBuscaCpf(String cpf);
+    
+    public ArrayList<Cliente> ClienteBuscaNome (String nome);
+    
 }

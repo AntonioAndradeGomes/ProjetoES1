@@ -108,7 +108,7 @@ public class ClienteDao {
         ResultSet rs = null;
         Cliente buscado = null;
         try {
-            stmt = con.prepareStatement("Select * from `infotech`.`Cliene` where `infotech`.`Cliente`.`cpf` = ?");
+            stmt = con.prepareStatement("Select * from `infotech`.`Cliente` where `infotech`.`Cliente`.`cpf` = ?");
             stmt.setString(1, cpf);
             rs = stmt.executeQuery();
             
@@ -135,9 +135,39 @@ public class ClienteDao {
         return buscado;
     }
     
-//    public ArrayList<Cliente> buscaNome(String nome){
-//        
-//    }
+    public ArrayList<Cliente> buscaNome(String nome){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Cliente> clientesBuscados = new ArrayList<Cliente>();
+
+        try {
+            stmt = con.prepareStatement("Select * from `infotech`.`Cliente` where `infotech`.`Cliente`.`nome` = ?");
+            stmt.setString(1, nome);
+            rs = stmt.executeQuery();
+            
+            while (rs.next()){
+                Cliente p = new Cliente(
+                    rs.getString("nome"),
+                    rs.getString("cpf"),
+                    rs.getString("rg"),
+                    rs.getString("telefone1"),
+                    rs.getString("telefone2"),
+                    rs.getString("email"),
+                    rs.getString("cidade"),
+                    rs.getString("bairro"),
+                    rs.getString("rua"),
+                    rs.getString("complemento"),
+                    rs.getInt("numero") );
+                
+                clientesBuscados.add(p);
+            }
+        } catch (Exception e) {
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs); 
+        }
+        return clientesBuscados;
+    }
     
     public void removeCpf (String cpf){
         Connection con = ConnectionFactory.getConnection();

@@ -60,5 +60,6 @@ public class ControleCadastro implements IControleCadastro {
         d.update(p);
     }
     
+    
 
 }

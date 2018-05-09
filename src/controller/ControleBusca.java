@@ -29,8 +29,10 @@ public class ControleBusca implements IControleBusca{
         return pd.buscaNome(nome);
     }
 
-    public Cliente BuscaCpf(String cpf) {
+    public Cliente ClienteBuscaCpf(String cpf) {
        return cd.BuscaCpf(cpf);
     }
-    
+    public ArrayList<Cliente> ClienteBuscaNome (String nome){
+        return cd.buscaNome(nome);
+    }
 }

@@ -36,7 +36,6 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
         label_nomeCliente = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         bnt_atualizarCliente = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         label_cidadeCliente = new javax.swing.JLabel();
         label_bairroCliente = new javax.swing.JLabel();
@@ -52,8 +51,10 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximumSize(new java.awt.Dimension(727, 634));
-        setMinimumSize(new java.awt.Dimension(727, 634));
+        setMaximumSize(new java.awt.Dimension(720, 630));
+        setMinimumSize(new java.awt.Dimension(720, 630));
+        setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(720, 630));
 
         jLabel1.setText("CPF");
 
@@ -78,13 +79,6 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
         bnt_atualizarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bnt_atualizarClienteActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("LISTAR COMPRAS");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
             }
         });
 
@@ -135,12 +129,9 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(label_tel2Cliente)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(bnt_atualizarCliente)
-                                        .addGap(91, 91, 91)
-                                        .addComponent(jButton3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                                        .addGap(0, 312, Short.MAX_VALUE)
                                         .addComponent(jButton2)))))
-                        .addGap(49, 49, 49))
+                        .addGap(92, 92, 92))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -160,7 +151,10 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
                                         .addComponent(label_bairroCliente))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(label_compleCliente))))
+                                        .addComponent(label_compleCliente))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(155, 155, 155)
+                                        .addComponent(bnt_atualizarCliente))))
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
@@ -174,7 +168,7 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
                                     .addComponent(label_rgCliente))
                                 .addGap(37, 37, 37)
                                 .addComponent(label_cidadeCliente)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(338, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,11 +204,10 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel12)
                     .addComponent(label_telCliente)
                     .addComponent(label_tel2Cliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(bnt_atualizarCliente)
-                    .addComponent(jButton3)
                     .addComponent(jButton2))
                 .addGap(20, 20, 20))
         );
@@ -225,10 +218,6 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void bnt_atualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_atualizarClienteActionPerformed
         // TODO add your handling code here:
@@ -243,7 +232,6 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton bnt_atualizarCliente;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
