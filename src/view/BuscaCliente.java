@@ -5,6 +5,11 @@
  */
 package view;
 
+import controller.ControleBusca;
+import controller.IControleBusca;
+import javax.swing.JOptionPane;
+import model.bean.Cliente;
+
 /**
  *
  * @author gomes
@@ -16,7 +21,7 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
      */
     public BuscaCliente() {
         initComponents();
-        
+
     }
 
     /**
@@ -47,14 +52,13 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         label_telCliente = new javax.swing.JLabel();
         label_tel2Cliente = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        bnt_busca = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximumSize(new java.awt.Dimension(720, 630));
         setMinimumSize(new java.awt.Dimension(720, 630));
         setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(720, 630));
 
         jLabel1.setText("CPF");
 
@@ -104,10 +108,10 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
 
         label_tel2Cliente.setText("telefone2");
 
-        jButton2.setText("Nova Busca");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bnt_busca.setText("Nova Busca");
+        bnt_busca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bnt_buscaActionPerformed(evt);
             }
         });
 
@@ -130,7 +134,7 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
                                     .addComponent(label_tel2Cliente)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(0, 312, Short.MAX_VALUE)
-                                        .addComponent(jButton2)))))
+                                        .addComponent(bnt_busca)))))
                         .addGap(92, 92, 92))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +212,7 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(bnt_atualizarCliente)
-                    .addComponent(jButton2))
+                    .addComponent(bnt_busca))
                 .addGap(20, 20, 20))
         );
 
@@ -223,15 +227,35 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bnt_atualizarClienteActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void bnt_buscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_buscaActionPerformed
+        String cpfCliente = JOptionPane.showInputDialog("Digite o cpf");
+
+        IControleBusca controle = new ControleBusca();
+        Cliente client = controle.ClienteBuscaCpf(cpfCliente);
+        if (!client.equals(null)) {
+
+            this.label_cpfCliente.setText(client.getCpf());
+            this.label_rgCliente.setText(client.getRg());
+            this.label_nomeCliente.setText(client.getNome());
+            this.label_cidadeCliente.setText(client.getCidade());
+            this.label_bairroCliente.setText(client.getBairro());
+            this.label_ruaCliente.setText(client.getRua());
+            this.label_nomeCliente.setText(client.getNome());
+            this.label_numeroCliente.setText("" + client.getNumero());
+            this.label_compleCliente.setText(client.getComplemento());
+            this.label_nomeCliente.setText(client.getEmail());
+            this.label_telCliente.setText(client.getTelefone1());
+            this.label_tel2Cliente.setText(client.getTelefone2());
+        } else { 
+            JOptionPane.showMessageDialog(null, "Tente novamente");
+        }
+    }//GEN-LAST:event_bnt_buscaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bnt_atualizarCliente;
+    private javax.swing.JButton bnt_busca;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
