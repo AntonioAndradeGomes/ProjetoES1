@@ -1,7 +1,7 @@
 -- -----------------------------------------------------
 -- Schema infotech
 -- -----------------------------------------------------
-CREATE SCHEMA `infotech` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA `infotech` DEFAULT CHARACTER SET latin1 ;
 -- -----------------------------------------------------
 -- Table `infotech`.`Produto`
 -- -----------------------------------------------------

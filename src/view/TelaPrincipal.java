@@ -3,11 +3,13 @@ package view;
 import conection.ConnectionFactory;
 import java.text.DateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
     private String cpf;
     private String tipo;
+    
 
     public String getCpf() {
         return cpf;
@@ -225,7 +227,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_vendedoresActionPerformed
 
     private void buscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaClienteActionPerformed
-        // TODO add your handling code here:
+        String cpfCliente = JOptionPane.showInputDialog("Digite o cpf");
+        
+        
     }//GEN-LAST:event_buscaClienteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
