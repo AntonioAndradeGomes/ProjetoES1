@@ -100,9 +100,79 @@ public class ClienteDao {
        }finally{
             ConnectionFactory.closeConnection(con, stmt); 
        } 
-   }
-
+    }
     
+    public Cliente BuscaCpf(String cpf){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Cliente buscado = null;
+        try {
+            stmt = con.prepareStatement("Select * from `infotech`.`Cliene` where `infotech`.`Cliente`.`cpf` = ?");
+            stmt.setString(1, cpf);
+            rs = stmt.executeQuery();
+            
+            while (rs.next()){
+                Cliente p = new Cliente(
+                    rs.getString("nome"),
+                    rs.getString("cpf"),
+                    rs.getString("rg"),
+                    rs.getString("telefone1"),
+                    rs.getString("telefone2"),
+                    rs.getString("email"),
+                    rs.getString("cidade"),
+                    rs.getString("bairro"),
+                    rs.getString("rua"),
+                    rs.getString("complemento"),
+                    rs.getInt("numero")    
+                );
+                buscado = p;
+            }
+        } catch (Exception e) {
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs); 
+        }
+        return buscado;
+    }
+    
+//    public ArrayList<Cliente> buscaNome(String nome){
+//        
+//    }
+    
+    public void removeCpf (String cpf){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("delete from `infotech`.`Cliente` where `infotech`.`Cliente`.`cpf` = ?");
+            stmt.setString(1, cpf);
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null,
+                    "Cliete deletado com sucesso!");
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(null,
+                    "erro! " +  e);
+        }finally{
+             ConnectionFactory.closeConnection(con, stmt); 
+       } 
+    }
+    
+    public void remove (Cliente c){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("delete from `infotech`.`Cliente` where `infotech`.`Cliente`.`cpf` = ?");
+            stmt.setString(1, c.getCpf());
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null,
+                    "Cliete deletado com sucesso!");
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(null,
+                    "erro! " +  e);
+        }finally{
+             ConnectionFactory.closeConnection(con, stmt); 
+       } 
+    }
+ }
 //falta descobrir o comando sql que exiba todas as compras feitas por um cliente dado seu cpf
 //JOnathas 
 
@@ -131,4 +201,3 @@ public class ClienteDao {
 //    }
     
     
-}

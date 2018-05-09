@@ -15,6 +15,7 @@ public class ControleBusca implements IControleBusca{
 
     private ProdutoDao pd = new ProdutoDao();
     private VendedorDao vd = new VendedorDao();
+    private ClienteDao cd = new ClienteDao();
     
     public Vendedor buscaVendedorCpf(String cpf) {
        return vd.searchCpf(cpf);
@@ -26,6 +27,10 @@ public class ControleBusca implements IControleBusca{
 
     public ArrayList<Produto> buscaProdutoNome(String nome) {
         return pd.buscaNome(nome);
+    }
+
+    public Cliente BuscaCpf(String cpf) {
+       return cd.BuscaCpf(cpf);
     }
     
 }
