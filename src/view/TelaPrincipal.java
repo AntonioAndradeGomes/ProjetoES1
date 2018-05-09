@@ -1,15 +1,17 @@
 package view;
 
 import conection.ConnectionFactory;
+import controller.ControleBusca;
+import controller.IControleBusca;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import model.bean.Cliente;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
     private String cpf;
     private String tipo;
-    
 
     public String getCpf() {
         return cpf;
@@ -26,7 +28,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
+
     public TelaPrincipal() {
         initComponents();
     }
@@ -198,8 +200,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaCliente telacliente = new TelaCliente(); //criei uma instancia da tela cliente
         telacliente.setVisible(true); //isso já sabe o qfaz
         this.Desktop.add(telacliente); //coloco dentro da desktop pane
-        
-        
+
+
     }//GEN-LAST:event_menu_clientesActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -211,7 +213,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Date data = new Date();
         DateFormat formatador = DateFormat.getDateInstance(DateFormat.SHORT);
         this.data.setText(formatador.format(data));
-        
+
     }//GEN-LAST:event_formWindowActivated
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -228,8 +230,39 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void buscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaClienteActionPerformed
         String cpfCliente = JOptionPane.showInputDialog("Digite o cpf");
-        
-        
+        BuscaCliente buscCliente = new BuscaCliente();
+
+        IControleBusca controle = new ControleBusca();
+        Cliente client = controle.BuscaCpf(cpfCliente);
+        if (!client.equals(null)) {
+            buscCliente.setVisible(true);
+            buscCliente.label_cpfCliente.setText(client.getCpf());
+            buscCliente.label_rgCliente.setText(client.getRg());
+            buscCliente.label_nomeCliente.setText(client.getNome());
+            buscCliente.label_cidadeCliente.setText(client.getCidade());
+            buscCliente.label_bairroCliente.setText(client.getBairro());
+            buscCliente.label_ruaCliente.setText(client.getRua());
+            buscCliente.label_nomeCliente.setText(client.getNome());
+            buscCliente.label_numeroCliente.setText("" + client.getNumero());
+            buscCliente.label_compleCliente.setText(client.getComplemento());
+            buscCliente.label_nomeCliente.setText(client.getEmail());
+            buscCliente.label_telCliente.setText(client.getTelefone1());
+            buscCliente.label_tel2Cliente.setText(client.getTelefone2());
+            this.Desktop.add(buscCliente);
+        } else {
+            int confirma = JOptionPane.showConfirmDialog(null, "Cliente não cadastrado! \n"
+                    + "Quer cadastrar esse cliente?", "Confiarmar", JOptionPane.YES_NO_OPTION);
+            if (confirma == JOptionPane.YES_OPTION) {
+                TelaCliente telacliente = new TelaCliente(); //criei uma instancia da tela cliente
+                telacliente.setVisible(true); //isso já sabe o qfaz
+                this.Desktop.add(telacliente);
+
+            }else{
+                JOptionPane.showMessageDialog(null, "Tente novamente");
+            }
+        }
+
+
     }//GEN-LAST:event_buscaClienteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

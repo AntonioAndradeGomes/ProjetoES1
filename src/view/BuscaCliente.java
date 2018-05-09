@@ -16,6 +16,7 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
      */
     public BuscaCliente() {
         initComponents();
+        
     }
 
     /**
@@ -37,27 +38,26 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
         bnt_atualizarCliente = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        label_cidadeCliente = new javax.swing.JLabel();
+        label_bairroCliente = new javax.swing.JLabel();
+        label_ruaCliente = new javax.swing.JLabel();
+        label_numeroCliente = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        label_mailCliente = new javax.swing.JLabel();
+        label_compleCliente = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        label_telCliente = new javax.swing.JLabel();
+        label_tel2Cliente = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximumSize(new java.awt.Dimension(727, 634));
         setMinimumSize(new java.awt.Dimension(727, 634));
-        setPreferredSize(new java.awt.Dimension(727, 634));
 
         jLabel1.setText("CPF");
 
-        label_cpfCliente.setText("rg");
+        label_cpfCliente.setText("cpf");
 
         jLabel2.setText("RG");
 
@@ -90,25 +90,25 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
 
         jLabel4.setText("ENDEREÇO");
 
-        jLabel5.setText("cidade");
+        label_cidadeCliente.setText("cidade");
 
-        jLabel6.setText("bairro");
+        label_bairroCliente.setText("bairro");
 
-        jLabel7.setText("rua");
+        label_ruaCliente.setText("rua");
 
-        jLabel8.setText("numero");
+        label_numeroCliente.setText("numero");
 
         jLabel9.setText("EMAIL");
 
-        jLabel10.setText("email");
+        label_mailCliente.setText("email");
 
-        jLabel11.setText("complemento");
+        label_compleCliente.setText("complemento");
 
         jLabel12.setText("TELEFONE");
 
-        jLabel13.setText("telefone1");
+        label_telCliente.setText("telefone1");
 
-        jLabel14.setText("telefone2");
+        label_tel2Cliente.setText("telefone2");
 
         jButton2.setText("Nova Busca");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -129,11 +129,11 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel13))
+                                .addComponent(label_telCliente))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(166, 166, 166)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
+                                    .addComponent(label_tel2Cliente)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(bnt_atualizarCliente)
                                         .addGap(91, 91, 91)
@@ -146,21 +146,21 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel10))
+                                .addComponent(label_mailCliente))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
+                                        .addComponent(label_ruaCliente)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel8))
+                                        .addComponent(label_numeroCliente))
                                     .addComponent(jButton1))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(80, 80, 80)
-                                        .addComponent(jLabel6))
+                                        .addComponent(label_bairroCliente))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel11))))
+                                        .addComponent(label_compleCliente))))
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
@@ -173,7 +173,7 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(label_rgCliente))
                                 .addGap(37, 37, 37)
-                                .addComponent(jLabel5)))
+                                .addComponent(label_cidadeCliente)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -194,22 +194,22 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(label_cidadeCliente)
+                    .addComponent(label_bairroCliente))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel11))
+                    .addComponent(label_ruaCliente)
+                    .addComponent(label_numeroCliente)
+                    .addComponent(label_compleCliente))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                    .addComponent(label_mailCliente))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14))
+                    .addComponent(label_telCliente)
+                    .addComponent(label_tel2Cliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -245,21 +245,21 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel label_cpfCliente;
-    private javax.swing.JLabel label_nomeCliente;
-    private javax.swing.JLabel label_rgCliente;
+    public javax.swing.JLabel label_bairroCliente;
+    public javax.swing.JLabel label_cidadeCliente;
+    public javax.swing.JLabel label_compleCliente;
+    public javax.swing.JLabel label_cpfCliente;
+    public javax.swing.JLabel label_mailCliente;
+    public javax.swing.JLabel label_nomeCliente;
+    public javax.swing.JLabel label_numeroCliente;
+    public javax.swing.JLabel label_rgCliente;
+    public javax.swing.JLabel label_ruaCliente;
+    public javax.swing.JLabel label_tel2Cliente;
+    public javax.swing.JLabel label_telCliente;
     // End of variables declaration//GEN-END:variables
 }
