@@ -6,7 +6,9 @@
 package view;
 
 import controller.ControleBusca;
+import controller.ControleCadastro;
 import controller.IControleBusca;
+import controller.IControleCadastro;
 import javax.swing.JOptionPane;
 import model.bean.Cliente;
 
@@ -220,7 +222,13 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       int confirma = JOptionPane.showConfirmDialog(null, "Quer cadastrar esse Cliente?", "Confiarmar", JOptionPane.YES_NO_OPTION);
+        if (confirma == JOptionPane.YES_OPTION){
+            IControleCadastro i = new ControleCadastro();
+            if(i.DeletarClienteCpf(this.label_cpfCliente.getText())){
+               this.dispose();
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void bnt_atualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_atualizarClienteActionPerformed
@@ -232,8 +240,7 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
 
         IControleBusca controle = new ControleBusca();
         Cliente client = controle.ClienteBuscaCpf(cpfCliente);
-        if (client != null) {
-
+        try{
             this.label_cpfCliente.setText(client.getCpf());
             this.label_rgCliente.setText(client.getRg());
             this.label_nomeCliente.setText(client.getNome());
@@ -246,7 +253,7 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
             this.label_nomeCliente.setText(client.getEmail());
             this.label_telCliente.setText(client.getTelefone1());
             this.label_tel2Cliente.setText(client.getTelefone2());
-        } else { 
+        }catch(Exception e) { 
             JOptionPane.showMessageDialog(null, "Tente novamente");
         }
     }//GEN-LAST:event_bnt_buscaActionPerformed

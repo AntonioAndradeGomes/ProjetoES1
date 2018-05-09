@@ -60,10 +60,18 @@
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="buscaCliente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Busca de Cliente"/>
+                <Property name="text" type="java.lang.String" value="Busca de Cliente por Cpf"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscaClienteActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listar Cliente e busca por nome"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

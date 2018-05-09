@@ -169,7 +169,7 @@ public class ClienteDao {
         return clientesBuscados;
     }
     
-    public void removeCpf (String cpf){
+    public boolean removeCpf (String cpf){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
@@ -178,9 +178,11 @@ public class ClienteDao {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null,
                     "Cliete deletado com sucesso!");
+            return true;
         } catch (Exception e) {
            JOptionPane.showMessageDialog(null,
                     "erro! " +  e);
+           return false;
         }finally{
              ConnectionFactory.closeConnection(con, stmt); 
        } 

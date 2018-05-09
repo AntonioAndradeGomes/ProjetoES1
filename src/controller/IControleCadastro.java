@@ -21,5 +21,6 @@ public interface IControleCadastro {
     
     public void AtualizarCliente(String nome, String cpf, String rg, String telefone1, String telefone2, 
         String email, String cidade, String rua, String bairro, String complemento, long numero);
-        
+    
+    public boolean DeletarClienteCpf(String cpf);
 }

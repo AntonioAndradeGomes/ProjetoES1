@@ -60,6 +60,11 @@ public class ControleCadastro implements IControleCadastro {
         d.update(p);
     }
     
+    public boolean DeletarClienteCpf(String cpf){
+        ClienteDao d = new ClienteDao();
+        return d.removeCpf(cpf);
+    }
+    
     
 
 }

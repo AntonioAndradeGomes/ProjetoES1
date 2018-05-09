@@ -30,11 +30,7 @@ public class ControleBusca implements IControleBusca{
     }
 
     public Cliente ClienteBuscaCpf(String cpf) {
-       if(cd.BuscaCpf(cpf).equals(null)){
-           return null;
-       }else{
            return cd.BuscaCpf(cpf);
-       }
     }
     public ArrayList<Cliente> ClienteBuscaNome (String nome){
         return cd.buscaNome(nome);
