@@ -232,7 +232,7 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
 
         IControleBusca controle = new ControleBusca();
         Cliente client = controle.ClienteBuscaCpf(cpfCliente);
-        if (!client.equals(null)) {
+        if (client != null) {
 
             this.label_cpfCliente.setText(client.getCpf());
             this.label_rgCliente.setText(client.getRg());

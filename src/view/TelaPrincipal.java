@@ -230,10 +230,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void buscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaClienteActionPerformed
         String cpfCliente = JOptionPane.showInputDialog("Digite o cpf");
-        BuscaCliente buscCliente = new BuscaCliente();
         IControleBusca controle = new ControleBusca();
         Cliente client = controle.ClienteBuscaCpf(cpfCliente);
-        if (!client.equals(null)) {
+        if (client != null) {
+            BuscaCliente buscCliente = new BuscaCliente();
             buscCliente.setVisible(true);
             buscCliente.label_cpfCliente.setText(client.getCpf());
             buscCliente.label_rgCliente.setText(client.getRg());
