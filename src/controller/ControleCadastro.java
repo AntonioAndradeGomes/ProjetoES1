@@ -39,4 +39,17 @@ public class ControleCadastro implements IControleCadastro {
                 }
             }
     }
+
+
+    public void AtualizarProduto(String nome, String codigo, String descricao, long quantidade, int garantia, double precoUnitario) {
+        Produto p = new Produto(nome, codigo, descricao,quantidade, garantia, precoUnitario);
+        ProdutoDao dao = new ProdutoDao();
+        dao.update(p);
+    }
+    
+    public void DeletarProduto(String nome, String codigo, String descricao, long quantidade, int garantia, double precoUnitario){
+        Produto p = new Produto(nome, codigo, descricao,quantidade, garantia, precoUnitario);
+        ProdutoDao dao = new ProdutoDao();
+        dao.Delete(p);
+    }
 }

@@ -1,5 +1,6 @@
 package view;
 
+import conection.ConnectionFactory;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -47,13 +48,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menu_vendedores = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        menu_vendas = new javax.swing.JMenuItem();
         menu_listarVendedores = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         menu_comprasPorCliente = new javax.swing.JMenuItem();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
+        sair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -70,11 +70,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 674, Short.MAX_VALUE)
+            .addGap(0, 727, Short.MAX_VALUE)
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 555, Short.MAX_VALUE)
+            .addGap(0, 634, Short.MAX_VALUE)
         );
 
         jButton1.setText("Compar");
@@ -120,14 +120,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Listagem");
 
-        menu_vendas.setText("Estoque");
-        menu_vendas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_vendasActionPerformed(evt);
-            }
-        });
-        jMenu2.add(menu_vendas);
-
         menu_listarVendedores.setText("Minhas Vendas");
         jMenu2.add(menu_listarVendedores);
 
@@ -155,8 +147,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Sobre");
         jMenuBar1.add(jMenu3);
 
-        jMenu1.setText("Sair");
-        jMenuBar1.add(jMenu1);
+        sair.setText("Sair");
+        sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(sair);
 
         setJMenuBar(jMenuBar1);
 
@@ -164,35 +161,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(usuario)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(data)))
-                .addGap(14, 14, 14))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usuario)
+                            .addComponent(data))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Desktop)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(usuario)
                 .addGap(18, 18, 18)
                 .addComponent(data)
-                .addGap(70, 70, 70)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addGap(75, 75, 75)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(Desktop)
         );
 
-        setSize(new java.awt.Dimension(810, 630));
+        setSize(new java.awt.Dimension(878, 694));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -229,12 +224,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.Desktop.add(tela);
     }//GEN-LAST:event_menu_vendedoresActionPerformed
 
-    private void menu_vendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_vendasActionPerformed
-        ListarEstoque telaEstoque = new ListarEstoque();
-        telaEstoque.setVisible(true);
-        this.Desktop.add(telaEstoque);
-    }//GEN-LAST:event_menu_vendasActionPerformed
-
     private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
@@ -244,6 +233,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaCompra.setVisible(true);
         this.Desktop.add(telaCompra);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+        TelaLogin tela = new TelaLogin();
+        tela.setVisible(true);
+        this.Desktop.disable();
+        this.dispose();
+    }//GEN-LAST:event_sairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,7 +280,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane Desktop;
     private javax.swing.JLabel data;
     private javax.swing.JButton jButton1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
@@ -295,8 +290,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menu_comprasPorCliente;
     private javax.swing.JMenuItem menu_listarVendedores;
     private javax.swing.JMenu menu_produto;
-    private javax.swing.JMenuItem menu_vendas;
     private javax.swing.JMenuItem menu_vendedores;
+    private javax.swing.JMenu sair;
     public static javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }

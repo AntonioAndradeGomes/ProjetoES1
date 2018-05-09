@@ -18,6 +18,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
     public TelaProduto() {
         initComponents();
         this.read();
+        this.read.setEnabled(false);
 //        if (tipo.equals("gerente") || tipo.equals("Gerente") || tipo.equals("GERENTE")){
 //            this.deletar.setEnabled(true);
 //            this.atualizar.setEnabled(true);
@@ -58,13 +59,17 @@ public class TelaProduto extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         atualizar = new javax.swing.JButton();
         deletar = new javax.swing.JButton();
+        pesquisarNome = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        read = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Tela de Cadastro de Produtos e Visulização de Estoque");
-        setMaximumSize(new java.awt.Dimension(674, 555));
-        setMinimumSize(new java.awt.Dimension(674, 555));
-        setPreferredSize(new java.awt.Dimension(674, 555));
+        setMaximumSize(new java.awt.Dimension(727, 634));
+        setMinimumSize(new java.awt.Dimension(727, 634));
+        setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(727, 634));
 
         label_codigo.setText("*CODIGO");
 
@@ -144,19 +149,60 @@ public class TelaProduto extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabelaEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaEstoqueMouseClicked(evt);
+            }
+        });
+        tabelaEstoque.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tabelaEstoqueKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabelaEstoque);
 
         jLabel1.setText("o que esta com * no começo é obrigatorio");
 
         atualizar.setText("Atualizar");
+        atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarActionPerformed(evt);
+            }
+        });
 
         deletar.setText("Deletar");
+        deletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletarActionPerformed(evt);
+            }
+        });
+
+        pesquisarNome.setText("Pesquisar por nome");
+        pesquisarNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarNomeActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Pesquisar por código");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        read.setText("Mostrar todos os produtos");
+        read.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                readActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -176,7 +222,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
                         .addComponent(campo_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addComponent(campo_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 19, Short.MAX_VALUE))
+                .addGap(0, 53, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -198,14 +244,22 @@ public class TelaProduto extends javax.swing.JInternalFrame {
                             .addGap(167, 167, 167)
                             .addComponent(label_quantidade))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(atualizar)
+                .addGap(46, 46, 46)
+                .addComponent(deletar)
+                .addGap(42, 42, 42)
+                .addComponent(btn_cadastrar)
+                .addGap(49, 49, 49)
+                .addComponent(pesquisarNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(deletar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108)
-                .addComponent(btn_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addComponent(jButton2)
+                .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(read)
+                .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,12 +289,16 @@ public class TelaProduto extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(atualizar)
+                    .addComponent(deletar)
+                    .addComponent(btn_cadastrar)
+                    .addComponent(pesquisarNome)
+                    .addComponent(jButton2))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(atualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(deletar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(read)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -313,6 +371,126 @@ public class TelaProduto extends javax.swing.JInternalFrame {
     private void campo_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_codigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campo_codigoActionPerformed
+
+    private void tabelaEstoqueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaEstoqueKeyPressed
+        if(this.tabelaEstoque.getSelectedRow() > -1){
+            this.campo_codigo.setText(this.tabelaEstoque.getValueAt(this.tabelaEstoque.getSelectedRow(), 0).toString());
+            this.campo_nome.setText(this.tabelaEstoque.getValueAt(this.tabelaEstoque.getSelectedRow(), 1).toString());
+            this.campo_quantidade.setText(this.tabelaEstoque.getValueAt(this.tabelaEstoque.getSelectedRow(), 2).toString());
+            this.campo_garantia.setText(this.tabelaEstoque.getValueAt(this.tabelaEstoque.getSelectedRow(), 3).toString());
+            this.campo_descricao.setText(this.tabelaEstoque.getValueAt(this.tabelaEstoque.getSelectedRow(), 4).toString());
+            this.campo_valor.setText(this.tabelaEstoque.getValueAt(this.tabelaEstoque.getSelectedRow(), 5).toString());
+        }
+    }//GEN-LAST:event_tabelaEstoqueKeyPressed
+
+    private void tabelaEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEstoqueMouseClicked
+        if(this.tabelaEstoque.getSelectedRow() > -1){
+            this.campo_codigo.setText(this.tabelaEstoque.getValueAt(this.tabelaEstoque.getSelectedRow(), 0).toString());
+            this.campo_nome.setText(this.tabelaEstoque.getValueAt(this.tabelaEstoque.getSelectedRow(), 1).toString());
+            this.campo_quantidade.setText(this.tabelaEstoque.getValueAt(this.tabelaEstoque.getSelectedRow(), 2).toString());
+            this.campo_garantia.setText(this.tabelaEstoque.getValueAt(this.tabelaEstoque.getSelectedRow(), 3).toString());
+            this.campo_descricao.setText(this.tabelaEstoque.getValueAt(this.tabelaEstoque.getSelectedRow(), 4).toString());
+            this.campo_valor.setText(this.tabelaEstoque.getValueAt(this.tabelaEstoque.getSelectedRow(), 5).toString());
+        }
+    }//GEN-LAST:event_tabelaEstoqueMouseClicked
+    
+    private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
+        
+        if(this.tabelaEstoque.getSelectedRow() != -1){
+            int confirma = JOptionPane.showConfirmDialog(null, "Quer atualizar esse Produto?", "Confiarmar", JOptionPane.YES_NO_OPTION);
+            if (confirma == JOptionPane.YES_OPTION){
+                IControleCadastro i = new ControleCadastro();
+                long g = Long.parseLong(this.campo_quantidade.getText());
+                int g2 = Integer.parseInt(this.campo_garantia.getText());
+                double g3 = Double.parseDouble(this.campo_valor.getText());
+                i.AtualizarProduto(this.campo_nome.getText(),this.campo_codigo.getText(), this.campo_descricao.getText(),
+                        g, g2, g3);
+                this.setarCampos();
+                this.read();
+            }else{
+                this.setarCampos();
+                this.read();
+            } 
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto para atulaizar na tabela \n"
+                    + "Basta só clicar em um dos produtos na tabela \n"
+                    + "modificar os campos que deseja atualizar com exceção do codigo \n"
+                    + "e clicar em atualizar! \n");
+        }
+    }//GEN-LAST:event_atualizarActionPerformed
+
+    private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
+        if(this.tabelaEstoque.getSelectedRow() != -1){
+            int confirma = JOptionPane.showConfirmDialog(null, "Quer deletar esse Produto?", "Confiarmar", JOptionPane.YES_NO_OPTION);
+            if (confirma == JOptionPane.YES_OPTION){
+                IControleCadastro i = new ControleCadastro();
+                long g = Long.parseLong(this.campo_quantidade.getText());
+                int g2 = Integer.parseInt(this.campo_garantia.getText());
+                double g3 = Double.parseDouble(this.campo_valor.getText());
+                i.DeletarProduto(this.campo_nome.getText(),this.campo_codigo.getText(), this.campo_descricao.getText(),
+                        g, g2, g3);
+                this.setarCampos();
+                this.read();
+            }else{
+                this.setarCampos();
+                this.read();
+            }  
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto para atulaizar na tabela \n"
+                    + "Basta só clicar em um dos produtos na tabela \n"
+                    + "e clicar em deletar novamente! \n");
+        }
+    }//GEN-LAST:event_deletarActionPerformed
+
+    private void pesquisarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarNomeActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) this.tabelaEstoque.getModel();
+        modelo.setNumRows(0); //eliminar duplicadas do java 
+        String nome = JOptionPane.showInputDialog("Digite o nome do produto");
+        IControleBusca i = new ControleBusca();
+        ArrayList<Produto> prods = i.buscaProdutoNome(nome);
+        if (prods.size() >= 1){ //se o array retornado tiver elementos 
+                for (Produto p:prods){ //atribuir um obbjeto já que vamos percorer o objeto
+                    modelo.addRow(new Object[]{
+                        p.getCodigo(),
+                        p.getNome(),
+                        p.getQt_disponiveis(),
+                        p.getTempo_garantia(),
+                        p.getDescicao(),
+                        p.getPrecoUnitario()
+                    });
+                }
+            this.read.setEnabled(true); 
+        }else{
+            JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+            this.read();
+        }
+    }//GEN-LAST:event_pesquisarNomeActionPerformed
+
+    private void readActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readActionPerformed
+        this.read();
+    }//GEN-LAST:event_readActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) this.tabelaEstoque.getModel();
+        modelo.setNumRows(0); //eliminar duplicadas do java 
+        IControleBusca i2 = new ControleBusca();
+        String nome = JOptionPane.showInputDialog("Digite o codigo do produto");
+        Produto prod = i2.buscaProdutocodigo(nome);
+        if (prod != null){
+            modelo.addRow(new Object[]{
+                      prod.getCodigo(),
+                      prod.getNome(),
+                      prod.getQt_disponiveis(),
+                      prod.getTempo_garantia(),
+                      prod.getDescicao(),
+                      prod.getPrecoUnitario()
+            });
+            this.read.setEnabled(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+            this.read();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     //função abixo verifica se campos que não podem ser nulos são nulos
     //ou seja se campos obrigatorios foram preenchidos
@@ -364,6 +542,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
     private javax.swing.JTextField campo_quantidade;
     private javax.swing.JTextField campo_valor;
     private javax.swing.JButton deletar;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;
@@ -376,6 +555,8 @@ public class TelaProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel label_nome;
     private javax.swing.JLabel label_quantidade;
     private javax.swing.JLabel label_valor;
+    private javax.swing.JButton pesquisarNome;
+    private javax.swing.JButton read;
     private javax.swing.JTable tabelaEstoque;
     // End of variables declaration//GEN-END:variables
 }

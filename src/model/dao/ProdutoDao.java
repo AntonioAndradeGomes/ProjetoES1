@@ -159,9 +159,9 @@ public class ProdutoDao {
        } catch (Exception e) {
            JOptionPane.showMessageDialog(null,
                     "erro! " +  e);
-       }
-           
-       
+       }finally{
+            ConnectionFactory.closeConnection(con, stmt); 
+       } 
    }
 
     public ArrayList<Compra> compras(Produto p){
@@ -198,8 +198,21 @@ public class ProdutoDao {
         }
         return ComprasDesseProduto;
     }
-             
-
-
     
+    public void Delete(Produto p){
+       Connection con = ConnectionFactory.getConnection();
+       PreparedStatement stmt = null;
+       try {
+           stmt = con.prepareStatement("delete from `infotech`.`Produto` where `infotech`.`Produto`.`codigo` = ?");
+           stmt.setString(1, p.getCodigo());
+           stmt.executeUpdate();
+           JOptionPane.showMessageDialog(null,
+                    "Produto deletado com sucesso!");
+       } catch (Exception e) {
+           JOptionPane.showMessageDialog(null,
+                    "erro! " +  e);
+       }finally{
+             ConnectionFactory.closeConnection(con, stmt); 
+       } 
+    }
 }

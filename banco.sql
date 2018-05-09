@@ -143,9 +143,15 @@ select * from infotech.produto;
 insert into infotech.Produto (codigo, nome, quantidade, tempo_garantia, descricao, preco) values ('xxxtmto', 'moto z play', 
 9, 24, 'celular', 1899.99);
 
- select * from infotech.compra;
+select * from infotech.compra;
 
+insert into infotech.Produto (codigo, nome, quantidade, tempo_garantia, descricao, preco) values ('xxxffff', 'moto z2 force', 
+9, 24, 'celular', 1899.99);
+insert into infotech.Produto (codigo, nome, quantidade, tempo_garantia, descricao, preco) values ('camolaggg', 'camisinha', 
+9, 0, 'camisinha ola retardante tamanho grande', 2.25);
+select * from produto;
 
+delete from `infotech`.`Produto` where `infotech`.`Produto`.`codigo` = 'xxx';
 insert into infotech.Compra (data, valor, Vendedor_cpf)
 values ('2016-11-27', 1899.99, '12345678900');
 

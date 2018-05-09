@@ -10,4 +10,9 @@ public interface IControleCadastro {
             String email, String cidade, String rua, String bairro, String complemento, 
             long numero, String tipo, String senha);
     
+    public void AtualizarProduto(String nome, String codigo, String descricao, 
+            long quantidade, int garantia, double precoUnitario);
+    
+    public void DeletarProduto(String nome, String codigo, String descricao, 
+            long quantidade, int garantia, double precoUnitario);
 }
