@@ -72,6 +72,37 @@ public class ClienteDao {
         return clientes;
     }
     
+    public void update(Cliente cliente){
+       Connection con = ConnectionFactory.getConnection();
+       PreparedStatement stmt = null;
+       try {
+           stmt = con.prepareStatement("UPDATE `infotech`.`Cliente` SET nome = ?, email = ?,"
+                     + "cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, telefone1 = ?, telefone2 = ?,"
+                   + " where cpf = ?");
+           stmt.setString(1, cliente.getNome());
+           stmt.setString(2, cliente.getEmail());
+           stmt.setString(3, cliente.getCidade());
+           stmt.setString(4, cliente.getBairro());
+           stmt.setString(5, cliente.getRua());
+           stmt.setLong(6, cliente.getNumero());
+           stmt.setString(7, cliente.getComplemento());
+           stmt.setString(8, cliente.getTelefone1());
+           stmt.setString(9, cliente.getTelefone2());
+           stmt.setString(10, cliente.getCpf());
+ 
+           
+           stmt.executeUpdate();
+           JOptionPane.showMessageDialog(null,
+                    "Dados do cliente atualizados com sucesso!");
+       } catch (Exception e) {
+           JOptionPane.showMessageDialog(null,
+                    "erro! " +  e);
+       }finally{
+            ConnectionFactory.closeConnection(con, stmt); 
+       } 
+   }
+
+    
 //falta descobrir o comando sql que exiba todas as compras feitas por um cliente dado seu cpf
 //JOnathas 
 
