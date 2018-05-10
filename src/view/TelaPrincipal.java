@@ -58,7 +58,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         buscaCliente = new javax.swing.JRadioButtonMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        sair = new javax.swing.JMenu();
+        menu_sair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -147,7 +147,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(buscaCliente);
 
-        jMenuItem1.setText("Listar Cliente e busca por nome");
+        jMenuItem1.setText("Listar Cliente e buscar por nome");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -160,13 +160,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Sobre");
         jMenuBar1.add(jMenu3);
 
-        sair.setText("Sair");
-        sair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sairActionPerformed(evt);
+        menu_sair.setText("Sair");
+        menu_sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu_sairMouseClicked(evt);
             }
         });
-        jMenuBar1.add(sair);
+        menu_sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_sairActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(menu_sair);
 
         setJMenuBar(jMenuBar1);
 
@@ -265,7 +270,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 telacliente.setVisible(true); //isso já sabe o qfaz
                 this.Desktop.add(telacliente);
 
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Tente novamente");
             }
         }
@@ -279,19 +284,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.Desktop.add(telaCompra);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
-//        TelaLogin tela = new TelaLogin();
-//        tela.setVisible(true);
-//        this.Desktop.disable();
-//        this.dispose();
-    }//GEN-LAST:event_sairActionPerformed
+    private void menu_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_sairActionPerformed
+        
+    }//GEN-LAST:event_menu_sairActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ListaClientes l = new ListaClientes();
         l.setTipo(this.getTipo());
         l.setVisible(true);
-       
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menu_sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_sairMouseClicked
+        TelaPrincipal principal = new TelaPrincipal();
+        TelaLogin login = new TelaLogin();
+        this.dispose();
+        login.setVisible(true);
+    }//GEN-LAST:event_menu_sairMouseClicked
 
     /**
      * @param args the command line arguments
@@ -343,8 +352,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menu_comprasPorCliente;
     private javax.swing.JMenuItem menu_listarVendedores;
     private javax.swing.JMenu menu_produto;
+    private javax.swing.JMenu menu_sair;
     private javax.swing.JMenuItem menu_vendedores;
-    private javax.swing.JMenu sair;
     public static javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }

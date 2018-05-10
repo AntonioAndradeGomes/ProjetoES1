@@ -262,7 +262,7 @@ public class ListaClientes extends javax.swing.JFrame {
 
     private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
         if (this.tabela.getSelectedRow() != -1) {
-            int confirma = JOptionPane.showConfirmDialog(null, "Quer cadastrar esse Cliente?", "Confiarmar", JOptionPane.YES_NO_OPTION);
+            int confirma = JOptionPane.showConfirmDialog(null, "Deseja deletar este Cliente?", "Confirmar", JOptionPane.YES_NO_OPTION);
             if (confirma == JOptionPane.YES_OPTION) {
                 IControleCadastro i = new ControleCadastro();
                 i.DeletarClienteCpf(this.getCpf_selecionado());

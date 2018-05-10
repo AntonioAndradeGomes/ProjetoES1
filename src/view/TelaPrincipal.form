@@ -68,7 +68,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar Cliente e busca por nome"/>
+                <Property name="text" type="java.lang.String" value="Listar Cliente e buscar por nome"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -81,12 +81,13 @@
             <Property name="text" type="java.lang.String" value="Sobre"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="sair">
+        <Menu class="javax.swing.JMenu" name="menu_sair">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sairActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menu_sairMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_sairActionPerformed"/>
           </Events>
         </Menu>
       </SubComponents>
