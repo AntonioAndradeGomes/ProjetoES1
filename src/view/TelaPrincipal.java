@@ -242,7 +242,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         IControleBusca controle = new ControleBusca();
         Cliente client = controle.ClienteBuscaCpf(cpfCliente);
         if (client != null) {
-            BuscaCliente buscCliente = new BuscaCliente();
+            BuscaDiretaAtualizarCliente buscCliente = new BuscaDiretaAtualizarCliente(this.getTipo());
             buscCliente.setVisible(true);
             buscCliente.label_cpfCliente.setText(client.getCpf());
             buscCliente.label_rgCliente.setText(client.getRg());

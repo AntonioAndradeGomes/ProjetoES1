@@ -55,6 +55,7 @@ public class ControleCadastro implements IControleCadastro {
 
     public void AtualizarCliente(String nome, String cpf, String rg, String telefone1, String telefone2,
             String email, String cidade, String rua, String bairro, String complemento, long numero) {
+        
         Cliente p = new Cliente(nome, cpf, rg, telefone1, telefone2, email, cidade, rua, bairro, complemento, numero);
         ClienteDao d = new ClienteDao();
         d.update(p);
