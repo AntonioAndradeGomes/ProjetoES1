@@ -37,14 +37,6 @@ CREATE TABLE `infotech`.`Vendedor` (
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC))
 ENGINE = InnoDB;
 
- insert into infotech.Vendedor(cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
-telefone1, telefone2, tipo, senha) values ('12345678900', '123456789', 'Antonio', '', 'Quebrangulo', 
-'Centro', 'Paulo Jacinto', 231, '', '', '', 'gerente', 'admin');
-
-update infotech.vendedor set complemento = 'em frente ao puteiro' where numero = 231;
-select * from infotech.vendedor;
-delete from infotech.vendedor where numero = 24;
-
 -- -----------------------------------------------------
 -- Table `infotech`.`Compra`
 -- -----------------------------------------------------
@@ -104,8 +96,6 @@ CREATE TABLE `infotech`.`Cliente` (
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC))
 ENGINE = InnoDB;
 
-select * from infotech.Cliente;
-
 
 -- -----------------------------------------------------
 -- Table `infotech`.`Cliente_Realiza_Compra`
@@ -128,73 +118,88 @@ CREATE TABLE `infotech`.`Cliente_Realiza_Compra` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-insert into infotech.Cliente (cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
-telefone1, telefone2)  values('23456789101', '1324546776', 'Marisvaldo', 'marisvaldo@gmail.com', 'Rolandia', 'Centro', 'rua das boquinhas', 120,
-'virando a rua 16', '996669120', null);
+-- ------------------------------------------------------
+-- Inserindo dados
+-- ------------------------------------------------------
 
-insert into infotech.Cliente (cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
-telefone1, telefone2)  values('23456789111', '1324578776', 'Godolfredo', null, 'Rolandia', 'Centro', 'rua das boquinhas', 121,
-'virando a rua 16', '996669121', null);
-
-select * from infotech.cliente;
-
-select * from infotech.produto;
-
-insert into infotech.Produto (codigo, nome, quantidade, tempo_garantia, descricao, preco) values ('xxxtmto', 'moto z play', 
-9, 24, 'celular', 1899.99);
-
-select * from infotech.compra;
-
-insert into infotech.Produto (codigo, nome, quantidade, tempo_garantia, descricao, preco) values ('xxxffff', 'moto z2 force', 
-9, 24, 'celular', 1899.99);
-insert into infotech.Produto (codigo, nome, quantidade, tempo_garantia, descricao, preco) values ('camolaggg', 'camisinha', 
-9, 0, 'camisinha ola retardante tamanho grande', 2.25);
-select * from produto;
-
-delete from `infotech`.`Produto` where `infotech`.`Produto`.`codigo` = 'xxx';
-insert into infotech.Compra (data, valor, Vendedor_cpf)
-values ('2016-11-27', 1899.99, '12345678900');
-
-SELECT * FROM `infotech`.`Compra` where Vendedor_cpf = '12345678900';
-
-delete from `infotech`.`Compra` where data = '0000-00-00';
-
-insert into infotech.Produto_tem_Compra (produto_codigo, Compra_Codigo_compra)
-values ('xxxtmto', 1);
-
-insert into infotech.Cliente_Realiza_Compra (Compra_Codigo_compra, cliente_cpf) 
-values (1,'23456789101' );
-
--- exibir o nome do cliente e seu cpf e produtos comprados e seus vendedores cpf e nome
-
-SELECT infotech.Cliente.nome as NomedoCliente, infotech.Cliente.cpf as CPFdoCliente, infotech.Produto.nome as ProdutoComprado, infotech.Produto.preco as PrecodoProduto,
-infotech.Vendedor.cpf as CPFdovendedor, infotech.Vendedor.nome as NomedoVendedor
-	FROM infotech.Cliente, infotech.Produto, infotech.Cliente_Realiza_Compra, infotech.Compra, infotech.Produto_tem_Compra, infotech.Vendedor
-	where (Cliente.cpf = Cliente_Realiza_Compra.Cliente_cpf and Cliente_Realiza_Compra.Compra_Codigo_compra = Compra.Codigo_compra) and
-    (Compra.Codigo_compra = Produto_tem_Compra.Compra_Codigo_compra and Produto.codigo = Produto_tem_Compra.Produto_codigo) and
-    (Vendedor.cpf = Compra.Vendedor_cpf);
-SELECT * FROM `infotech`.`Produto` where quantidade > 1;
-describe `infotech`.`Produto`;
-
-select * from produto_tem_compra;
-select infotech.compra.Codigo_compra, infotech.compra.data, infotech.compra.valor, infotech.compra.Vendedor_cpf
-from infotech.compra,
-infotech.produto_tem_compra, infotech.produto 
-where infotech.compra.Codigo_compra = infotech.produto_tem_compra.Compra_Codigo_compra and 
-infotech.produto.codigo = infotech.produto_tem_compra.Produto_codigo and
-infotech.produto.codigo = 'xxxtmto';
- 
-select * from Vendedor where cpf = '12345678900';
- 
-Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` =  'moto z play';
-
-update `infotech`.`Produto` set `infotech`.`Produto`.`quantidade` = `infotech`.`Produto`.`quantidade` + 1 where `infotech`.`Produto`.`codigo` = 'xxxtmto';
-select * from produto;
+INSERT INTO `infotech`.`Cliente` VALUES ('0','0','Avulso',NULL,'Sem cidade','Sem Bairro','Sem rua',NULL,NULL,NULL,NULL),
+('1235343','3453456','Gustavo','gustavo@hotmail.com','Maceio','centro','Fernandes',9,'Perto do colegio educar',NULL,NULL),
+('123654','564478','Fernando','Fernando@gmail.com','Arapiraca','centro','Primavera',12,'perto do posto de saúde',NULL,NULL),
+('23456789101','1324546776','Marisvaldo','marisvaldo@gmail.com','Rolandia','Centro','rua das boquinhas',120,'virando a rua 16','996669120',NULL),
+('23456789111','1324578776','Godolfredo',NULL,'Rolandia','Centro','rua das boquinhas',121,'virando a rua 16','996669121',NULL),
+('27346872','24342738','Stefany','stefany@gmail.com','Quebrangulo','centro','São jorge',1,NULL,NULL,NULL),
+('4564345334','2343633545','Felipe','Ronaldo@gmail.com','Barcelona','Nobre','Stanford',32,'Proximo ao Estadio','98765434','96785432'),
+('783429247','236582384','Vitoria','vitoria@gmail.com','Quebrangulo','centro','Napoleão',8,'perto do posto de gasolina JB','94637484',NULL),
+('78646743','93574257','fernando','fernando@gmail.com','Batalha','Centro','Avenida paulista',12,NULL,'93456234',NULL),
+('8472634','3528374','Gabriela','gabriela@gmail.com','Arapiraca','centro','São jorge',23,'',NULL,NULL),
+('847537495','293475294','Afonso','afonso@gmail.com','Arapiraca','Centro','Santo espedito',6,'Perto da Praça',NULL,NULL);
 
 
+INSERT INTO `infotech`.`Vendedor` VALUES ('123456789','987654321','Fernando','fernando@gmail.com','Arapiraca','centro','Vereador ruy barbosa',2,'Perto do posto JB','96273849','92574639','Vendedor','infotech1'),
+('127461723','873458399','Francisco','francisco@gmail.com','Arapiraca','Centro','Tiradentes',76,'Perto a auto escola JBL','95684753',NULL,'Vendedor','trabalhar1'),
+('172462234','243284723','Junior','junior@gmail.com','Arapiraca','centro','São paulo',97,'Perto da Fabrica são luiz',NULL,NULL,'Vendedor','semgrana1'),
+('2738273498','4234283484','Gilberto','gilberto@outlook.com','Arapiraca','centro','Santo Antônio',65,NULL,NULL,NULL,'Gerente','carro1'),
+('2837823473','4234823475','Carlos','carlos@gmail.com','Arapiraca','centro','Avenida Brasil',56,'Perto ao colegio 
+aprender','98464784',NULL,'Vendedor','falido1'),('3636534','8327523','Eduardo','eduardo@hotmail.com','Arapiraca','centro','Sete de setembro',78,'Perto da livraria globo','98467385',NULL,'Vendedor','troll1'),
+('394983745','374829023','Gilberto','gilberto@hotmail.com','Arapiraca','centro','Rua principal',8,NULL,NULL,NULL,'Vendedor','tech1'),
+('82784278','83748234','Pedro','pedro@gmail.com','Arapiraca','centro','São Pedro',4,NULL,NULL,NULL,'Vendedor','grana1'),
+('968327346','283748234','Roberio','roberio@hotmail.com','Arapiraca','centro','São José',54,'Perto das lojas 
+guido','98365734',NULL,'Gerente','chefe1'),
+('968738573','538459384','Juliano','juliano@gmail.com','Arapiraca','centro','Rua B',7,'Perto da pousada 
+Luiz','91382745',NULL,'Gerente','admin1');
+
+
+INSERT INTO `infotech`.`Produto` VALUES ('aa13','Mouse',10,2,'sem fio',21),
+							('avl1','impressora',6,2,'Epson',1200),
+							('bte5','Celular',6,2,'Asus',2000),
+							('camolaggg','camisinha',9,0,'camisinha ola retardante tamanho grande',2.25),
+							('dc2','Computador',12,2,'Gamer',1200.99),
+							('de21','Teclado',9,1,'sem fio',120),
+							('dfeq12','notebook',3,2,'MacBook pro',20000),
+							('dfg32','Monitor',12,2,'LG',899.99),
+							('js12','Kindle',15,3,'E-reader',230.99),
+							('xxxffff','moto z2 force',9,24,'celular',1899.99),
+							('xxxtmto','moto z play',9,24,'celular',1899.99);
+
+
+INSERT INTO `infotech`.`Compra` VALUES (2,'2018-05-09',21,'123456789'),
+							(3,'2018-05-09',1200,'123456789'),
+							(4,'2018-05-09',2000,'123456789'),
+							(5,'2018-05-10',1200.99,'127461723'),
+							(6,'2018-05-10',120,'127461723'),
+							(7,'2018-05-10',20000,'127461723'),
+							(8,'2018-05-11',899.99,'172462234'),
+							(9,'2018-05-11',230.99,'172462234'),
+							(10,'2018-05-11',1899.99,'172462234'),
+							(11,'2018-05-11',1899.99,'172462234');
+
+
+INSERT INTO `infotech`.`Cliente_Realiza_Compra` VALUES (2,'1235343'),
+											(3,'1235343'),
+											(4,'1235343'),
+											(5,'123654'),
+											(6,'123654'),
+											(7,'123654'),
+											(8,'23456789101'),
+											(9,'23456789101'),
+											(10,'23456789101'),
+											(11,'0');
 
 
 
-Select * from `infotech`.`Cliente`;
-Select * from `infotech`.`Produto` where `infotech`.`Produto`.`codigo` = 'teste';
+
+
+INSERT INTO `infotech`.`Produto_tem_Compra` VALUES ('aa13',2),
+										('avl1',3),
+										('bte5',4),
+										('dc2',5),
+										('de21',6),
+										('dfeq12',7),
+										('dfg32',8),
+										('js12',9),
+										('xxxffff',10),
+										('xxxtmto',11);
+
+
+
 
