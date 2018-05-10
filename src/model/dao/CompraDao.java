@@ -31,8 +31,8 @@ public class CompraDao {
                 stmt = con.prepareStatement("INSERT INTO `infotech`.`Produto_tem_Compra` (Produto_codigo, "
                     + "Compra_Codigo_compra) "
                     + "Values(?,?)");
-                stmt.setLong(1, compra.getCodigo());
-                stmt.setString(2, compra.getProdutos().get(i).getCodigo());    
+                stmt.setString(1, compra.getProdutos().get(i).getCodigo());
+                stmt.setLong(2, compra.getCodigo());  
             }
             
             stmt.executeUpdate();
