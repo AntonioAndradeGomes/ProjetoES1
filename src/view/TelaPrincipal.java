@@ -162,8 +162,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menu_sair.setText("Sair");
         menu_sair.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_sairMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menu_sairMousePressed(evt);
             }
         });
         menu_sair.addActionListener(new java.awt.event.ActionListener() {
@@ -285,7 +285,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void menu_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_sairActionPerformed
-        
+
     }//GEN-LAST:event_menu_sairActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -295,12 +295,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void menu_sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_sairMouseClicked
+    private void menu_sairMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_sairMousePressed
         TelaPrincipal principal = new TelaPrincipal();
         TelaLogin login = new TelaLogin();
         this.dispose();
         login.setVisible(true);
-    }//GEN-LAST:event_menu_sairMouseClicked
+    }//GEN-LAST:event_menu_sairMousePressed
 
     /**
      * @param args the command line arguments
