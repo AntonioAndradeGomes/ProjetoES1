@@ -59,8 +59,8 @@ public class ClienteDao {
                         rs.getString("telefone2"),
                         rs.getString("email"),
                         rs.getString("cidade"),
-                        rs.getString("bairro"),
                         rs.getString("rua"),
+                        rs.getString("bairro"),
                         rs.getString("complemento"),
                         rs.getInt("numero"));
                 clientes.add(c);
@@ -121,8 +121,8 @@ public class ClienteDao {
                     rs.getString("telefone2"),
                     rs.getString("email"),
                     rs.getString("cidade"),
-                    rs.getString("bairro"),
                     rs.getString("rua"),
+                    rs.getString("bairro"),
                     rs.getString("complemento"),
                     rs.getInt("numero")    
                 );
@@ -155,10 +155,10 @@ public class ClienteDao {
                     rs.getString("telefone2"),
                     rs.getString("email"),
                     rs.getString("cidade"),
-                    rs.getString("bairro"),
                     rs.getString("rua"),
+                    rs.getString("bairro"),
                     rs.getString("complemento"),
-                    rs.getInt("numero") );
+                    rs.getInt("numero")     );
                 
                 clientesBuscados.add(p);
             }

@@ -206,7 +206,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menu_clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_clientesActionPerformed
         //As linhas abaixo abrem a tela de cadastro de usuario dentro do desktoppane 
-        TelaCliente telacliente = new TelaCliente(); //criei uma instancia da tela cliente
+        TelaCliente telacliente = new TelaCliente(this.getTipo()); //criei uma instancia da tela cliente
         telacliente.setVisible(true); //isso já sabe o qfaz
         this.Desktop.add(telacliente); //coloco dentro da desktop pane
 
@@ -226,7 +226,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        TelaProduto telaproduto = new TelaProduto();
+        TelaProduto telaproduto = new TelaProduto(this.getTipo());
         telaproduto.setVisible(true);
         this.Desktop.add(telaproduto);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -261,7 +261,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             int confirma = JOptionPane.showConfirmDialog(null, "Cliente não cadastrado! \n"
                     + "Quer cadastrar esse cliente?", "Confiarmar", JOptionPane.YES_NO_OPTION);
             if (confirma == JOptionPane.YES_OPTION) {
-                TelaCliente telacliente = new TelaCliente(); //criei uma instancia da tela cliente
+                TelaCliente telacliente = new TelaCliente(this.getTipo()); //criei uma instancia da tela cliente
                 telacliente.setVisible(true); //isso já sabe o qfaz
                 this.Desktop.add(telacliente);
 
@@ -280,14 +280,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
-        TelaLogin tela = new TelaLogin();
-        tela.setVisible(true);
-        this.Desktop.disable();
-        this.dispose();
+//        TelaLogin tela = new TelaLogin();
+//        tela.setVisible(true);
+//        this.Desktop.disable();
+//        this.dispose();
     }//GEN-LAST:event_sairActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        ListaClientes l = new ListaClientes();
+        l.setTipo(this.getTipo());
+        l.setVisible(true);
+       
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

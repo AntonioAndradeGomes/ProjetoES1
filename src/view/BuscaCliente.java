@@ -222,8 +222,8 @@ public class BuscaCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       int confirma = JOptionPane.showConfirmDialog(null, "Quer cadastrar esse Cliente?", "Confiarmar", JOptionPane.YES_NO_OPTION);
-        if (confirma == JOptionPane.YES_OPTION){
+        int confirma = JOptionPane.showConfirmDialog(null, "Quer cadastrar esse Cliente?", "Confiarmar", JOptionPane.YES_NO_OPTION);
+        if (confirma == JOptionPane.YES_OPTION) {
             IControleCadastro i = new ControleCadastro();
             if(i.DeletarClienteCpf(this.label_cpfCliente.getText())){
                this.dispose();

@@ -5,7 +5,7 @@ public abstract class Usuario {
     private long numero;
 
     public Usuario(String nome, String cpf, String rg, String telefone1, 
-            String telefone2, String email, String ciade, String rua, 
+            String telefone2, String email, String cidade, String rua, 
             String bairro, String complemento, long numero)
     {
         this.nome = nome;
@@ -14,7 +14,7 @@ public abstract class Usuario {
         this.telefone1 = telefone1;
         this.telefone2 = telefone2;
         this.email = email;
-        this.cidade = ciade;
+        this.cidade = cidade;
         this.rua = rua;
         this.bairro = bairro;
         this.complemento = complemento;

@@ -9,10 +9,10 @@ public class Cliente extends Usuario {
     private Compra atual; //Compra atual, que vai ser inserido no banco de dados
     
     public Cliente(String nome, String cpf, String rg, String telefone1, String telefone2, 
-            String email, String ciade, String rua, String bairro, String complemento, long numero) 
+            String email, String cidade, String rua, String bairro, String complemento, long numero) 
     {    
         super(nome, cpf, rg, telefone1, telefone2, email, 
-                ciade, rua, bairro, complemento, numero);
+                cidade, rua, bairro, complemento, numero);
         this.compras = new ArrayList<Compra>();
     }
 

@@ -60,10 +60,10 @@ public class VendedorDao {
                         rs.getString("telefone2"),
                         rs.getString("email"),
                         rs.getString("cidade"),
-                        rs.getString("bairro"),
                         rs.getString("rua"),
+                        rs.getString("bairro"),
                         rs.getString("complemento"),
-                         rs.getInt("numero"),
+                        rs.getInt("numero"),
                         rs.getString("tipo"),
                         rs.getString("senha"));
                 vendedor.setCompras(this.readCompras(vendedor));
@@ -110,17 +110,17 @@ public class VendedorDao {
             rs = stmt.executeQuery();
             while (rs.next()){
                 Vendedor achado = new Vendedor(
-                        rs.getString("nome"),
+                       rs.getString("nome"),
                         rs.getString("cpf"),
                         rs.getString("rg"),
                         rs.getString("telefone1"),
                         rs.getString("telefone2"),
                         rs.getString("email"),
                         rs.getString("cidade"),
-                        rs.getString("bairro"),
                         rs.getString("rua"),
+                        rs.getString("bairro"),
                         rs.getString("complemento"),
-                         rs.getInt("numero"),
+                        rs.getInt("numero"),
                         rs.getString("tipo"),
                         rs.getString("senha")); 
                 v = achado;
