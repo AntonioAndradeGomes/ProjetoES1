@@ -88,8 +88,8 @@ public class ProdutoDao {
         ArrayList<Produto> produtosBuscados = new ArrayList<Produto>();
 
         try {
-            stmt = con.prepareStatement("Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` = ?");
-            stmt.setString(1, nome);
+            stmt = con.prepareStatement("Select * from `infotech`.`Produto` where `infotech`.`Produto`.`nome` LIKE ?");
+            stmt.setString(1, nome+ "%");
             rs = stmt.executeQuery();
             
             while (rs.next()){

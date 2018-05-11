@@ -199,7 +199,9 @@ INSERT INTO `infotech`.`Produto_tem_Compra` VALUES ('aa13',2),
 										('js12',9),
 										('xxxffff',10),
 										('xxxtmto',11);
-
-
-
-
+select * from `infotech`.`Produto`;
+select * from `infotech`.`cliente`;
+select * from `infotech`.`vendedor`;
+INSERT INTO `infotech`.`Vendedor` (cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
+telefone1, telefone2, tipo, senha) VALUES ('123456789900', '3594976232', 'Antonio Andrade', '', 'Quebrangulo', 'Centro'
+'rua Paulo Jacinto', 69,'', '','', 'Gerente', 'admin');

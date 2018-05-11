@@ -27,7 +27,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
         } else {
             this.deletar.setEnabled(false);
             this.atualizar.setEnabled(false);
-            this.btn_cadastrar.setEnabled(true);
+            this.btn_cadastrar.setEnabled(false);
         }
     }
 

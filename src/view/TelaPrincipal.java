@@ -13,7 +13,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private String cpf;
     private String tipo;
 
-    public String getCpf() {
+    private String getCpf() {
         return cpf;
     }
 
@@ -21,7 +21,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.cpf = cpf;
     }
 
-    public String getTipo() {
+    private String getTipo() {
         return tipo;
     }
 
@@ -237,9 +237,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void menu_vendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_vendedoresActionPerformed
-        TelaVendedores tela = new TelaVendedores();
-        tela.setVisible(true);
-        this.Desktop.add(tela);
+        if (this.getTipo().equals("Gerente") || this.getTipo().equals("gerente") || this.getTipo().equals("GERENTE")) {
+            TelaVendedores tela = new TelaVendedores();
+            tela.setVisible(true);
+            this.Desktop.add(tela);
+        }else{
+            JOptionPane.showMessageDialog(null, "Você não tem privilegios administrativos para acessar tal função!");
+        }
+
     }//GEN-LAST:event_menu_vendedoresActionPerformed
 
     private void buscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaClienteActionPerformed

@@ -7,12 +7,13 @@ import javax.swing.JOptionPane;
 import model.bean.*;
 
 public class VendedorDao {
-    public void create(Vendedor vendedor){
+
+    public void create(Vendedor vendedor) {
         //abrir conexao
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
-            
+
             stmt = con.prepareStatement("INSERT INTO `infotech`.`Vendedor` (cpf, rg, nome, "
                     + "email, cidade, bairro, rua, numero, complemento, "
                     + "telefone1, telefone2, tipo, senha) "
@@ -22,7 +23,7 @@ public class VendedorDao {
             stmt.setString(3, vendedor.getNome());
             stmt.setString(4, vendedor.getEmail());
             stmt.setString(5, vendedor.getCidade());
-            stmt.setString(6,vendedor.getBairro());
+            stmt.setString(6, vendedor.getBairro());
             stmt.setString(7, vendedor.getRua());
             stmt.setLong(8, vendedor.getNumero());
             stmt.setString(9, vendedor.getComplemento());
@@ -30,20 +31,20 @@ public class VendedorDao {
             stmt.setString(11, vendedor.getTelefone2());
             stmt.setString(12, vendedor.getTipo());
             stmt.setString(13, vendedor.getSenha());
-            
+
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null,
                     "Salvo com sucesso o novo vendedor no BD!");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,
                     "Erro ao salvar o novo vendedor! \n"
-                            + ex);
-        }finally{//independente de salvar ou cair na exceção acima cai nesse bloco
+                    + ex);
+        } finally {//independente de salvar ou cair na exceção acima cai nesse bloco
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
-    
-    public ArrayList<Vendedor> read(){
+
+    public ArrayList<Vendedor> read() {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -51,7 +52,7 @@ public class VendedorDao {
         try {
             stmt = con.prepareStatement("SELECT * FROM `infotech`.`Vendedor`");
             rs = stmt.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Vendedor vendedor = new Vendedor(
                         rs.getString("nome"),
                         rs.getString("cpf"),
@@ -70,13 +71,13 @@ public class VendedorDao {
                 vendedores.add(vendedor);
             }
         } catch (Exception e) {
-        }finally{
+        } finally {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
         return vendedores;
     }
-    
-    public ArrayList<Compra> readCompras(Vendedor vendedor){
+
+    public ArrayList<Compra> readCompras(Vendedor vendedor) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -85,21 +86,21 @@ public class VendedorDao {
             stmt = con.prepareStatement("SELECT * FROM `infotech`.`Compra` where Vendedor_cpf = ?");
             stmt.setString(1, vendedor.getCpf());
             rs = stmt.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Compra compra = new Compra(rs.getLong("codigo"),
-                                            rs.getDate("data"),
-                                            rs.getDouble("valor"),
-                                            vendedor);
+                        rs.getDate("data"),
+                        rs.getDouble("valor"),
+                        vendedor);
                 vendas.add(compra);
             }
         } catch (Exception e) {
-        }finally{
+        } finally {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
         return vendas;
     }
-    
-    public Vendedor searchCpf(String cpf){
+
+    public Vendedor searchCpf(String cpf) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -108,9 +109,9 @@ public class VendedorDao {
             stmt = con.prepareStatement("SELECT * FROM `infotech`.`Vendedor` where Vendedor_cpf = ?");
             stmt.setString(1, cpf);
             rs = stmt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Vendedor achado = new Vendedor(
-                       rs.getString("nome"),
+                        rs.getString("nome"),
                         rs.getString("cpf"),
                         rs.getString("rg"),
                         rs.getString("telefone1"),
@@ -122,11 +123,49 @@ public class VendedorDao {
                         rs.getString("complemento"),
                         rs.getInt("numero"),
                         rs.getString("tipo"),
-                        rs.getString("senha")); 
+                        rs.getString("senha"));
+                achado.setCompras(this.readCompras(achado));
                 v = achado;
             }
         } catch (Exception e) {
         }
         return v;
+    }
+
+    public ArrayList<Vendedor> buscaNome(String nome) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
+
+        try {
+            stmt = con.prepareStatement("Select * from `infotech`.`Vendedor` where `infotech`.`Vendedor`.`nome` LIKE ?");
+            stmt.setString(1, nome + "%");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Vendedor v = new Vendedor(
+                        rs.getString("nome"),
+                        rs.getString("cpf"),
+                        rs.getString("rg"),
+                        rs.getString("telefone1"),
+                        rs.getString("telefone2"),
+                        rs.getString("email"),
+                        rs.getString("cidade"),
+                        rs.getString("rua"),
+                        rs.getString("bairro"),
+                        rs.getString("complemento"),
+                        rs.getInt("numero"),
+                        rs.getString("tipo"),
+                        rs.getString("senha"));
+                v.setCompras(this.readCompras(v));
+                vendedores.add(v);
+
+            }
+        } catch (Exception e) {
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return vendedores;
     }
 }
