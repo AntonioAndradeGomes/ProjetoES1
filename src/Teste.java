@@ -18,11 +18,7 @@ public class Teste {
         
        IControleBusca i = new ControleBusca();
        
-       Cliente c = i.ClienteBuscaCpf("23456789101");
-       JOptionPane.showMessageDialog(null, "Cliente: " + c.getCpf() + " MORA EM: " + c.getCidade() + " NO BAIRRO:" + c.getBairro() + " \n"
-                    + "NA RUA: " + c.getRua() + " COM CASA DE NUMERO: " + c.getNumero() + "\n"
-                    + "COMPLEMENTO: " + c.getComplemento() + "\n"
-                    + "Telefone1: " + c.getTelefone1() + " Telefone2: " + c.getTelefone2());
+       VendedorDao v = new VendedorDao();
+       System.out.println(v.searchCpf("12345678900").getNome());
     }
-    
 }

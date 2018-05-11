@@ -16,4 +16,5 @@ public interface IControleBusca {
     
     public ArrayList<Cliente> ClienteBuscaNome (String nome);
     
+    public ArrayList<Vendedor> BuscaVendedorNome (String nome);
 }

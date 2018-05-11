@@ -106,7 +106,8 @@ public class VendedorDao {
         ResultSet rs = null;
         Vendedor v = null;
         try {
-            stmt = con.prepareStatement("SELECT * FROM `infotech`.`Vendedor` where Vendedor_cpf = ?");
+            stmt = con.prepareStatement("Select * from `infotech`.`Vendedor` where " +
+                    "`infotech`.`Vendedor`.`cpf` = ?");
             stmt.setString(1, cpf);
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -139,7 +140,8 @@ public class VendedorDao {
         ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
 
         try {
-            stmt = con.prepareStatement("Select * from `infotech`.`Vendedor` where `infotech`.`Vendedor`.`nome` LIKE ?");
+            stmt = con.prepareStatement("Select * from `infotech`.`Vendedor` where "
+                    + "`infotech`.`Vendedor`.`nome` LIKE ?");
             stmt.setString(1, nome + "%");
             rs = stmt.executeQuery();
 
@@ -167,5 +169,22 @@ public class VendedorDao {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
         return vendedores;
+    }
+    
+    public void remove(Vendedor v){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("delete from `infotech`.`Vendedor` where `infotech`.`Vendedor`.`cpf` = ?");
+            stmt.setString(1, v.getCpf());
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null,
+                    "Vendedor deletado com sucesso!");
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(null,
+                    "erro! " +  e);
+        }finally{
+             ConnectionFactory.closeConnection(con, stmt); 
+       } 
     }
 }

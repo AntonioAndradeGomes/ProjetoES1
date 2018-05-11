@@ -35,4 +35,8 @@ public class ControleBusca implements IControleBusca{
     public ArrayList<Cliente> ClienteBuscaNome (String nome){
         return cd.buscaNome(nome);
     }
+    
+    public ArrayList<Vendedor> BuscaVendedorNome(String nome){
+        return vd.buscaNome(nome);
+    }
 }

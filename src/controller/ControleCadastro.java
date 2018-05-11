@@ -17,6 +17,12 @@ public class ControleCadastro implements IControleCadastro {
         vv.create(v);
     }
 
+    public void DeletarVendedorCpf(String cpf) {
+       VendedorDao d = new VendedorDao();
+       Vendedor achado = d.searchCpf(cpf);
+       d.remove(achado);
+        
+    }
     public void CadastrarProduto(String nome, String codigo, String descricao, long quantidade,
             int garantia, double precoUnitario) {
 
@@ -61,9 +67,11 @@ public class ControleCadastro implements IControleCadastro {
         d.update(p);
     }
 
-    public boolean DeletarClienteCpf(String cpf) {
+    public void DeletarClienteCpf(String cpf) {
         ClienteDao d = new ClienteDao();
-        return d.removeCpf(cpf);
+        Cliente achado = d.BuscaCpf(cpf);
+        d.remove(achado);
     }
+    
 
 }

@@ -142,8 +142,9 @@ public class ClienteDao {
         ArrayList<Cliente> clientesBuscados = new ArrayList<Cliente>();
 
         try {
-            stmt = con.prepareStatement("Select * from `infotech`.`Cliente` where `infotech`.`Cliente`.`nome` = ?");
-            stmt.setString(1, nome);
+            stmt = con.prepareStatement("Select * from `infotech`.`Cliente` where "
+                    + "`infotech`.`Cliente`.`nome` LIKE ?");
+            stmt.setString(1, nome+ "%");
             rs = stmt.executeQuery();
             
             while (rs.next()){
@@ -169,24 +170,6 @@ public class ClienteDao {
         return clientesBuscados;
     }
     
-    public boolean removeCpf (String cpf){
-        Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt = null;
-        try {
-            stmt = con.prepareStatement("delete from `infotech`.`Cliente` where `infotech`.`Cliente`.`cpf` = ?");
-            stmt.setString(1, cpf);
-            stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null,
-                    "Cliete deletado com sucesso!");
-            return true;
-        } catch (Exception e) {
-           JOptionPane.showMessageDialog(null,
-                    "erro! " +  e);
-           return false;
-        }finally{
-             ConnectionFactory.closeConnection(con, stmt); 
-       } 
-    }
     
     public void remove (Cliente c){
         Connection con = ConnectionFactory.getConnection();

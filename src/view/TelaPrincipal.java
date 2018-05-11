@@ -219,7 +219,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_clientesActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
+        if (tipo.equals("GERENTE") || tipo.equals("gerente") || tipo.equals("Gerente")) {
+            ListarVendedores l = new ListarVendedores();
+            l.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Você não tem privilegios administrativos para acessar tal função!");
+        }
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -241,7 +246,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             TelaVendedores tela = new TelaVendedores();
             tela.setVisible(true);
             this.Desktop.add(tela);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Você não tem privilegios administrativos para acessar tal função!");
         }
 
