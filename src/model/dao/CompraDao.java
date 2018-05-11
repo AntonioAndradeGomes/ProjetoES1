@@ -2,8 +2,10 @@ package model.dao;
 
 import conection.ConnectionFactory;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.bean.Compra;
+import model.bean.Produto;
 
 public class CompraDao {
     public void Create(Compra compra){
@@ -45,6 +47,34 @@ public class CompraDao {
         }finally{
             ConnectionFactory.closeConnection(con, stmt);
         }
+    }
+    
+    public ArrayList<Produto> read(){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Produto> produtos = new ArrayList<Produto>();
+        try {
+            stmt = con.prepareStatement("SELECT * FROM `infotech`.`Produto`");
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto(
+                        rs.getString(2),
+                        rs.getString(1),
+                        rs.getString(5),
+                        rs.getLong(3),
+                        rs.getInt(4),
+                        rs.getDouble(6));
+                produtos.add(produto);        
+                
+            }
+        } catch (Exception e) {
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs); 
+            //falta ligar os produtos as compras JOnatas
+        }
+        return produtos;
     }
     
     
