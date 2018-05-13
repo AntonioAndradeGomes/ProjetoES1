@@ -13,13 +13,13 @@ public class CompraDao {
         PreparedStatement stmt = null;
         try {
             //Tabela de compra sendo adicionado os valores
-            stmt = con.prepareStatement("INSERT INTO `infotech`.`Compra` (Codigo_compra, "
-                    + "data, valor, Vendedor_cpf) "
+            stmt = con.prepareStatement("INSERT INTO `infotech`.`Compra` (data, "
+                    + "valor, Vendedor_cpf) "
                     + "Values(?,?,?,?)");
-            stmt.setLong(1, compra.getCodigo());
-            stmt.setDate(2, (Date) compra.getData()); //Não era pra pedir para converter para Date, já que está em formato date, mas já que o netbeans pediu coloquei
-            stmt.setDouble(3, compra.getValor());
-            stmt.setString(4, compra.getVendedor().getCpf());
+            //Não precisa do código, pois é gerado automaticamente por incremento
+            stmt.setDate(1, (Date) compra.getData()); //Não era pra pedir para converter para Date, já que está em formato date, mas já que o netbeans pediu coloquei
+            stmt.setDouble(2, compra.getValor());
+            stmt.setString(3, compra.getVendedor().getCpf());
             
             //Tabela de cliente realizando compra
             stmt = con.prepareStatement("INSERT INTO `infotech`.`Cliente_Realiza_Compra` (Compra_Codigo_compra, "

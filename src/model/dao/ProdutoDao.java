@@ -163,6 +163,26 @@ public class ProdutoDao {
             ConnectionFactory.closeConnection(con, stmt); 
        } 
    }
+   
+   public void updateQuantidade(String codigo, double quantidade){
+       Connection con = ConnectionFactory.getConnection();
+       PreparedStatement stmt = null;
+       try {
+           stmt = con.prepareStatement("UPDATE `infotech`.`Produto` SET quantidade = ?"
+                     + " where codigo = ?");
+           stmt.setDouble(1, quantidade);
+           stmt.setString(2, codigo);
+           
+           stmt.executeUpdate();
+           JOptionPane.showMessageDialog(null,
+                    "Produto com dados atualizados com sucesso!");
+       } catch (Exception e) {
+           JOptionPane.showMessageDialog(null,
+                    "erro! " +  e);
+       }finally{
+            ConnectionFactory.closeConnection(con, stmt); 
+       } 
+   }
 
     public ArrayList<Compra> compras(Produto p){
         IControleBusca i = new ControleBusca();

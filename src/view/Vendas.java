@@ -297,7 +297,8 @@ public class Vendas extends javax.swing.JFrame {
     }//GEN-LAST:event_valorActionPerformed
 
     private void RealizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarCompraActionPerformed
-        ConfirmaCompra();
+        if(QuantidadeDisponivel())
+            ConfirmaCompra();
     }//GEN-LAST:event_RealizarCompraActionPerformed
 
     private void pesquisacpfvendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisacpfvendedorActionPerformed
@@ -390,6 +391,23 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JTextField valor;
     // End of variables declaration//GEN-END:variables
 
+    
+    private boolean QuantidadeDisponivel(){
+        try{
+            double quantidade = Double.parseDouble(this.quantidade.getText());
+            IControleBusca ControleBusca = new ControleBusca();
+            double QuantidadeDisponivel = ControleBusca.buscaProdutocodigo(this.codigo.getText()).getQt_disponiveis();
+            if(QuantidadeDisponivel - quantidade <= 0){
+                JOptionPane.showMessageDialog(null, "No momento só temos " + (QuantidadeDisponivel) + "disponivel no estoque");
+                return false;
+            }
+            return true;
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Dado inválido");
+            return false;
+        } 
+    }
+    
     private void ConfirmaCompra() {  
         if(testarNulos()){
             int confirma = JOptionPane.showConfirmDialog(null, "Quer Realizar compra?", "Confirmar", JOptionPane.YES_NO_OPTION);
@@ -405,6 +423,10 @@ public class Vendas extends javax.swing.JFrame {
                     data = sdf.parse(convert);
                     double valor = Double.parseDouble(this.valor.getText());
                     compras.Comprar(ControleBusca.ClienteBuscaCpf(this.cpfdocliente.getText()), produtos, ControleBusca.buscaVendedorCpf(this.cpfdovendedor.getText()), data, 1, valor);
+                    //Alterando quantidade
+                    double quantidade = Double.parseDouble(this.quantidade.getText());
+                    ProdutoDao newquantidade = new ProdutoDao();
+                    newquantidade.updateQuantidade(this.codigo.getText(), quantidade);
                     this.setarCampos();
                 } catch (Exception e) {
                             JOptionPane.showMessageDialog(null, "Campos não foram preenchidos CORRETAMENTE!");
