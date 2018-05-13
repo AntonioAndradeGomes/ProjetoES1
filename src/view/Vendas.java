@@ -13,7 +13,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import model.bean.Cliente;
 import model.bean.Produto;
+import model.bean.Vendedor;
+import model.dao.ClienteDao;
+import model.dao.ProdutoDao;
+import model.dao.VendedorDao;
 
 /**
  *
@@ -55,12 +60,12 @@ public class Vendas extends javax.swing.JFrame {
         valor = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         data = new javax.swing.JTextField();
-        compra = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         cpfdovendedor = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        pesquisacpfvendedor = new javax.swing.JButton();
+        RealizarCompra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +86,8 @@ public class Vendas extends javax.swing.JFrame {
             }
         });
 
+        nomecliente.setEditable(false);
+
         pesquisarcpf.setText("Pesquisar");
         pesquisarcpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,8 +96,15 @@ public class Vendas extends javax.swing.JFrame {
         });
 
         pesquisarcodigo.setText("Pesquisar");
+        pesquisarcodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarcodigoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Nome produto");
+
+        nomeproduto.setEditable(false);
 
         jLabel5.setText("Quantidade");
 
@@ -104,9 +118,9 @@ public class Vendas extends javax.swing.JFrame {
 
         jLabel7.setText("Data");
 
-        compra.setText("Realizar Compra");
-
         jLabel8.setText("Nome vendedor");
+
+        jTextField1.setEditable(false);
 
         jLabel9.setText("CPF vendedor");
 
@@ -116,7 +130,19 @@ public class Vendas extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Pesquisar");
+        pesquisacpfvendedor.setText("Pesquisar");
+        pesquisacpfvendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisacpfvendedorActionPerformed(evt);
+            }
+        });
+
+        RealizarCompra.setText("Realizar Compra");
+        RealizarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RealizarCompraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -159,7 +185,7 @@ public class Vendas extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(compra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(RealizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +197,7 @@ public class Vendas extends javax.swing.JFrame {
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                 .addComponent(cpfdovendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(pesquisacpfvendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(169, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -181,7 +207,7 @@ public class Vendas extends javax.swing.JFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(cpfdovendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(pesquisacpfvendedor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -214,9 +240,9 @@ public class Vendas extends javax.swing.JFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
-                .addComponent(compra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(RealizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -245,7 +271,17 @@ public class Vendas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pesquisarcpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarcpfActionPerformed
-        // TODO add your handling code here:
+        if(this.cpfdocliente.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o CPF do cliente");
+        }else{
+            ClienteDao pesquisa = new ClienteDao();
+            Cliente dados = pesquisa.BuscaCpf(this.cpfdocliente.getText());
+            if(dados == null){
+                JOptionPane.showMessageDialog(null, "Cliente não encontrado");
+            }else{
+                this.nomecliente.setText(dados.getNome());
+            }
+        }
     }//GEN-LAST:event_pesquisarcpfActionPerformed
 
     private void cpfdoclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfdoclienteActionPerformed
@@ -259,6 +295,38 @@ public class Vendas extends javax.swing.JFrame {
     private void valorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_valorActionPerformed
+
+    private void RealizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarCompraActionPerformed
+        ConfirmaCompra();
+    }//GEN-LAST:event_RealizarCompraActionPerformed
+
+    private void pesquisacpfvendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisacpfvendedorActionPerformed
+        if(this.cpfdovendedor.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o CPF do vendedor");
+        }else{
+            VendedorDao pesquisa = new VendedorDao();
+            Vendedor dados = pesquisa.searchCpf(this.cpfdovendedor.getText());
+            if(dados == null){
+                JOptionPane.showMessageDialog(null, "Vendedor não encontrado");
+            }else{
+                this.jTextField1.setText(dados.getNome());
+            }
+        }
+    }//GEN-LAST:event_pesquisacpfvendedorActionPerformed
+
+    private void pesquisarcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarcodigoActionPerformed
+         if(this.codigo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o codigo do produto");
+        }else{
+            ProdutoDao pesquisa = new ProdutoDao();
+            Produto dados = pesquisa.buscaCodigo(this.codigo.getText());
+            if(dados == null){
+                JOptionPane.showMessageDialog(null, "Produto não encontrado");
+            }else{
+                this.nomeproduto.setText(dados.getNome());
+            }
+        }
+    }//GEN-LAST:event_pesquisarcodigoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,12 +364,11 @@ public class Vendas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton RealizarCompra;
     private javax.swing.JTextField codigo;
-    private javax.swing.JButton compra;
     private javax.swing.JTextField cpfdocliente;
     private javax.swing.JTextField cpfdovendedor;
     private javax.swing.JTextField data;
-    private javax.swing.JButton jButton1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -316,32 +383,56 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nomecliente;
     private javax.swing.JTextField nomeproduto;
+    private javax.swing.JButton pesquisacpfvendedor;
     private javax.swing.JToggleButton pesquisarcodigo;
     private javax.swing.JButton pesquisarcpf;
     private javax.swing.JTextField quantidade;
     private javax.swing.JTextField valor;
     // End of variables declaration//GEN-END:variables
 
-    private void ConfirmaCompra() {                                          
-        int confirma = JOptionPane.showConfirmDialog(null, "Quer Realizar compra?", "Confirmar", JOptionPane.YES_NO_OPTION);
-        if (confirma == JOptionPane.YES_OPTION){
-            try{
-                ArrayList<Produto> produtos = new ArrayList(); //Ainda falta bolar a ideia de pegar vários produtos os dados do produto, criar for depois
-                IControleCompras compras = new ControleCompras();
-                IControleBusca ControleBusca = new ControleBusca();
-                //Manipulando data
-                Date data;
-                String convert = this.data.getText(); 
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-                data = sdf.parse(convert);
-                double valor = Double.parseDouble(this.valor.getText());
-                compras.Comprar(ControleBusca.ClienteBuscaCpf(this.cpfdocliente.getText()), produtos, ControleBusca.buscaVendedorCpf(this.cpfdovendedor.getText()), data, 1, valor);
-                this.setarCampos();
-            } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Campos não foram preenchidos CORRETAMENTE!");
-                } 
+    private void ConfirmaCompra() {  
+        if(testarNulos()){
+            int confirma = JOptionPane.showConfirmDialog(null, "Quer Realizar compra?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (confirma == JOptionPane.YES_OPTION){
+                try{
+                    ArrayList<Produto> produtos = new ArrayList(); //Ainda falta bolar a ideia de pegar vários produtos os dados do produto, criar for depois
+                    IControleCompras compras = new ControleCompras();
+                    IControleBusca ControleBusca = new ControleBusca();
+                    //Manipulando data
+                    Date data;
+                    String convert = this.data.getText(); 
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                    data = sdf.parse(convert);
+                    double valor = Double.parseDouble(this.valor.getText());
+                    compras.Comprar(ControleBusca.ClienteBuscaCpf(this.cpfdocliente.getText()), produtos, ControleBusca.buscaVendedorCpf(this.cpfdovendedor.getText()), data, 1, valor);
+                    this.setarCampos();
+                } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "Campos não foram preenchidos CORRETAMENTE!");
+                    } 
+            }
+        } else{
+            JOptionPane.showMessageDialog(null, "Campos obrigatorios não foram preenchidos!");
         }
-    }                                         
+    }     
+    
+    private boolean testarNulos(){
+        ArrayList<String> lista = new ArrayList<String>();
+        lista.add(this.codigo.getText());
+        lista.add(this.cpfdocliente.getText());
+        lista.add(this.cpfdovendedor.getText());
+        lista.add(this.jTextField1.getText());
+        lista.add(this.nomecliente.getText());
+        lista.add(this.nomeproduto.getText());
+        lista.add(this.pesquisarcodigo.getText());
+        lista.add(this.pesquisarcpf.getText());
+        lista.add(this.quantidade.getText());     
+        for (int i = 0; i < lista.size(); i++){
+            if (lista.get(i).equals("")){
+                return false;
+            }
+        }
+        return true;
+    }
    
     private void setarCampos(){
         this.codigo.setText("");

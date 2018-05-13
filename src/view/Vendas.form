@@ -98,7 +98,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="pesquisarcodigo" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="quantidade" min="-2" pref="53" max="-2" attributes="0"/>
@@ -108,7 +108,7 @@
                                               <Component id="valor" min="-2" pref="53" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="data" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
-                                          <Component id="compra" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <Component id="RealizarCompra" min="-2" pref="187" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -125,7 +125,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="cpfdovendedor" min="-2" pref="145" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jButton1" max="32767" attributes="0"/>
+                                      <Component id="pesquisacpfvendedor" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -141,7 +141,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cpfdovendedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="pesquisacpfvendedor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -182,9 +182,9 @@
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="data" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                      <Component id="compra" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace pref="64" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="RealizarCompra" min="-2" pref="49" max="-2" attributes="0"/>
+                      <EmptySpace pref="81" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -211,6 +211,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nomecliente">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="pesquisarcpf">
               <Properties>
@@ -226,6 +229,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pesquisar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pesquisarcodigoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
@@ -233,6 +239,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="nomeproduto">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
@@ -258,17 +267,15 @@
             </Component>
             <Component class="javax.swing.JTextField" name="data">
             </Component>
-            <Component class="javax.swing.JButton" name="compra">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Realizar Compra"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nome vendedor"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField1">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
@@ -280,10 +287,21 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cpfdovendedorActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="pesquisacpfvendedor">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pesquisar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pesquisacpfvendedorActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="RealizarCompra">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Realizar Compra"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RealizarCompraActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
