@@ -15,7 +15,7 @@ public class CompraDao {
             //Tabela de compra sendo adicionado os valores
             stmt = con.prepareStatement("INSERT INTO `infotech`.`Compra` (data, "
                     + "valor, Vendedor_cpf) "
-                    + "Values(?,?,?,?)");
+                    + "Values(?,?,?)");
             //Não precisa do código, pois é gerado automaticamente por incremento
             stmt.setDate(1, (Date) compra.getData()); //Não era pra pedir para converter para Date, já que está em formato date, mas já que o netbeans pediu coloquei
             stmt.setDouble(2, compra.getValor());

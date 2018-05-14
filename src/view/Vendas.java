@@ -69,6 +69,7 @@ public class Vendas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jInternalFrame1.setClosable(true);
         jInternalFrame1.setTitle("Vendas");
         jInternalFrame1.setMaximumSize(new java.awt.Dimension(674, 555));
         jInternalFrame1.setMinimumSize(new java.awt.Dimension(674, 555));
@@ -419,7 +420,7 @@ public class Vendas extends javax.swing.JFrame {
                     //Manipulando data
                     Date data;
                     String convert = this.data.getText(); 
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     data = sdf.parse(convert);
                     double valor = Double.parseDouble(this.valor.getText());
                     compras.Comprar(ControleBusca.ClienteBuscaCpf(this.cpfdocliente.getText()), produtos, ControleBusca.buscaVendedorCpf(this.cpfdovendedor.getText()), data, 1, valor);
