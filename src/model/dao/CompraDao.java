@@ -17,7 +17,7 @@ public class CompraDao {
                     + "valor, Vendedor_cpf) "
                     + "Values(?,?,?)");
             //Não precisa do código, pois é gerado automaticamente por incremento
-            stmt.setDate(1, (Date) compra.getData()); //Não era pra pedir para converter para Date, já que está em formato date, mas já que o netbeans pediu coloquei
+            stmt.setDate(1, compra.getData()); //Não era pra pedir para converter para Date, já que está em formato date, mas já que o netbeans pediu coloquei
             stmt.setDouble(2, compra.getValor());
             stmt.setString(3, compra.getVendedor().getCpf());
             
@@ -25,8 +25,8 @@ public class CompraDao {
             stmt = con.prepareStatement("INSERT INTO `infotech`.`Cliente_Realiza_Compra` (Compra_Codigo_compra, "
                     + "Cliente_cpf) "
                     + "Values(?,?)");
-            stmt.setLong(1, compra.getCodigo());
-            stmt.setString(2, compra.getVendedor().getCpf());
+            stmt.setLong(1, readCompra());
+            stmt.setString(2, compra.getComprador().getCpf());
             
             //Tabela de Produto tem Compra
             for(int i = 0; i < compra.getProdutos().size(); i++){
@@ -34,7 +34,7 @@ public class CompraDao {
                     + "Compra_Codigo_compra) "
                     + "Values(?,?)");
                 stmt.setString(1, compra.getProdutos().get(i).getCodigo());
-                stmt.setLong(2, compra.getCodigo());  
+                stmt.setLong(2, readCompra());  
             }
             
             stmt.executeUpdate();
@@ -75,6 +75,24 @@ public class CompraDao {
             //falta ligar os produtos as compras JOnatas
         }
         return produtos;
+    }
+    
+    public static long readCompra(){ //Ler a ultima inserção de compra
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        long maximo = 0;
+        try {
+            stmt = con.prepareStatement("SELECT max(Codigo_compra) FROM infotech.Compra");
+            rs = stmt.executeQuery();
+            if(rs.next())
+                maximo = rs.getLong(1);
+        } catch (SQLException e) {
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs); 
+            //falta ligar os produtos as compras JOnatas
+        }
+        return maximo;
     }
     
     

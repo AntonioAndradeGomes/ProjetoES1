@@ -11,7 +11,7 @@ import controller.IControleBusca;
 import controller.IControleCompras;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import javax.swing.JOptionPane;
 import model.bean.Cliente;
 import model.bean.Produto;
@@ -398,8 +398,8 @@ public class Vendas extends javax.swing.JFrame {
             double quantidade = Double.parseDouble(this.quantidade.getText());
             IControleBusca ControleBusca = new ControleBusca();
             double QuantidadeDisponivel = ControleBusca.buscaProdutocodigo(this.codigo.getText()).getQt_disponiveis();
-            if(QuantidadeDisponivel - quantidade <= 0){
-                JOptionPane.showMessageDialog(null, "No momento só temos " + (QuantidadeDisponivel) + "disponivel no estoque");
+            if(quantidade - QuantidadeDisponivel < 0){
+                JOptionPane.showMessageDialog(null, "No momento só temos " + (QuantidadeDisponivel) + ". disponivel no estoque");
                 return false;
             }
             return true;
@@ -419,13 +419,17 @@ public class Vendas extends javax.swing.JFrame {
                     IControleBusca ControleBusca = new ControleBusca();
                     //Manipulando data
                     Date data;
-                    String convert = this.data.getText(); 
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    data = sdf.parse(convert);
+                    String convert = this.data.getText();
+                    data = Date.valueOf(convert);
+                    //String convert = this.data.getText(); 
+                    //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    //data = sdf.parse(convert);
                     double valor = Double.parseDouble(this.valor.getText());
                     compras.Comprar(ControleBusca.ClienteBuscaCpf(this.cpfdocliente.getText()), produtos, ControleBusca.buscaVendedorCpf(this.cpfdovendedor.getText()), data, 1, valor);
                     //Alterando quantidade
                     double quantidade = Double.parseDouble(this.quantidade.getText());
+                    double QuantidadeDisponivel = ControleBusca.buscaProdutocodigo(this.codigo.getText()).getQt_disponiveis();
+                    quantidade = quantidade - QuantidadeDisponivel;
                     ProdutoDao newquantidade = new ProdutoDao();
                     newquantidade.updateQuantidade(this.codigo.getText(), quantidade);
                     this.setarCampos();

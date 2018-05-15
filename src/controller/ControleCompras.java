@@ -1,6 +1,6 @@
 package controller;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import model.bean.*;
 import model.dao.CompraDao;
 
@@ -17,7 +17,7 @@ public class ControleCompras implements IControleCompras {
 
     public void Comprar(Cliente cliente, ArrayList<Produto> produto, Vendedor vendedor, Date data, long codigo, double valor) {
         Compra compra = new Compra(codigo, data, valor, vendedor);
-        compra.setVendedor(vendedor);
+        compra.setComprador(cliente);
         compra.setProdutos(produto);
         CompraDao realizada = new CompraDao();
         realizada.Create(compra);
