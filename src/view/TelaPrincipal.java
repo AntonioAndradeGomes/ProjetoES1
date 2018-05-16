@@ -291,7 +291,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Vendas telaVenda = new Vendas();
         telaVenda.setVisible(true);
-        this.Desktop.add(telaVenda);
+//        this.Desktop.add(telaVenda);
+//não é uma internal frame
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void menu_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_sairActionPerformed

@@ -518,7 +518,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
     public void read() {
         DefaultTableModel modelo = (DefaultTableModel) this.tabelaEstoque.getModel();
         modelo.setNumRows(0); //eliminar duplicadas do java 
-        IControleListagem i = new ControleDeListagem();
+        IControleListagem i = ControleDeListagem.getInstace();
         for (Produto p : i.Produtos()) { //atribuir um obbjeto já que vamos percorer o objeto
             if (p.getQt_disponiveis() > 0) {//garantindo que somente o estoque será mostrado e não produtos com 0 de qtd
                 modelo.addRow(new Object[]{

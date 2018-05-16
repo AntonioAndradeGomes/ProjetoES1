@@ -312,7 +312,7 @@ public class ListaClientes extends javax.swing.JFrame {
     public void read() {
         DefaultTableModel modelo = (DefaultTableModel) this.tabela.getModel();
         modelo.setNumRows(0); //eliminar duplicadas do java 
-        IControleListagem i = new ControleDeListagem();
+        IControleListagem i = ControleDeListagem.getInstace();
         for (Cliente c : i.Clientes()) {
             modelo.addRow(new Object[]{
                 c.getCpf(),

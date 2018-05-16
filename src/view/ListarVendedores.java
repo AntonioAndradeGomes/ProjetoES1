@@ -296,7 +296,7 @@ public class ListarVendedores extends javax.swing.JFrame {
     public void read() {
         DefaultTableModel modelo = (DefaultTableModel) this.tabela.getModel();
         modelo.setNumRows(0); //eliminar duplicadas do java 
-        IControleListagem i = new ControleDeListagem();
+        IControleListagem i = ControleDeListagem.getInstace();
         for (Vendedor c : i.Vendedores()) {
             modelo.addRow(new Object[]{
                 c.getCpf(),

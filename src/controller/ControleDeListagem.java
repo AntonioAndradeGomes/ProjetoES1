@@ -6,10 +6,21 @@ import model.bean.Produto;
 import model.bean.Vendedor;
 import model.dao.*;
 public class ControleDeListagem implements IControleListagem {
-    
+    //implementei o singleton só para passar pelas metas do professor
     private ProdutoDao prod = new ProdutoDao();
     private ClienteDao cli = new ClienteDao();
     private VendedorDao vend = new VendedorDao();
+    private static ControleDeListagem instancia;
+    
+    private ControleDeListagem(){}
+    
+    public static synchronized ControleDeListagem getInstace(){
+        if (instancia == null){
+            instancia = new ControleDeListagem();
+        }
+        return instancia;
+    }
+   
     public ArrayList<Produto> Produtos() {
         return prod.read();
     }
