@@ -283,7 +283,7 @@ public class AtualizarCliente extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int confirma = JOptionPane.showConfirmDialog(null, "Quer atualizar com esses dados esse Vendedor?", "Confiarmar", JOptionPane.YES_NO_OPTION);
         if (confirma == JOptionPane.YES_OPTION){
-            
+            //terminar
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
