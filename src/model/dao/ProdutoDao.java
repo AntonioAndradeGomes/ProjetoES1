@@ -174,8 +174,6 @@ public class ProdutoDao {
            stmt.setString(2, codigo);
            
            stmt.executeUpdate();
-           JOptionPane.showMessageDialog(null,
-                    "Produto com dados atualizados com sucesso!");
        } catch (Exception e) {
            JOptionPane.showMessageDialog(null,
                     "erro! " +  e);

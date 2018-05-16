@@ -71,7 +71,6 @@ public class Vendas extends javax.swing.JFrame {
         cpfdovendedor = new javax.swing.JTextField();
         pesquisacpfvendedor = new javax.swing.JButton();
         RealizarCompra = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,13 +150,6 @@ public class Vendas extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Teste");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
@@ -213,17 +205,11 @@ public class Vendas extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(pesquisacpfvendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(169, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(309, 309, 309))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jButton1)
-                .addGap(43, 43, 43)
+                .addGap(118, 118, 118)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(cpfdovendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,7 +248,7 @@ public class Vendas extends javax.swing.JFrame {
                     .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addComponent(RealizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -349,10 +335,6 @@ public class Vendas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pesquisarcodigoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cadastraCompra();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -394,7 +376,6 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JTextField cpfdocliente;
     private javax.swing.JTextField cpfdovendedor;
     private javax.swing.JTextField data;
-    private javax.swing.JButton jButton1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -439,25 +420,20 @@ public class Vendas extends javax.swing.JFrame {
             if (confirma == JOptionPane.YES_OPTION){
                 cadastraCompra();
                 try{
-                    ArrayList<Produto> produtos = new ArrayList(); //Ainda falta bolar a ideia de pegar vários produtos os dados do produto, criar for depois
                     IControleCompras compras = new ControleCompras();
                     IControleBusca ControleBusca = new ControleBusca();
                     //Manipulando data
                     Date data;
                     String convert = this.data.getText();
                     data = Date.valueOf(convert);
-                    //String convert = this.data.getText(); 
-                    //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    //data = sdf.parse(convert);
                     double valor = Double.parseDouble(this.valor.getText());
-                    compras.Comprar(ControleBusca.ClienteBuscaCpf(this.cpfdocliente.getText()), produtos, ControleBusca.buscaVendedorCpf(this.cpfdovendedor.getText()), data, 1, valor);
+                    compras.Comprar(ControleBusca.ClienteBuscaCpf(this.cpfdocliente.getText()), ControleBusca.buscaVendedorCpf(this.cpfdovendedor.getText()), data, 1, valor, this.codigo.getText());
                     //Alterando quantidade
                     double quantidade = Double.parseDouble(this.quantidade.getText());
                     double QuantidadeDisponivel = ControleBusca.buscaProdutocodigo(this.codigo.getText()).getQt_disponiveis();
                     quantidade = QuantidadeDisponivel - quantidade;
                     ProdutoDao newquantidade = new ProdutoDao();
                     newquantidade.updateQuantidade(this.codigo.getText(), quantidade);
-                    Produtotemcompra();
                     this.setarCampos();
                 } catch (Exception e) {
                             JOptionPane.showMessageDialog(null, "Campos não foram preenchidos CORRETAMENTE!");
@@ -517,32 +493,6 @@ public class Vendas extends javax.swing.JFrame {
             stmt.setString(3, this.cpfdovendedor.getText());
             
             stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null,
-                    "Compra Realizada com sucesso");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,
-                    "Ocorreu alguma falha na compra \n"
-                            + ex);
-        }finally{
-            ConnectionFactory.closeConnection(con, stmt);
-        }
-    }
-    
-    private void Produtotemcompra(){
-        Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt = null;
-        double valor = Double.parseDouble(this.valor.getText());
-        try {
-            //Tabela de Produto tem Compra
-            stmt = con.prepareStatement("INSERT INTO `infotech`.`Produto_tem_Compra` (Produto_codigo, "
-                + "Compra_Codigo_compra) "
-                + "Values(?,?)");
-            stmt.setString(1, this.codigo.getText());
-            stmt.setLong(2, readCompra());  
-            
-            stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null,
-                    "Compra Realizada com sucesso");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,
                     "Ocorreu alguma falha na compra \n"

@@ -15,12 +15,11 @@ public class ControleCompras implements IControleCompras {
         return null; //enquanto não implementei nada deixa assim
     }
 
-    public void Comprar(Cliente cliente, ArrayList<Produto> produto, Vendedor vendedor, Date data, long codigo, double valor) {
+    public void Comprar(Cliente cliente, Vendedor vendedor, Date data, long codigo, double valor, String Codigoproduto) {
         Compra compra = new Compra(codigo, data, valor, vendedor);
         compra.setComprador(cliente);
-        compra.setProdutos(produto);
         CompraDao realizada = new CompraDao();
-        realizada.Create(compra);
+        realizada.Create(compra, Codigoproduto);
         //Compra compra = new Compra(long codigo, Date data, double valor, Vendedor vendedor);
     }   
 }
