@@ -12,14 +12,14 @@ public class CompraDao {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
-            //Tabela de compra sendo adicionado os valores
-            stmt = con.prepareStatement("INSERT INTO `infotech`.`Compra` (data, "
-                    + "valor, Vendedor_cpf) "
-                    + "Values(?,?,?)");
-            //Não precisa do código, pois é gerado automaticamente por incremento
-            stmt.setDate(1, compra.getData()); //Não era pra pedir para converter para Date, já que está em formato date, mas já que o netbeans pediu coloquei
-            stmt.setDouble(2, compra.getValor());
-            stmt.setString(3, compra.getVendedor().getCpf());
+//            //Tabela de compra sendo adicionado os valores
+//            stmt = con.prepareStatement("INSERT INTO `infotech`.`Compra` (data, "
+//                    + "valor, Vendedor_cpf) "
+//                    + "Values(?,?,?)");
+//            //Não precisa do código, pois é gerado automaticamente por incremento
+//            stmt.setDate(1, compra.getData()); //Não era pra pedir para converter para Date, já que está em formato date, mas já que o netbeans pediu coloquei
+//            stmt.setDouble(2, compra.getValor());
+//            stmt.setString(3, compra.getVendedor().getCpf());
             
             //Tabela de cliente realizando compra
             stmt = con.prepareStatement("INSERT INTO `infotech`.`Cliente_Realiza_Compra` (Compra_Codigo_compra, "
@@ -28,14 +28,12 @@ public class CompraDao {
             stmt.setLong(1, readCompra());
             stmt.setString(2, compra.getComprador().getCpf());
             
-            //Tabela de Produto tem Compra
-            for(int i = 0; i < compra.getProdutos().size(); i++){
-                stmt = con.prepareStatement("INSERT INTO `infotech`.`Produto_tem_Compra` (Produto_codigo, "
-                    + "Compra_Codigo_compra) "
-                    + "Values(?,?)");
-                stmt.setString(1, compra.getProdutos().get(i).getCodigo());
-                stmt.setLong(2, readCompra());  
-            }
+//            //Tabela de Produto tem Compra
+//            stmt = con.prepareStatement("INSERT INTO `infotech`.`Produto_tem_Compra` (Produto_codigo, "
+//                + "Compra_Codigo_compra) "
+//                + "Values(?,?)");
+//            stmt.setString(1, compra.getProdutos().get(0).getCodigo());
+//            stmt.setLong(2, readCompra());  
             
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null,
