@@ -21,32 +21,37 @@ import javax.swing.JOptionPane;
  */
 public class TesteDao {
     public static void main(String[] args) throws ParseException, SQLException{
-        //System.out.println(readCompra());
-        Date data;
-        String convert = "1988-05-01";
-        data = Date.valueOf(convert);
-        Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt = null;
-        try {
-            //Tabela de compra sendo adicionado os valores
-            stmt = con.prepareStatement("INSERT INTO `infotech`.`Compra` (data, "
-                    + "valor, Vendedor_cpf) "
-                    + "Values(?,?,?)");
-            //Não precisa do código, pois é gerado automaticamente por incremento
-            stmt.setDate(1, data); //Não era pra pedir para converter para Date, já que está em formato date, mas já que o netbeans pediu coloquei
-            stmt.setDouble(2, 999.99);
-            stmt.setString(3, "123456789");
-            
-            stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null,
-                    "Compra Realizada com sucesso");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,
-                    "Ocorreu alguma falha na compra \n"
-                            + ex);
-        }finally{
-            ConnectionFactory.closeConnection(con, stmt);
-        }
+        
+        
+        
+        
+        
+        System.out.println(readCompra());
+//        Date data;
+//        String convert = "1988-05-01";
+//        data = Date.valueOf(convert);
+//        Connection con = ConnectionFactory.getConnection();
+//        PreparedStatement stmt = null;
+//        try {
+//            //Tabela de compra sendo adicionado os valores
+//            stmt = con.prepareStatement("INSERT INTO `infotech`.`Compra` (data, "
+//                    + "valor, Vendedor_cpf) "
+//                    + "Values(?,?,?)");
+//            //Não precisa do código, pois é gerado automaticamente por incremento
+//            stmt.setDate(1, data); //Não era pra pedir para converter para Date, já que está em formato date, mas já que o netbeans pediu coloquei
+//            stmt.setDouble(2, 999.99);
+//            stmt.setString(3, "123456789");
+//            
+//            stmt.executeUpdate();
+//            JOptionPane.showMessageDialog(null,
+//                    "Compra Realizada com sucesso");
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null,
+//                    "Ocorreu alguma falha na compra \n"
+//                            + ex);
+//        }finally{
+//            ConnectionFactory.closeConnection(con, stmt);
+//        }
     }
     public static long readCompra() throws SQLException{
         Connection con = ConnectionFactory.getConnection();
