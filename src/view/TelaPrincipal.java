@@ -145,7 +145,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(menu_comprasPorCliente);
 
-        jMenuItem1.setText("Listar Cliente e buscar por nome");
+        jMenuItem1.setText("Listar Clientes");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);

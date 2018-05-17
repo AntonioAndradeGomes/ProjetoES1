@@ -7,9 +7,9 @@ import model.bean.Vendedor;
 import model.dao.*;
 public class ControleDeListagem implements IControleListagem {
     //implementei o singleton só para passar pelas metas do professor
-    private ProdutoDao prod = new ProdutoDao();
-    private ClienteDao cli = new ClienteDao();
-    private VendedorDao vend = new VendedorDao();
+    private final ProdutoDao prod = new ProdutoDao();
+    private final ClienteDao cli = new ClienteDao();
+    private final VendedorDao vend = new VendedorDao();
     private static ControleDeListagem instancia;
     
     private ControleDeListagem(){}

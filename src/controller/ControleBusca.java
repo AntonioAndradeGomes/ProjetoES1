@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.util.ArrayList;
@@ -13,9 +8,9 @@ import javax.swing.JOptionPane;
 
 public class ControleBusca implements IControleBusca{
 
-    private ProdutoDao pd = new ProdutoDao();
-    private VendedorDao vd = new VendedorDao();
-    private ClienteDao cd = new ClienteDao();
+    private final ProdutoDao pd = new ProdutoDao();
+    private final VendedorDao vd = new VendedorDao();
+    private final ClienteDao cd = new ClienteDao();
     
     public Vendedor buscaVendedorCpf(String cpf) {
        return vd.searchCpf(cpf);

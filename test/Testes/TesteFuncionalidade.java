@@ -1,4 +1,3 @@
-
 package Testes;
 
 import controller.ControleBusca;
@@ -47,5 +46,4 @@ public class TesteFuncionalidade {
         Assert.assertEquals("notebook", teste6.getNome());
         
     }
-   
 }
