@@ -62,6 +62,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         Cadastrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         listar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -127,6 +128,9 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        jLabel2.setText("cpf deve ter 11 caracteres");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,11 +185,13 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(complemento, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(listar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(125, 125, 125))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(118, 118, 118))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(63, 63, 63)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +202,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(telefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 13, Short.MAX_VALUE))))
+                        .addGap(0, 6, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +253,9 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
                     .addComponent(listar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         setBounds(0, 0, 640, 535);
@@ -264,7 +272,9 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             lista.add(this.cidade.getText());
             lista.add(this.rua.getText());
             lista.add(this.bairro.getText());
-            if(testeNulos(lista)){
+
+            
+            if(testeNulos(lista) && this.verficaCpf(this.cpf.getText())){ //verficar se algum dos campos é nulo ou o cpf não tem 11 caracteres
                 try{
                     long num;
                     if (this.numero.getText().equals("")){//receber o numero para transformar em int
@@ -294,6 +304,15 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         }
         return true;
     }
+    
+    
+    private boolean verficaCpf(String cpf){
+        //queria vericar se o campo só recebe numeros também
+        if(cpf.length() == 11){
+            return true;
+        }
+        return false;
+    }
    
     private void setarCampos(){
         this.nome.setText(""); this.cpf.setText(""); this.rg.setText(""); this.telefone1.setText("");
@@ -319,6 +338,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField cpf;
     private javax.swing.JTextField email;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel label_cpf;
     private javax.swing.JLabel label_cpf10;
     private javax.swing.JLabel label_cpf11;
