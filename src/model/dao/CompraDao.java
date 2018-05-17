@@ -19,13 +19,6 @@ public class CompraDao {
             stmt.setLong(1, readCompra());
             stmt.setString(2, compra.getComprador().getCpf());
             
-            //Tabela de Produto tem Compra
-            stmt = con.prepareStatement("INSERT INTO `infotech`.`Produto_tem_Compra` (Produto_codigo, "
-                + "Compra_Codigo_compra) "
-                + "Values(?,?)");
-            stmt.setString(1, Codigoproduto);
-            stmt.setLong(2, readCompra());  
-            
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null,
                     "Compra Realizada com sucesso");

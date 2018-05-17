@@ -164,7 +164,7 @@ public class ProdutoDao {
        } 
    }
    
-   public void updateQuantidade(String codigo, double quantidade){
+   public void updateQuantidade(String codigo, long quantidade){
        Connection con = ConnectionFactory.getConnection();
        PreparedStatement stmt = null;
        try {

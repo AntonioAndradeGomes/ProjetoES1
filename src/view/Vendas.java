@@ -21,6 +21,7 @@ import model.bean.FactoryCliente;
 import model.bean.Produto;
 import model.bean.Vendedor;
 import model.dao.ClienteDao;
+import static model.dao.CompraDao.readCompra;
 import model.dao.ProdutoDao;
 import model.dao.VendedorDao;
 
@@ -455,11 +456,12 @@ public class Vendas extends javax.swing.JInternalFrame {
                         double valor = Double.parseDouble(this.valor.getText());
                         compras.Comprar(ControleBusca.ClienteBuscaCpf(this.cpfdocliente.getText()), ControleBusca.buscaVendedorCpf(this.cpfdovendedor.getText()), data, 1, valor, this.codigo.getText());
                         //Alterando quantidade
-                        double quantidade = Double.parseDouble(this.quantidade.getText());
-                        double QuantidadeDisponivel = ControleBusca.buscaProdutocodigo(this.codigo.getText()).getQt_disponiveis();
+                        long quantidade = Long.parseLong(this.quantidade.getText());
+                        long QuantidadeDisponivel = ControleBusca.buscaProdutocodigo(this.codigo.getText()).getQt_disponiveis();
                         quantidade = QuantidadeDisponivel - quantidade;
                         ProdutoDao newquantidade = new ProdutoDao();
                         newquantidade.updateQuantidade(this.codigo.getText(), quantidade);
+                        Produtotemcompra();
                         this.setarCampos();
                     } catch (Exception e) {
                                 JOptionPane.showMessageDialog(null, "Campos não foram preenchidos CORRETAMENTE!");
@@ -479,13 +481,17 @@ public class Vendas extends javax.swing.JInternalFrame {
         lista.add(this.jTextField1.getText());
         lista.add(this.nomecliente.getText());
         lista.add(this.nomeproduto.getText());
-        lista.add(this.pesquisarcodigo.getText());
-        lista.add(this.pesquisarcpf.getText());
         lista.add(this.quantidade.getText());     
         for (int i = 0; i < lista.size(); i++){
             if (lista.get(i).equals("")){
                 return false;
             }
+        }
+        try{
+            double valor = Double.parseDouble(this.valor.getText());
+            long quantidade = Long.parseLong(this.quantidade.getText());
+        }catch(Exception e){
+            return false;
         }
         return true;
     }
@@ -497,8 +503,6 @@ public class Vendas extends javax.swing.JInternalFrame {
         this.jTextField1.setText("");
         this.nomecliente.setText("");
         this.nomeproduto.setText("");
-        this.pesquisarcodigo.setText("");
-        this.pesquisarcpf.setText("");
         this.quantidade.setText("");
         this.valor.setText("");
         this.data.setText("");
@@ -528,6 +532,27 @@ public class Vendas extends javax.swing.JInternalFrame {
                     "Ocorreu alguma falha na compra \n"
                             + ex);
             return false;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
+    private void Produtotemcompra(){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        double valor = Double.parseDouble(this.valor.getText());
+        try {
+            //Tabela de Produto tem Compra
+            stmt = con.prepareStatement("INSERT INTO `infotech`.`Produto_tem_Compra` (Produto_codigo, "
+                + "Compra_Codigo_compra) "
+                + "Values(?,?)");
+            stmt.setString(1, this.codigo.getText());
+            stmt.setLong(2, readCompra());  
+            
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,
+                    "Ocorreu alguma falha na compra \n"
+                            + ex);
         }finally{
             ConnectionFactory.closeConnection(con, stmt);
         }
