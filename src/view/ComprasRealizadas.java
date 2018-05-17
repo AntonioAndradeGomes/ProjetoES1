@@ -11,23 +11,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import model.bean.Cliente;
 import model.dao.ClienteDao;
 
 /**
  *
- * @author Gildo
+ * @author jonathas
  */
-public class ListarComprasRealizadas extends javax.swing.JPanel {
+public class ComprasRealizadas extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form ListarComprasRealizadas
+     * Creates new form listarcompras2
      */
-    public ListarComprasRealizadas() {
+    public ComprasRealizadas() {
         initComponents();
+        DefaultTableModel modelo = (DefaultTableModel) this.Compras.getModel();
+        this.Compras.setRowSorter(new TableRowSorter(modelo));
     }
 
     /**
@@ -39,19 +41,19 @@ public class ListarComprasRealizadas extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jInternalFrame1 = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
         cpfdocliente = new javax.swing.JTextField();
-        Pesquisacliente = new javax.swing.JButton();
+        Pesquisacliente = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Compras = new javax.swing.JTable();
 
-        setMaximumSize(new java.awt.Dimension(674, 555));
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setTitle("Compras Realizadas");
         setMinimumSize(new java.awt.Dimension(674, 555));
 
-        jInternalFrame1.setVisible(true);
-
-        jLabel1.setText("CPF do cliente");
+        jLabel1.setText("CPF cliente");
 
         Pesquisacliente.setText("Pesquisar");
         Pesquisacliente.addActionListener(new java.awt.event.ActionListener() {
@@ -62,26 +64,15 @@ public class ListarComprasRealizadas extends javax.swing.JPanel {
 
         Compras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Cliente", "Produto", "Preço", "Data", "Vendedor"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Object.class, java.lang.String.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -89,46 +80,37 @@ public class ListarComprasRealizadas extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(Compras);
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(132, Short.MAX_VALUE)
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(126, 126, 126)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cpfdocliente, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(30, 30, 30)
+                .addComponent(cpfdocliente, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(Pesquisacliente)
-                .addGap(171, 171, 171))
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap(140, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
         );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Pesquisacliente)
-                    .addComponent(cpfdocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
-        );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Pesquisacliente)
+                    .addComponent(jLabel1)
+                    .addComponent(cpfdocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void PesquisaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisaclienteActionPerformed
@@ -145,16 +127,6 @@ public class ListarComprasRealizadas extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_PesquisaclienteActionPerformed
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Compras;
-    private javax.swing.JButton Pesquisacliente;
-    private javax.swing.JTextField cpfdocliente;
-    private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration//GEN-END:variables
-    
     /**
      * @param args the command line arguments
      */
@@ -172,47 +144,55 @@ public class ListarComprasRealizadas extends javax.swing.JPanel {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Vendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ComprasRealizadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Vendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ComprasRealizadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Vendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ComprasRealizadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Vendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ComprasRealizadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarComprasRealizadas().setVisible(true);
+                new ComprasRealizadas().setVisible(true);
             }
         });
     }
-    
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Compras;
+    private javax.swing.JToggleButton Pesquisacliente;
+    private javax.swing.JTextField cpfdocliente;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    // End of variables declaration//GEN-END:variables
     private void Listarcompras(){
-        DefaultTableModel modelo = new DefaultTableModel();
-        this.Compras.setModel(modelo);
+        DefaultTableModel modelo = (DefaultTableModel) this.Compras.getModel();
         
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            stmt = con.prepareStatement("SELECT infotech.Cliente.cpf as CPFdoCliente, infotech.Cliente.nome as NomedoCliente, infotech.Produto.nome as ProdutoComprado, infotech.Produto.preco as PrecodoProduto, infotech.Compra.data as Datadacompra, infotech.Vendedor.nome as NomedoVendedor\n" +
+            stmt = con.prepareStatement("SELECT infotech.Cliente.nome as NomedoCliente, infotech.Produto.nome as ProdutoComprado, infotech.Produto.preco as PrecodoProduto, infotech.Compra.data as Datadacompra, infotech.Vendedor.nome as NomedoVendedor\n" +
 "	FROM infotech.Cliente, infotech.Produto, infotech.Cliente_Realiza_Compra, infotech.Compra, infotech.Produto_tem_Compra, infotech.Vendedor\n" +
 "	where (Cliente.cpf = Cliente_Realiza_Compra.Cliente_cpf and Cliente_Realiza_Compra.Compra_Codigo_compra = Compra.Codigo_compra) and\n" +
 "    (Compra.Codigo_compra = Produto_tem_Compra.Compra_Codigo_compra and Produto.codigo = Produto_tem_Compra.Produto_codigo) and\n" +
-"    (Vendedor.cpf = Compra.Vendedor_cpf) and (Cliente.cpf = " + this.cpfdocliente.getText() + " );"   );
+"    (Vendedor.cpf = Compra.Vendedor_cpf) and (Cliente.cpf = '"  + this.Pesquisacliente.getText() + "' );"   );
             rs = stmt.executeQuery();
-            ResultSetMetaData rsMD = rs.getMetaData();
-            int quantidadeColunas = rsMD.getColumnCount();
             
             while(rs.next()){
-                Object[] filas = new Object[quantidadeColunas];
-                for(int i = 0; i < quantidadeColunas; i++){
-                    filas[i] = rs.getObject(i + 1);
-                }
-                modelo.addRow(filas);
+                
+                modelo.addRow(new Object[]{
+                    rs.getString("NomedoCliente"),
+                    rs.getString("ProdutoComprado"),
+                    rs.getDouble("PrecodoProduto"),
+                    rs.getDate("Datadacompra"),
+                    rs.getString("NomedoVendedor"),
+                });
                 
                 
             }
@@ -223,5 +203,4 @@ public class ListarComprasRealizadas extends javax.swing.JPanel {
         }
         
     }
-
 }

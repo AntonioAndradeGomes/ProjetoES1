@@ -29,7 +29,7 @@ import model.dao.VendedorDao;
  *
  * @author Gildo
  */
-public class Vendas extends javax.swing.JFrame {
+public class Vendas extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Vendas
@@ -72,9 +72,11 @@ public class Vendas extends javax.swing.JFrame {
         pesquisacpfvendedor = new javax.swing.JButton();
         RealizarCompra = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setVisible(true);
 
-        jInternalFrame1.setClosable(true);
         jInternalFrame1.setTitle("Vendas");
         jInternalFrame1.setMaximumSize(new java.awt.Dimension(674, 555));
         jInternalFrame1.setMinimumSize(new java.awt.Dimension(674, 555));
@@ -248,7 +250,7 @@ public class Vendas extends javax.swing.JFrame {
                     .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addComponent(RealizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -276,6 +278,47 @@ public class Vendas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void RealizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarCompraActionPerformed
+        if(QuantidadeDisponivel())
+        ConfirmaCompra();
+    }//GEN-LAST:event_RealizarCompraActionPerformed
+
+    private void pesquisacpfvendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisacpfvendedorActionPerformed
+        if(this.cpfdovendedor.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o CPF do vendedor");
+        }else{
+            VendedorDao pesquisa = new VendedorDao();
+            Vendedor dados = pesquisa.searchCpf(this.cpfdovendedor.getText());
+            if(dados == null){
+                JOptionPane.showMessageDialog(null, "Vendedor não encontrado");
+            }else{
+                this.jTextField1.setText(dados.getNome());
+            }
+        }
+    }//GEN-LAST:event_pesquisacpfvendedorActionPerformed
+
+    private void cpfdovendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfdovendedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpfdovendedorActionPerformed
+
+    private void valorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valorActionPerformed
+
+    private void pesquisarcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarcodigoActionPerformed
+        if(this.codigo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o codigo do produto");
+        }else{
+            ProdutoDao pesquisa = new ProdutoDao();
+            Produto dados = pesquisa.buscaCodigo(this.codigo.getText());
+            if(dados == null){
+                JOptionPane.showMessageDialog(null, "Produto não encontrado");
+            }else{
+                this.nomeproduto.setText(dados.getNome());
+            }
+        }
+    }//GEN-LAST:event_pesquisarcodigoActionPerformed
+
     private void pesquisarcpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarcpfActionPerformed
         if(this.cpfdocliente.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Digite o CPF do cliente");
@@ -293,47 +336,6 @@ public class Vendas extends javax.swing.JFrame {
     private void cpfdoclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfdoclienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cpfdoclienteActionPerformed
-
-    private void cpfdovendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfdovendedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cpfdovendedorActionPerformed
-
-    private void valorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_valorActionPerformed
-
-    private void RealizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarCompraActionPerformed
-        if(QuantidadeDisponivel())
-            ConfirmaCompra();
-    }//GEN-LAST:event_RealizarCompraActionPerformed
-
-    private void pesquisacpfvendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisacpfvendedorActionPerformed
-        if(this.cpfdovendedor.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Digite o CPF do vendedor");
-        }else{
-            VendedorDao pesquisa = new VendedorDao();
-            Vendedor dados = pesquisa.searchCpf(this.cpfdovendedor.getText());
-            if(dados == null){
-                JOptionPane.showMessageDialog(null, "Vendedor não encontrado");
-            }else{
-                this.jTextField1.setText(dados.getNome());
-            }
-        }
-    }//GEN-LAST:event_pesquisacpfvendedorActionPerformed
-
-    private void pesquisarcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarcodigoActionPerformed
-         if(this.codigo.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Digite o codigo do produto");
-        }else{
-            ProdutoDao pesquisa = new ProdutoDao();
-            Produto dados = pesquisa.buscaCodigo(this.codigo.getText());
-            if(dados == null){
-                JOptionPane.showMessageDialog(null, "Produto não encontrado");
-            }else{
-                this.nomeproduto.setText(dados.getNome());
-            }
-        }
-    }//GEN-LAST:event_pesquisarcodigoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -418,26 +420,27 @@ public class Vendas extends javax.swing.JFrame {
         if(testarNulos()){
             int confirma = JOptionPane.showConfirmDialog(null, "Quer Realizar compra?", "Confirmar", JOptionPane.YES_NO_OPTION);
             if (confirma == JOptionPane.YES_OPTION){
-                cadastraCompra();
-                try{
-                    IControleCompras compras = new ControleCompras();
-                    IControleBusca ControleBusca = new ControleBusca();
-                    //Manipulando data
-                    Date data;
-                    String convert = this.data.getText();
-                    data = Date.valueOf(convert);
-                    double valor = Double.parseDouble(this.valor.getText());
-                    compras.Comprar(ControleBusca.ClienteBuscaCpf(this.cpfdocliente.getText()), ControleBusca.buscaVendedorCpf(this.cpfdovendedor.getText()), data, 1, valor, this.codigo.getText());
-                    //Alterando quantidade
-                    double quantidade = Double.parseDouble(this.quantidade.getText());
-                    double QuantidadeDisponivel = ControleBusca.buscaProdutocodigo(this.codigo.getText()).getQt_disponiveis();
-                    quantidade = QuantidadeDisponivel - quantidade;
-                    ProdutoDao newquantidade = new ProdutoDao();
-                    newquantidade.updateQuantidade(this.codigo.getText(), quantidade);
-                    this.setarCampos();
-                } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "Campos não foram preenchidos CORRETAMENTE!");
-                    } 
+                if(cadastraCompra()){ //Se não acontecer nada de errado
+                    try{
+                        IControleCompras compras = new ControleCompras();
+                        IControleBusca ControleBusca = new ControleBusca();
+                        //Manipulando data
+                        Date data;
+                        String convert = this.data.getText();
+                        data = Date.valueOf(convert);
+                        double valor = Double.parseDouble(this.valor.getText());
+                        compras.Comprar(ControleBusca.ClienteBuscaCpf(this.cpfdocliente.getText()), ControleBusca.buscaVendedorCpf(this.cpfdovendedor.getText()), data, 1, valor, this.codigo.getText());
+                        //Alterando quantidade
+                        double quantidade = Double.parseDouble(this.quantidade.getText());
+                        double QuantidadeDisponivel = ControleBusca.buscaProdutocodigo(this.codigo.getText()).getQt_disponiveis();
+                        quantidade = QuantidadeDisponivel - quantidade;
+                        ProdutoDao newquantidade = new ProdutoDao();
+                        newquantidade.updateQuantidade(this.codigo.getText(), quantidade);
+                        this.setarCampos();
+                    } catch (Exception e) {
+                                JOptionPane.showMessageDialog(null, "Campos não foram preenchidos CORRETAMENTE!");
+                        } 
+                }
             }
         } else{
             JOptionPane.showMessageDialog(null, "Campos obrigatorios não foram preenchidos!");
@@ -475,7 +478,7 @@ public class Vendas extends javax.swing.JFrame {
         this.quantidade.setText("");
     }
     
-    private void cadastraCompra(){ //Dava erro ao manipular data no compradao
+    private boolean cadastraCompra(){ //Dava erro ao manipular data no compradao
         Date data;
         String convert = this.data.getText();
         data = Date.valueOf(convert);
@@ -493,10 +496,12 @@ public class Vendas extends javax.swing.JFrame {
             stmt.setString(3, this.cpfdovendedor.getText());
             
             stmt.executeUpdate();
+            return true;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,
                     "Ocorreu alguma falha na compra \n"
                             + ex);
+            return false;
         }finally{
             ConnectionFactory.closeConnection(con, stmt);
         }

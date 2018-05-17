@@ -126,6 +126,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Listagem");
 
         menu_listarVendedores.setText("Minhas Vendas");
+        menu_listarVendedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_listarVendedoresActionPerformed(evt);
+            }
+        });
         jMenu2.add(menu_listarVendedores);
 
         jMenuItem7.setText("Listar Vendedores");
@@ -137,6 +142,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu2.add(jMenuItem7);
 
         menu_comprasPorCliente.setText("Compras por Cliente");
+        menu_comprasPorCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_comprasPorClienteActionPerformed(evt);
+            }
+        });
         jMenu2.add(menu_comprasPorCliente);
 
         buscaCliente.setText("Busca de Cliente por Cpf");
@@ -291,7 +301,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Vendas telaVenda = new Vendas();
         telaVenda.setVisible(true);
-//        this.Desktop.add(telaVenda);
+        this.Desktop.add(telaVenda);
 //não é uma internal frame
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -312,6 +322,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.dispose();
         login.setVisible(true);
     }//GEN-LAST:event_menu_sairMousePressed
+
+    private void menu_listarVendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_listarVendedoresActionPerformed
+        VendasRealizadas vendas = new VendasRealizadas();
+        vendas.setVisible(true);
+        this.Desktop.add(vendas);
+    }//GEN-LAST:event_menu_listarVendedoresActionPerformed
+
+    private void menu_comprasPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_comprasPorClienteActionPerformed
+        ComprasRealizadas compras = new ComprasRealizadas(); //criei uma instancia da tela cliente
+        compras.setVisible(true); //isso já sabe o qfaz
+        this.Desktop.add(compras); //coloco dentro da desktop pane
+    }//GEN-LAST:event_menu_comprasPorClienteActionPerformed
 
     /**
      * @param args the command line arguments
