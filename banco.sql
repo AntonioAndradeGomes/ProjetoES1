@@ -125,8 +125,8 @@ ENGINE = InnoDB;
 INSERT INTO `infotech`.`Cliente` VALUES ('0','0','Avulso',NULL,'Sem cidade','Sem Bairro','Sem rua',NULL,NULL,NULL,NULL),
 ('1235343','3453456','Gustavo','gustavo@hotmail.com','Maceio','centro','Fernandes',9,'Perto do colegio educar',NULL,NULL),
 ('123654','564478','Fernando','Fernando@gmail.com','Arapiraca','centro','Primavera',12,'perto do posto de saúde',NULL,NULL),
-('23456789101','1324546776','Marisvaldo','marisvaldo@gmail.com','Rolandia','Centro','rua das boquinhas',120,'virando a rua 16','996669120',NULL),
-('23456789111','1324578776','Godolfredo',NULL,'Rolandia','Centro','rua das boquinhas',121,'virando a rua 16','996669121',NULL),
+('23456789101','1324546776','Marinaldo','marinaldo@gmail.com','Rondonia','Centro','rua dos milagres',120,'perto da auto escola','996669120',NULL),
+('23456789111','1324578776','Godolfredo',NULL,'Rondonia','Centro','rua dos milagres',121,'perto da auto escola','996669121',NULL),
 ('27346872','24342738','Stefany','stefany@gmail.com','Quebrangulo','centro','São jorge',1,NULL,NULL,NULL),
 ('4564345334','2343633545','Felipe','Ronaldo@gmail.com','Barcelona','Nobre','Stanford',32,'Proximo ao Estadio','98765434','96785432'),
 ('783429247','236582384','Vitoria','vitoria@gmail.com','Quebrangulo','centro','Napoleão',8,'perto do posto de gasolina JB','94637484',NULL),
@@ -152,7 +152,7 @@ Luiz','91382745',NULL,'Gerente','admin1');
 INSERT INTO `infotech`.`Produto` VALUES ('aa13','Mouse',10,2,'sem fio',21),
 							('avl1','impressora',6,2,'Epson',1200),
 							('bte5','Celular',6,2,'Asus',2000),
-							('camolaggg','camisinha',9,0,'camisinha ola retardante tamanho grande',2.25),
+							('cam','camera',9,0,'Gopro',250.99),
 							('dc2','Computador',12,2,'Gamer',1200.99),
 							('de21','Teclado',9,1,'sem fio',120),
 							('dfeq12','notebook',3,2,'MacBook pro',20000),
@@ -199,11 +199,3 @@ INSERT INTO `infotech`.`Produto_tem_Compra` VALUES ('aa13',2),
 										('js12',9),
 										('xxxffff',10),
 										('xxxtmto',11);
-select * from `infotech`.`Produto`;
-select * from `infotech`.`cliente`;
-select * from infotech.Vendedor;
-select * from infotech.Cliente;
-select * from `infotech`.`vendedor`;
-INSERT INTO `infotech`.`Vendedor` (cpf, rg, nome, email, cidade, bairro, rua, numero, complemento, 
-telefone1, telefone2, tipo, senha) VALUES ('123456789900', '3594976232', 'Antonio Andrade', '', 'Quebrangulo', 'Centro'
-'rua Paulo Jacinto', 69,'', '','', 'Gerente', 'admin');
