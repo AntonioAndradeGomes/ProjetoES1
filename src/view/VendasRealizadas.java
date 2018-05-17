@@ -15,7 +15,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.bean.Cliente;
+import model.bean.Vendedor;
 import model.dao.ClienteDao;
+import model.dao.VendedorDao;
 
 /**
  *
@@ -42,8 +44,8 @@ public class VendasRealizadas extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        cpfdocliente = new javax.swing.JTextField();
-        Pesquisacliente = new javax.swing.JToggleButton();
+        cpfdovendedor = new javax.swing.JTextField();
+        pesquisavendedor = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Compras = new javax.swing.JTable();
 
@@ -53,12 +55,12 @@ public class VendasRealizadas extends javax.swing.JInternalFrame {
         setTitle("Vendas realizadas");
         setMinimumSize(new java.awt.Dimension(674, 555));
 
-        jLabel1.setText("CPF cliente");
+        jLabel1.setText("CPF vendedor");
 
-        Pesquisacliente.setText("Pesquisar");
-        Pesquisacliente.addActionListener(new java.awt.event.ActionListener() {
+        pesquisavendedor.setText("Pesquisar");
+        pesquisavendedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PesquisaclienteActionPerformed(evt);
+                pesquisavendedorActionPerformed(evt);
             }
         });
 
@@ -88,10 +90,10 @@ public class VendasRealizadas extends javax.swing.JInternalFrame {
                 .addGap(126, 126, 126)
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
-                .addComponent(cpfdocliente, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cpfdovendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Pesquisacliente)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addComponent(pesquisavendedor)
+                .addContainerGap(121, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -102,9 +104,9 @@ public class VendasRealizadas extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Pesquisacliente)
+                    .addComponent(pesquisavendedor)
                     .addComponent(jLabel1)
-                    .addComponent(cpfdocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cpfdovendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
                 .addContainerGap())
@@ -113,19 +115,19 @@ public class VendasRealizadas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PesquisaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisaclienteActionPerformed
-        if(this.cpfdocliente.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Digite o CPF do cliente");
+    private void pesquisavendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisavendedorActionPerformed
+        if(this.cpfdovendedor.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o CPF do vendedor");
         }else{
-            ClienteDao pesquisa = new ClienteDao();
-            Cliente dados = pesquisa.BuscaCpf(this.cpfdocliente.getText());
+            VendedorDao pesquisa = new VendedorDao();
+            Vendedor dados = pesquisa.searchCpf(this.cpfdovendedor.getText());
             if(dados == null){
-                JOptionPane.showMessageDialog(null, "Cliente não encontrado");
+                JOptionPane.showMessageDialog(null, "Vendedor não encontrado");
             }else{
                 Listarcompras();
             }
         }
-    }//GEN-LAST:event_PesquisaclienteActionPerformed
+    }//GEN-LAST:event_pesquisavendedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,10 +173,10 @@ public class VendasRealizadas extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Compras;
-    private javax.swing.JToggleButton Pesquisacliente;
-    private javax.swing.JTextField cpfdocliente;
+    private javax.swing.JTextField cpfdovendedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToggleButton pesquisavendedor;
     // End of variables declaration//GEN-END:variables
     private void Listarcompras(){
         DefaultTableModel modelo = (DefaultTableModel) this.Compras.getModel();
@@ -183,11 +185,11 @@ public class VendasRealizadas extends javax.swing.JInternalFrame {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            stmt = con.prepareStatement("SELECT infotech.Cliente.cpf as CPFdoCliente, infotech.Cliente.nome as NomedoCliente, infotech.Produto.nome as ProdutoComprado, infotech.Produto.preco as PrecodoProduto, infotech.Compra.data as Datadacompra, infotech.Vendedor.nome as NomedoVendedor\n" +
+            stmt = con.prepareStatement("SELECT infotech.Cliente.cpf as CPFdoCliente, infotech.Cliente.nome as NomedoCliente, infotech.Produto.nome as ProdutoComprado, infotech.Compra.valor, infotech.Compra.data as Datadacompra, infotech.Vendedor.nome as NomedoVendedor\n" +
 "	FROM infotech.Cliente, infotech.Produto, infotech.Cliente_Realiza_Compra, infotech.Compra, infotech.Produto_tem_Compra, infotech.Vendedor\n" +
 "	where (Cliente.cpf = Cliente_Realiza_Compra.Cliente_cpf and Cliente_Realiza_Compra.Compra_Codigo_compra = Compra.Codigo_compra) and\n" +
 "    (Compra.Codigo_compra = Produto_tem_Compra.Compra_Codigo_compra and Produto.codigo = Produto_tem_Compra.Produto_codigo) and\n" +
-"    (Vendedor.cpf = Compra.Vendedor_cpf) and (Vendedor.cpf = '"  + this.cpfdocliente.getText() + "' );"   );
+"    (Vendedor.cpf = Compra.Vendedor_cpf) and (Vendedor.cpf = '"  + this.cpfdovendedor.getText() + "' );"   );
             rs = stmt.executeQuery();
             
             while(rs.next()){
@@ -196,7 +198,7 @@ public class VendasRealizadas extends javax.swing.JInternalFrame {
                     rs.getString("NomedoVendedor"),
                     rs.getString("NomedoCliente"),
                     rs.getString("ProdutoComprado"),
-                    rs.getDouble("PrecodoProduto"),
+                    rs.getDouble("valor"),
                     rs.getDate("Datadacompra"),
                 });
                 

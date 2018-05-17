@@ -177,11 +177,11 @@ public class ComprasRealizadas extends javax.swing.JInternalFrame {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            stmt = con.prepareStatement("SELECT infotech.Cliente.nome as NomedoCliente, infotech.Produto.nome as ProdutoComprado, infotech.Produto.preco as PrecodoProduto, infotech.Compra.data as Datadacompra, infotech.Vendedor.nome as NomedoVendedor\n" +
+            stmt = con.prepareStatement("SELECT infotech.Cliente.nome as NomedoCliente, infotech.Produto.nome as ProdutoComprado, infotech.Compra.valor, infotech.Compra.data as Datadacompra, infotech.Vendedor.nome as NomedoVendedor\n" +
 "	FROM infotech.Cliente, infotech.Produto, infotech.Cliente_Realiza_Compra, infotech.Compra, infotech.Produto_tem_Compra, infotech.Vendedor\n" +
 "	where (Cliente.cpf = Cliente_Realiza_Compra.Cliente_cpf and Cliente_Realiza_Compra.Compra_Codigo_compra = Compra.Codigo_compra) and\n" +
 "    (Compra.Codigo_compra = Produto_tem_Compra.Compra_Codigo_compra and Produto.codigo = Produto_tem_Compra.Produto_codigo) and\n" +
-"    (Vendedor.cpf = Compra.Vendedor_cpf) and (Cliente.cpf = '"  + this.Pesquisacliente.getText() + "' );"   );
+"    (Vendedor.cpf = Compra.Vendedor_cpf) and (Cliente.cpf = '"  + this.cpfdocliente.getText() + "' );"   );
             rs = stmt.executeQuery();
             
             while(rs.next()){
@@ -189,7 +189,7 @@ public class ComprasRealizadas extends javax.swing.JInternalFrame {
                 modelo.addRow(new Object[]{
                     rs.getString("NomedoCliente"),
                     rs.getString("ProdutoComprado"),
-                    rs.getDouble("PrecodoProduto"),
+                    rs.getDouble("valor"),
                     rs.getDate("Datadacompra"),
                     rs.getString("NomedoVendedor"),
                 });
