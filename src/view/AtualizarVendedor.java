@@ -9,20 +9,44 @@ import controller.ControleCadastro;
 import controller.IControleCadastro;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import model.bean.Cliente;
+import model.bean.Vendedor;
 
 /**
  *
  * @author antonio
  */
-public class AtualizarCliente extends javax.swing.JFrame {
-
-    /**
-     * Creates new form AtualizarCliente
-     */
-    private Cliente cliente;
-    public AtualizarCliente() {
+public class AtualizarVendedor extends javax.swing.JFrame {
+    
+    private Vendedor ven;
+    
+    public void setVendedor(Vendedor ven) {
+        this.ven = ven;
+    }
+    
+    public Vendedor getVendedor() {
+        return this.ven;
+    }
+    
+    public AtualizarVendedor() {
         initComponents();
+//        this.setar(this.getVendedor());
+
+    }
+    
+    public void setar(Vendedor ven) {
+        this.cpf.setText(ven.getCpf());
+        this.rg.setText(ven.getRg());
+        this.nome.setText(ven.getNome());
+        this.email.setText(ven.getEmail());
+        this.tel1.setText(ven.getTelefone1());
+        this.tel2.setText(ven.getTelefone2());
+        this.cidade.setText(ven.getCidade());
+        this.bairro.setText(ven.getBairro());
+        this.rua.setText(ven.getRua());
+        this.numero.setText(ven.getNumero() + "");
+        this.complemento.setText(ven.getComplemento());
+        this.tipo.setSelectedItem(ven.getTipo());
+        this.senha.setText(ven.getSenha());
     }
 
     /**
@@ -34,51 +58,39 @@ public class AtualizarCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cancel = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        update = new javax.swing.JButton();
-        numero = new javax.swing.JTextField();
-        complemento = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         cpf = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         rg = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
-        cidade = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
         tel1 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         tel2 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         bairro = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         rua = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        cidade = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        tipo = new javax.swing.JComboBox<>();
+        numero = new javax.swing.JTextField();
+        complemento = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        senha = new javax.swing.JPasswordField();
+        cancel = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
-            }
-        });
-
-        cancel.setText("Cancelar");
-        cancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setText("Complemento");
-
-        update.setText("Atualizar");
-        update.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateActionPerformed(evt);
             }
         });
 
@@ -92,6 +104,10 @@ public class AtualizarCliente extends javax.swing.JFrame {
 
         jLabel3.setText("Nome");
 
+        jLabel4.setText("Email");
+
+        jLabel5.setText("tel 1");
+
         jLabel6.setText("tel 2");
 
         jLabel7.setText("Cidade");
@@ -102,9 +118,32 @@ public class AtualizarCliente extends javax.swing.JFrame {
 
         jLabel10.setText("Numero");
 
-        jLabel4.setText("Email");
+        jLabel11.setText("Complemento");
 
-        jLabel5.setText("tel 1");
+        jLabel12.setText("tipo");
+
+        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendedor", "Gerente", "Outros" }));
+        tipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("Senha");
+
+        cancel.setText("Cancelar");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Atualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,42 +154,51 @@ public class AtualizarCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(rg)
-                            .addComponent(cpf)
-                            .addComponent(nome)
-                            .addComponent(email)
-                            .addComponent(tel1)
-                            .addComponent(tel2)
-                            .addComponent(cidade)
-                            .addComponent(bairro)
-                            .addComponent(rua)
-                            .addComponent(numero, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
-                        .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10))
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(rg)
+                                    .addComponent(cpf)
+                                    .addComponent(nome)
+                                    .addComponent(email)
+                                    .addComponent(tel1)
+                                    .addComponent(tel2)
+                                    .addComponent(cidade)
+                                    .addComponent(bairro)
+                                    .addComponent(rua)
+                                    .addComponent(numero, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(54, 54, 54)
+                                .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cancel)
-                            .addComponent(jLabel11))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(complemento, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 29, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(update)
-                                .addGap(85, 85, 85))))))
+                            .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel13)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(complemento, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 98, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(cancel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(115, 115, 115))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,31 +247,48 @@ public class AtualizarCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(complemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel)
-                    .addComponent(update))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(jButton2))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        this.setar(this.getVendedor());
+    }//GEN-LAST:event_formWindowActivated
+
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelActionPerformed
 
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
         int confirma = JOptionPane.showConfirmDialog(null, "São com esse dados que vai atualizar"
-                + " esse Cliente?", "Confirmar", JOptionPane.YES_NO_OPTION);
+                + " esse Vendedor?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (confirma == JOptionPane.YES_OPTION) {
             ArrayList<String> lista = new ArrayList<String>();
             lista.add(this.nome.getText());
             lista.add(this.cidade.getText());
             lista.add(this.rua.getText());
             lista.add(this.bairro.getText());
-
+            lista.add(this.senha.getText());
+            
             if (testeNulos(lista)) {
                 try {
                     long num;
@@ -234,28 +299,25 @@ public class AtualizarCliente extends javax.swing.JFrame {
                     }
                     IControleCadastro c = new ControleCadastro(); //instanciar o controlador de cadastro
                     //chamar a função de cadastrar cliente
-                    Cliente v = new Cliente(this.nome.getText(), this.cpf.getText(), this.rg.getText(), this.tel1.getText(),
+                    Vendedor v = new Vendedor(this.nome.getText(), this.cpf.getText(), this.rg.getText(), this.tel1.getText(),
                             this.tel2.getText(), this.email.getText(), this.cidade.getText(), this.rua.getText(),
-                            this.bairro.getText(), this.complemento.getText(), num);
-                    this.setCliente(v);
-                    c.AtualizarCliente(v);
+                            this.bairro.getText(), this.complemento.getText(), num,
+                            this.tipo.getSelectedItem().toString(), this.senha.getText());
+                    this.setVendedor(v);
+                    c.AtualizarVendedor(v);
                     this.setar(v);
-                    ListaClientes tela = new ListaClientes();
+                    ListarVendedores tela = new ListarVendedores();
                     tela.setVisible(true);
                     this.dispose();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Campos não foram preenchidos CORRETAMENTE!");
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Campos obrigatorios não foram preenchidos!");
+            }else{
+                 JOptionPane.showMessageDialog(null, "Campos obrigatorios não foram preenchidos!");
             }
         }
-    }//GEN-LAST:event_updateActionPerformed
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-       this.setar(this.getCliente());
-    }//GEN-LAST:event_formWindowActivated
-
+    }//GEN-LAST:event_jButton2ActionPerformed
+    
     private boolean testeNulos(ArrayList<String> lista) {
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).equals("")) {
@@ -282,45 +344,22 @@ public class AtualizarCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AtualizarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizarVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AtualizarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizarVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AtualizarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizarVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AtualizarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizarVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AtualizarCliente().setVisible(true);
+                new AtualizarVendedor().setVisible(true);
             }
         });
-    }
-    
-    
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-    
-    public Cliente getCliente() {
-        return this.cliente;
-    }
-    
-    public void setar(Cliente ven) {
-        this.cpf.setText(ven.getCpf());
-        this.rg.setText(ven.getRg());
-        this.nome.setText(ven.getNome());
-        this.email.setText(ven.getEmail());
-        this.tel1.setText(ven.getTelefone1());
-        this.tel2.setText(ven.getTelefone2());
-        this.cidade.setText(ven.getCidade());
-        this.bairro.setText(ven.getBairro());
-        this.rua.setText(ven.getRua());
-        this.numero.setText(ven.getNumero() + "");
-        this.complemento.setText(ven.getComplemento());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -330,9 +369,12 @@ public class AtualizarCliente extends javax.swing.JFrame {
     public javax.swing.JTextField complemento;
     public javax.swing.JLabel cpf;
     public javax.swing.JTextField email;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -345,8 +387,9 @@ public class AtualizarCliente extends javax.swing.JFrame {
     public javax.swing.JTextField numero;
     public javax.swing.JLabel rg;
     public javax.swing.JTextField rua;
+    public javax.swing.JPasswordField senha;
     public javax.swing.JTextField tel1;
     public javax.swing.JTextField tel2;
-    private javax.swing.JButton update;
+    public javax.swing.JComboBox<String> tipo;
     // End of variables declaration//GEN-END:variables
 }

@@ -41,6 +41,7 @@ public class ListarVendedores extends javax.swing.JFrame {
         deletar = new javax.swing.JButton();
         buscarCpf = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        update = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tela de listagem de cliente");
@@ -112,6 +113,13 @@ public class ListarVendedores extends javax.swing.JFrame {
 
         jButton2.setText("Vendas");
 
+        update.setText("Atualizar Dados");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,12 +132,15 @@ public class ListarVendedores extends javax.swing.JFrame {
                     .addComponent(read)
                     .addComponent(buscarCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(dados)
                         .addGap(45, 45, 45)
                         .addComponent(deletar))
-                    .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(update)))
                 .addContainerGap(656, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -143,7 +154,8 @@ public class ListarVendedores extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscarCpf)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(update))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(read)
                 .addGap(18, 18, 18)
@@ -245,17 +257,36 @@ public class ListarVendedores extends javax.swing.JFrame {
 
     private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
         if (this.tabela.getSelectedRow() != -1) {
-            int confirma = JOptionPane.showConfirmDialog(null, "Deseja deletar este Cliente?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            int confirma = JOptionPane.showConfirmDialog(null, "Deseja deletar este Vendedor?", "Confirmar", JOptionPane.YES_NO_OPTION);
             if (confirma == JOptionPane.YES_OPTION) {
                 IControleCadastro i = new ControleCadastro();
                 i.DeletarVendedorCpf(this.getCpf_selecionado());
                 this.read();
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Selecione uma tabela depois tente remover \n"
+            JOptionPane.showMessageDialog(null, "Selecione uma linha tabela depois tente remover \n"
                     + "SE REALMENTE QUIZER CLARO!!!");
         }
     }//GEN-LAST:event_deletarActionPerformed
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        if (this.tabela.getSelectedRow() != -1) {
+            int confirma = JOptionPane.showConfirmDialog(null, "Deseja atualizar os dados deste Vendedor?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (confirma == JOptionPane.YES_OPTION){
+                IControleBusca i = new ControleBusca();
+                Vendedor c = i.buscaVendedorCpf(this.getCpf_selecionado());
+                AtualizarVendedor tela = new AtualizarVendedor();
+                tela.setVendedor(c);
+                tela.setVisible(true);
+                this.dispose();
+//                System.out.println(this.getCpf_selecionado());
+                
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma linha tabela depois tente atualizar \n"
+                    + "SE REALMENTE QUIZER CLARO!!!");
+        }
+    }//GEN-LAST:event_updateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,6 +351,7 @@ public class ListarVendedores extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton read;
     private javax.swing.JTable tabela;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 
 }

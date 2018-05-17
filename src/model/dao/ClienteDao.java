@@ -77,7 +77,7 @@ public class ClienteDao {
        PreparedStatement stmt = null;
        try {
            stmt = con.prepareStatement("UPDATE `infotech`.`Cliente` SET nome = ?, email = ?,"
-                     + "cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, telefone1 = ?, telefone2 = ?,"
+                     + "cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, telefone1 = ?, telefone2 = ?"
                    + " where cpf = ?");
            stmt.setString(1, cliente.getNome());
            stmt.setString(2, cliente.getEmail());

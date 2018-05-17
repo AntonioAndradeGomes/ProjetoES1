@@ -34,6 +34,7 @@ public class ListaClientes extends javax.swing.JFrame {
         this.tipo = tipo;
         if (!(tipo.equals("GERENTE") || tipo.equals("gerente") || tipo.equals("Gerente"))){
             this.deletar.setEnabled(false);
+            this.update.setEnabled(false);
         }
     }
     /**
@@ -53,7 +54,7 @@ public class ListaClientes extends javax.swing.JFrame {
         deletar = new javax.swing.JButton();
         buscarCpf = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        update = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tela de listagem de cliente");
@@ -125,7 +126,12 @@ public class ListaClientes extends javax.swing.JFrame {
 
         jButton2.setText("Minhas Compras");
 
-        jLabel1.setText("Obs.: Para atualizar dados de um cliente deve-se ir em TelaPrincipal -> Listagem -> Busca de clientes por cpf");
+        update.setText("Atualizar dados Cliente");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,13 +147,13 @@ public class ListaClientes extends javax.swing.JFrame {
                     .addComponent(read))
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(dados)
-                        .addGap(45, 45, 45)
-                        .addComponent(deletar))
+                    .addComponent(dados)
                     .addComponent(jButton2))
-                .addContainerGap(464, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(update)
+                    .addComponent(deletar))
+                .addContainerGap(729, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,11 +166,10 @@ public class ListaClientes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscarCpf)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(update))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(read)
-                    .addComponent(jLabel1))
+                .addComponent(read)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -274,6 +279,23 @@ public class ListaClientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deletarActionPerformed
 
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        if (this.tabela.getSelectedRow() != -1) {
+            int confirma = JOptionPane.showConfirmDialog(null, "Deseja atualizar os dados deste Cliente?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (confirma == JOptionPane.YES_OPTION){
+                IControleBusca i = new ControleBusca();
+                Cliente c = i.ClienteBuscaCpf(this.getCpf_selecionado());
+                AtualizarCliente tela = new AtualizarCliente();
+                tela.setCliente(c);
+                tela.setVisible(true);
+                this.dispose();
+            }
+        }else{
+             JOptionPane.showMessageDialog(null, "Selecione uma linha tabela depois tente atualizar \n"
+                    + "SE REALMENTE QUIZER CLARO!!!");
+        }
+    }//GEN-LAST:event_updateActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -333,10 +355,10 @@ public class ListaClientes extends javax.swing.JFrame {
     private javax.swing.JButton dados;
     private javax.swing.JButton deletar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton read;
     private javax.swing.JTable tabela;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 
 }

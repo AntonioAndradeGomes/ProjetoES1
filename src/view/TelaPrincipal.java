@@ -1,12 +1,9 @@
 package view;
 
-import conection.ConnectionFactory;
-import controller.ControleBusca;
-import controller.IControleBusca;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import model.bean.Cliente;
+
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
@@ -55,7 +52,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menu_listarVendedores = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         menu_comprasPorCliente = new javax.swing.JMenuItem();
-        buscaCliente = new javax.swing.JRadioButtonMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         menu_sair = new javax.swing.JMenu();
@@ -148,14 +144,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(menu_comprasPorCliente);
-
-        buscaCliente.setText("Busca de Cliente por Cpf");
-        buscaCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscaClienteActionPerformed(evt);
-            }
-        });
-        jMenu2.add(buscaCliente);
 
         jMenuItem1.setText("Listar Cliente e buscar por nome");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -262,42 +250,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_menu_vendedoresActionPerformed
 
-    private void buscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaClienteActionPerformed
-        String cpfCliente = JOptionPane.showInputDialog("Digite o cpf");
-        IControleBusca controle = new ControleBusca();
-        Cliente client = controle.ClienteBuscaCpf(cpfCliente);
-        if (client != null) {
-            BuscaDiretaAtualizarCliente buscCliente = new BuscaDiretaAtualizarCliente(this.getTipo());
-            buscCliente.setVisible(true);
-            buscCliente.label_cpfCliente.setText(client.getCpf());
-            buscCliente.label_rgCliente.setText(client.getRg());
-            buscCliente.label_nomeCliente.setText(client.getNome());
-            buscCliente.label_cidadeCliente.setText(client.getCidade());
-            buscCliente.label_bairroCliente.setText(client.getBairro());
-            buscCliente.label_ruaCliente.setText(client.getRua());
-            buscCliente.label_nomeCliente.setText(client.getNome());
-            buscCliente.label_numeroCliente.setText("" + client.getNumero());
-            buscCliente.label_compleCliente.setText(client.getComplemento());
-            buscCliente.label_nomeCliente.setText(client.getEmail());
-            buscCliente.label_telCliente.setText(client.getTelefone1());
-            buscCliente.label_tel2Cliente.setText(client.getTelefone2());
-            this.Desktop.add(buscCliente);
-        } else {
-            int confirma = JOptionPane.showConfirmDialog(null, "Cliente não cadastrado! \n"
-                    + "Quer cadastrar esse cliente?", "Confiarmar", JOptionPane.YES_NO_OPTION);
-            if (confirma == JOptionPane.YES_OPTION) {
-                TelaCliente telacliente = new TelaCliente(this.getTipo()); //criei uma instancia da tela cliente
-                telacliente.setVisible(true); //isso já sabe o qfaz
-                this.Desktop.add(telacliente);
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Tente novamente");
-            }
-        }
-
-
-    }//GEN-LAST:event_buscaClienteActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Vendas telaVenda = new Vendas();
         telaVenda.setVisible(true);
@@ -372,7 +324,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Desktop;
-    private javax.swing.JRadioButtonMenuItem buscaCliente;
     private javax.swing.JLabel data;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu2;

@@ -6,6 +6,7 @@ import model.dao.CompraDao;
 
 public class ControleCompras implements IControleCompras {
     
+    
 
     public Compra ListarCompras(Cliente cliente) {
         return null; //enquanto não implementei nada deixa assim

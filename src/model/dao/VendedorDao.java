@@ -187,4 +187,38 @@ public class VendedorDao {
              ConnectionFactory.closeConnection(con, stmt); 
        } 
     }
+    
+    public void update(Vendedor v){
+       Connection con = ConnectionFactory.getConnection();
+       PreparedStatement stmt = null;
+       try {
+           stmt = con.prepareStatement("UPDATE `infotech`.`Vendedor` SET nome = ?, email = ?,"
+                     + "cidade = ?, bairro = ?, rua = ?, numero = ?, "
+                   + "complemento = ?, telefone1 = ?, telefone2 = ?, tipo = ?, senha = ?"
+                   + " where cpf = ?");
+           stmt.setString(1, v.getNome());
+           stmt.setString(2, v.getEmail());
+           stmt.setString(3, v.getCidade());
+           stmt.setString(4, v.getBairro());
+           stmt.setString(5, v.getRua());
+           stmt.setLong(6, v.getNumero());
+           stmt.setString(7, v.getComplemento());
+           stmt.setString(8, v.getTelefone1());
+           stmt.setString(9, v.getTelefone2());
+           stmt.setString(10, v.getTipo());
+           stmt.setString(11, v.getSenha());
+           stmt.setString(12, v.getCpf());
+ 
+           
+           stmt.executeUpdate();
+           JOptionPane.showMessageDialog(null,
+                    "Dados do Vendedor atualizados com sucesso!");
+       } catch (Exception e) {
+           JOptionPane.showMessageDialog(null,
+                    "erro! " +  e);
+       }finally{
+            ConnectionFactory.closeConnection(con, stmt); 
+       } 
+    }
+
 }
