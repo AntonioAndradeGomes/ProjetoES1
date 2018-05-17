@@ -7,7 +7,7 @@ public class Cliente extends Usuario {
     
     private ArrayList<Compra> compras; //Todas as compras feitas
     private Compra atual; //Compra atual, que vai ser inserido no banco de dados
-    
+    public Cliente(){}
     public Cliente(String nome, String cpf, String rg, String telefone1, String telefone2, 
             String email, String cidade, String rua, String bairro, String complemento, long numero) 
     {    

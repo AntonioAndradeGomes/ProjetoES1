@@ -3,7 +3,7 @@ package model.bean;
 public abstract class Usuario {
     private String nome, cpf, rg, telefone1, telefone2, email, cidade,rua, bairro,complemento;
     private long numero;
-
+    public Usuario(){}
     public Usuario(String nome, String cpf, String rg, String telefone1, 
             String telefone2, String email, String cidade, String rua, 
             String bairro, String complemento, long numero)

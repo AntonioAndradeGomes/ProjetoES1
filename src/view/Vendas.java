@@ -11,17 +11,16 @@ import controller.ControleCompras;
 import controller.IControleBusca;
 import controller.IControleCompras;
 import java.sql.Connection;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.bean.Cliente;
+import model.bean.FactoryCliente;
 import model.bean.Produto;
 import model.bean.Vendedor;
 import model.dao.ClienteDao;
-import static model.dao.CompraDao.readCompra;
 import model.dao.ProdutoDao;
 import model.dao.VendedorDao;
 
@@ -71,6 +70,8 @@ public class Vendas extends javax.swing.JInternalFrame {
         cpfdovendedor = new javax.swing.JTextField();
         pesquisacpfvendedor = new javax.swing.JButton();
         RealizarCompra = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        Avulso = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -152,6 +153,15 @@ public class Vendas extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel10.setText("ou");
+
+        Avulso.setText("Cliente Avulso");
+        Avulso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AvulsoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
@@ -206,7 +216,11 @@ public class Vendas extends javax.swing.JInternalFrame {
                                 .addComponent(cpfdovendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(pesquisacpfvendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Avulso)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +238,9 @@ public class Vendas extends javax.swing.JInternalFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(cpfdocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesquisarcpf))
+                    .addComponent(pesquisarcpf)
+                    .addComponent(jLabel10)
+                    .addComponent(Avulso))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -250,7 +266,7 @@ public class Vendas extends javax.swing.JInternalFrame {
                     .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addComponent(RealizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -337,6 +353,12 @@ public class Vendas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cpfdoclienteActionPerformed
 
+    private void AvulsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvulsoActionPerformed
+        FactoryCliente avulso = new FactoryCliente();
+        this.nomecliente.setText(avulso.getPessoa("Avulso").getNome());
+        this.cpfdocliente.setText(avulso.getPessoa("Avulso").getCpf());
+    }//GEN-LAST:event_AvulsoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -373,6 +395,7 @@ public class Vendas extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Avulso;
     private javax.swing.JButton RealizarCompra;
     private javax.swing.JTextField codigo;
     private javax.swing.JTextField cpfdocliente;
@@ -380,6 +403,7 @@ public class Vendas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField data;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -476,6 +500,8 @@ public class Vendas extends javax.swing.JInternalFrame {
         this.pesquisarcodigo.setText("");
         this.pesquisarcpf.setText("");
         this.quantidade.setText("");
+        this.valor.setText("");
+        this.data.setText("");
     }
     
     private boolean cadastraCompra(){ //Dava erro ao manipular data no compradao
